@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MegaBurguer</string>
+
+    <!--    Splash Fragment-->
+    <string name="txt_logo_1">Mega</string>
+    <string name="txt_logo_2">burguer</string>
+    <string name="description_logo">Logo Mega Burguer</string>
+</resources>

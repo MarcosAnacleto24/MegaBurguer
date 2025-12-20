@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="color_default">#FF000000</color>
+
+    <!-- Mega Burger Theme Colors -->
+    <color name="mega_burger_orange_primary">#F4791F</color>
+    <color name="mega_burger_orange_secondary">#D99000</color>
+    <color name="mega_burger_background">#1C1C1E</color>
+    <color name="mega_burger_red">#FF4500</color>
+</resources>

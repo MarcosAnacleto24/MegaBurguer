@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MegaBurguer" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/mega_burger_orange_primary</item>
+        <item name="colorPrimaryVariant">@color/mega_burger_orange_secondary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/mega_burger_orange_primary</item>
+        <item name="colorSecondaryVariant">@color/mega_burger_orange_secondary</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/mega_burger_background</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/mega_burger_background</item>
+        <item name="android:colorBackground">@color/mega_burger_background</item>
+    </style>
+
+    <style name="Theme.MegaBurguer" parent="Base.Theme.MegaBurguer" />
+</resources>
