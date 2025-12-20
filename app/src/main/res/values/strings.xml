@@ -5,4 +5,18 @@
     <string name="txt_logo_1">Mega</string>
     <string name="txt_logo_2">burguer</string>
     <string name="description_logo">Logo Mega Burguer</string>
+
+    <!--    Login Fragment-->
+    <string name="txt_logo_1_login">Mega</string>
+    <string name="txt_logo_2_login">burguer</string>
+    <string name="description_logo_login">Logo Mega Burguer</string>
+    <string name="hint_email">Digite seu e-mail</string>
+    <string name="hint_password">Digite sua senha</string>
+    <string name="btn_login">Entrar</string>
+    <string name="txt_title_edit_email">E-mail</string>
+    <string name="txt_title_edit_password">Senha</string>
+
+
+
+
 </resources>
