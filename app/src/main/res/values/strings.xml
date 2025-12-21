@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">MegaBurguer</string>
 
+    <!--    Generic-->
+    <string name="txt_email">E-mail</string>
+    <string name="txt_password">Senha</string>
+    <string name="divider">divisor</string>
+    <string name="error_generic">Error desconhecido, tente novamente mais tarde.</string>
+
     <!--    Splash Fragment-->
     <string name="txt_logo_1">Mega</string>
     <string name="txt_logo_2">burguer</string>
@@ -13,8 +19,21 @@
     <string name="hint_email">Digite seu e-mail</string>
     <string name="hint_password">Digite sua senha</string>
     <string name="btn_login">Entrar</string>
-    <string name="txt_title_edit_email">E-mail</string>
-    <string name="txt_title_edit_password">Senha</string>
+    <string name="txt_email_empty">Por favor, preencha seu e-mail</string>
+    <string name="txt_password_empty">Por favor, preencha sua senha</string>
+
+    <!--    Error Firebase Authentication-->
+    <string name="account_not_register_or_password_invalid">E-mail ou senha inválidos. Por favor, verifique e tente novamente.</string>
+    <string name="email_invalid">O formato do e-mail digitado é inválido.</string>
+    <string name="this_email_used">Este e-mail já está em uso.</string>
+    <string name="enter_password_stronger">Sua senha é muito fraca. Use pelo menos 6 caracteres.</string>
+    <string name="error_register">Ocorreu um erro no registro. Tente novamente.</string>
+    <string name="error_user_not_found">Erro, usuário não autenticado.</string>
+
+    <!--    Bottom Sheet-->
+    <string name="title_bottom_sheet">Atenção</string>
+    <string name="msg_bottom_sheet">Mensagem</string>
+    <string name="btn_bottom_sheet">Entendi</string>"
 
 
 

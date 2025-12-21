@@ -17,7 +17,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="350dp"
-            android:layout_height="550dp"
+            android:layout_height="560dp"
             app:cardBackgroundColor="@color/mega_burger_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/txt_title_edit_email"
+                    android:text="@string/txt_email"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toTopOf="@+id/input_layout_user"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -118,7 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/txt_title_edit_password"
+                    android:text="@string/txt_password"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toTopOf="@+id/input_layout_password"
                     app:layout_constraintStart_toStartOf="parent" />

@@ -10,11 +10,14 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.example.megaburguer.R
 import com.example.megaburguer.databinding.FragmentLoginBinding
+import com.example.megaburguer.util.BaseFragment
+import com.example.megaburguer.util.FirebaseHelper
 import com.example.megaburguer.util.StateView
+import com.example.megaburguer.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class LoginFragment : BaseFragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
@@ -51,12 +54,13 @@ class LoginFragment : Fragment() {
         
         if (email.isNotEmpty()) {
             if (password.isNotEmpty()) {
+                hideKeyboard()
                 login(email,password)
             } else {
-                Toast.makeText(requireContext(), "preencha uma senha", Toast.LENGTH_SHORT).show()
+                showBottomSheet(message = getString(R.string.txt_password_empty))
             }
         } else {
-            Toast.makeText(requireContext(), "preencha um email", Toast.LENGTH_SHORT).show()
+            showBottomSheet(message = getString(R.string.txt_email_empty))
         }
     }
 
@@ -74,7 +78,7 @@ class LoginFragment : Fragment() {
                 
                 is StateView.Error -> {
                     binding.progressBar.isVisible = false
-                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                    showBottomSheet(message = getString((stateView.stringResId ?: R.string.error_generic)))
                 }    
             }
         }
