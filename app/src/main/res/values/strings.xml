@@ -22,6 +22,27 @@
     <string name="txt_email_empty">Por favor, preencha seu e-mail</string>
     <string name="txt_password_empty">Por favor, preencha sua senha</string>
 
+    <!--    Home Admin Fragment-->
+    <string name="txt_panel_title">Painel Administrativo</string>
+    <string name="txt_greeting">Olá, Administrador</string>
+    <string name="txt_select_option_title">Selecione uma opção</string>
+    <string name="txt_select_option_subtitle">Escolha uma área para gerenciar</string>
+    <string name="txt_manage_tables_title">Gerenciar Mesas</string>
+    <string name="txt_add_or_remove_tables">Adicionar ou remover mesas</string>
+    <string name="txt_register_user_title">Registrar Usuário</string>
+    <string name="txt_register_user_new">Cadastrar novos garçons</string>
+    <string name="txt_change_password_title">Alterar Senha</string>
+    <string name="txt_change_password_user">Trocar senha de usuários</string>
+    <string name="txt_manage_menu_title">Gerenciar Cardápio</string>
+    <string name="txt_add_new_menu_title">Adicionar novos lanches e preços</string>
+    <string name="icon_settings">icone configuração</string>
+    <string name="icon_logout">icone deslogar</string>
+    <string name="icon_manage_tables">icone gerenciar mesas</string>
+    <string name="icon_user_register">icone registrar usuário</string>
+    <string name="icon_change_password">icone alterar senha</string>
+    <string name="icon_manage_menu">icone gerenciar mesas</string>
+
+
     <!--    Error Firebase Authentication-->
     <string name="account_not_register_or_password_invalid">E-mail ou senha inválidos. Por favor, verifique e tente novamente.</string>
     <string name="email_invalid">O formato do e-mail digitado é inválido.</string>
@@ -33,9 +54,9 @@
     <!--    Bottom Sheet-->
     <string name="title_bottom_sheet">Atenção</string>
     <string name="msg_bottom_sheet">Mensagem</string>
-    <string name="btn_bottom_sheet">Entendi</string>"
-
-
+    <string name="btn_bottom_sheet">Entendi</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>"
 
 
 </resources>

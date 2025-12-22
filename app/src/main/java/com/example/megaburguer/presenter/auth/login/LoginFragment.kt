@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.megaburguer.R
 import com.example.megaburguer.databinding.FragmentLoginBinding
 import com.example.megaburguer.util.BaseFragment
@@ -73,7 +74,7 @@ class LoginFragment : BaseFragment() {
 
                 is StateView.Success -> {
                     binding.progressBar.isVisible = false
-                    Toast.makeText(requireContext(), "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_loginFragment_to_homeAdminFragment)
                 }
                 
                 is StateView.Error -> {
