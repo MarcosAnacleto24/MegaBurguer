@@ -99,13 +99,12 @@
                 android:id="@+id/card_manage_tables"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
-                android:layout_marginTop="24dp"
                 app:cardBackgroundColor="@color/mega_burger_background"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_select_option_subtitle"
+                app:layout_constraintTop_toTopOf="parent"
                 app:strokeColor="@color/mega_burger_orange_primary">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -381,8 +380,8 @@
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:paddingStart="16dp"
             android:paddingBottom="12dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -393,13 +392,12 @@
                 android:id="@+id/text_select_option_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:text="@string/txt_select_option_title"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/text_select_option_subtitle"

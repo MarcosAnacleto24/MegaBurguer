@@ -22,6 +22,24 @@
     <string name="txt_email_empty">Por favor, preencha seu e-mail</string>
     <string name="txt_password_empty">Por favor, preencha sua senha</string>
 
+    <!--    Register Fragment-->
+    <string name="txt_new_user_register">Novo Usuário</string>
+    <string name="txt_title_register">Registrar Usuário</string>
+    <string name="txt_type_user_register">Tipo de Usuário</string>
+    <string name="txt_title_subtitle_register">Cadastrar novos garçons</string>
+    <string name="hint_user">Usuário</string>
+    <string name="hint_user_full_name">Digite seu nome completo</string>
+    <string name="hint_email_register">Digite um e-mail válido</string>
+    <string name="hint_password_register">Digite uma senha forte</string>
+    <string name="hint_select_type_user_register">Selecione o tipo de usuário</string>
+    <string name="txt_description_full_name">Nome Completo</string>
+    <string name="btn_register">Cadastrar Usuário</string>
+    <string name="name_empty_register">Digite seu nome </string>
+    <string name="email_empty_register">Preencha o campo email</string>
+    <string name="password_empty_register">Preencha o campo senha</string>
+    <string name="type_user_empty_register">Selecione o tipo de usuário</string>
+
+
     <!--    Home Admin Fragment-->
     <string name="txt_panel_title">Painel Administrativo</string>
     <string name="txt_greeting">Olá, Administrador</string>
