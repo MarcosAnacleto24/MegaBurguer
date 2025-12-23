@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.megaburguer.R
 import com.example.megaburguer.databinding.FragmentSplashBinding
+import com.example.megaburguer.util.FirebaseHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -36,9 +38,19 @@ class SplashFragment : Fragment() {
         }
     }
 
-    private fun checkAuth() {
+    private suspend fun checkAuth() {
 
-        findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+        if (FirebaseHelper.isAuthenticated()) {
+            when(FirebaseHelper.getUserType()) {
+                "Administrador" -> findNavController().navigate(R.id.action_splashFragment_to_homeAdminFragment)
+                "Garçom" -> Toast.makeText(requireContext(), "garçom", Toast.LENGTH_SHORT).show()
+
+            }
+        } else {
+            findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+        }
+
+
     }
 
     override fun onDestroyView() {

@@ -9,6 +9,8 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.example.megaburguer.R
 import com.example.megaburguer.databinding.FragmentHomeAdminBinding
+import com.example.megaburguer.util.FirebaseHelper
+import com.example.megaburguer.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,6 +38,18 @@ class HomeAdminFragment : Fragment() {
     }
 
     private fun initListeners() {
+
+        binding.btnLogout.setOnClickListener {
+            showBottomSheet(
+                message = getString(R.string.msg_bottom_sheet_logout),
+                titleButton = R.string.btn_bottom_sheet_logout
+            ) {
+                FirebaseHelper.getAuth().signOut()
+                findNavController().navigate(R.id.action_homeAdminFragment_to_loginFragment)
+            }
+
+        }
+
         binding.cardManageTables.setOnClickListener {
 
         }

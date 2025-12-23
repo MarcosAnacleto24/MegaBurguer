@@ -72,9 +72,10 @@
     <!--    Bottom Sheet-->
     <string name="title_bottom_sheet">Atenção</string>
     <string name="msg_bottom_sheet">Mensagem</string>
+    <string name="msg_bottom_sheet_logout">Para deslogar clique no botão abaixo</string>
+    <string name="btn_bottom_sheet_logout">CONFIRMAR</string>
     <string name="btn_bottom_sheet">Entendi</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>"
+
 
 
 </resources>

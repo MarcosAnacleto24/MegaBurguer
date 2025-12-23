@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.megaburguer.R
 import com.example.megaburguer.databinding.FragmentLoginBinding
@@ -16,6 +17,7 @@ import com.example.megaburguer.util.FirebaseHelper
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment() {
@@ -74,7 +76,11 @@ class LoginFragment : BaseFragment() {
 
                 is StateView.Success -> {
                     binding.progressBar.isVisible = false
-                    findNavController().navigate(R.id.action_loginFragment_to_homeAdminFragment)
+
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        checkUserType()
+                    }
+
                 }
                 
                 is StateView.Error -> {
@@ -85,6 +91,13 @@ class LoginFragment : BaseFragment() {
         }
 
     
+    }
+
+    private suspend fun checkUserType() {
+       when(FirebaseHelper.getUserType()) {
+           "Administrador" -> findNavController().navigate(R.id.action_loginFragment_to_homeAdminFragment)
+           "Garçom" -> Toast.makeText(requireContext(), "garçom", Toast.LENGTH_SHORT).show()
+       }
     }
 
     override fun onDestroyView() {
