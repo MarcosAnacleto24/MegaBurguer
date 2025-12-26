@@ -8,4 +8,8 @@ interface AuthFirebaseDataSource {
 
     suspend fun register(name: String, email: String, password: String, typeUser: String): User
 
+    suspend fun recover(email: String)
+
+
+
 }

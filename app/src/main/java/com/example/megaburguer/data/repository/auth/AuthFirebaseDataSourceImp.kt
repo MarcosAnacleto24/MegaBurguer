@@ -54,4 +54,21 @@ class AuthFirebaseDataSourceImp @Inject constructor(
         }
 
     }
+
+    override suspend fun recover(email: String) {
+        return suspendCoroutine { continuation ->
+            firebaseAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+
+                        continuation.resumeWith(Result.success(Unit))
+
+                    } else {
+                        continuation.resumeWith(Result.failure(task.exception!!))
+                    }
+                }
+
+        }
+
+    }
 }

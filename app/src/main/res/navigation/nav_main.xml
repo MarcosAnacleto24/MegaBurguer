@@ -31,6 +31,11 @@
             app:destination="@id/homeAdminFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_loginFragment_to_homeWaiterFragment"
+            app:destination="@id/homeWaiterFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/homeAdminFragment"
@@ -43,6 +48,9 @@
         <action
             android:id="@+id/action_homeAdminFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_homeAdminFragment_to_recoverFragment"
+            app:destination="@id/recoverFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -55,5 +63,15 @@
             app:popUpTo="@id/registerFragment"
             app:popUpToInclusive="true"/>
     </fragment>
+    <fragment
+        android:id="@+id/homeWaiterFragment"
+        android:name="com.example.megaburguer.presenter.home.waiter.HomeWaiterFragment"
+        android:label="fragment_home_waiter"
+        tools:layout="@layout/fragment_home_waiter" />
+    <fragment
+        android:id="@+id/recoverFragment"
+        android:name="com.example.megaburguer.presenter.auth.recover.RecoverFragment"
+        android:label="fragment_recover"
+        tools:layout="@layout/fragment_recover" />
 
 </navigation>

@@ -39,6 +39,25 @@
     <string name="password_empty_register">Preencha o campo senha</string>
     <string name="type_user_empty_register">Selecione o tipo de usuário</string>
 
+    <!--   Recover Fragment-->
+    <string name="txt_new_user_recover">Redefinir Senha</string>
+    <string name="txt_title_recover">Alterar Senha</string>
+    <string name="txt_user_recover">Selecione o Usuário</string>
+    <string name="txt_title_subtitle_recover">Alterar senha de usuários</string>
+    <string name="txt_title_subtitle_recover_2">Selecione o usuário e digite a\n nova senha</string>
+    <string name="hint_password_new_recover">Digite a nova senha</string>
+    <string name="hint_password_new_repeat_recover">Digite a senha novamente</string>
+    <string name="hint_select_user_recover">-- Selecione um usuário --</string>
+    <string name="btn_recover">Alterar Senha</string>
+    <string name="txt_Password_recover">Nova Senha</string>
+    <string name="txt_Password_recover_repeat">Confirmar Nova Senha</string>
+    <string name="name_empty_recover">Selecione um usuário </string>
+    <string name="email_empty_recover">Preencha o campo email</string>
+    <string name="password_empty_recover">Preencha o campo senha</string>
+    <string name="password_empty_recover_repeat">Preencha o campo de confirmação de senha</string>
+    <string name="type_user_empty_recover">Selecione o tipo de usuário</string>
+    <string name="link_recover_password">Link de recuperação de senha enviado com sucesso!</string>
+
 
     <!--    Home Admin Fragment-->
     <string name="txt_panel_title">Painel Administrativo</string>
