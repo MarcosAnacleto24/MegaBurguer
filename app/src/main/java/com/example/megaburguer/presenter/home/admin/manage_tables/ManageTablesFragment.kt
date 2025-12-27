@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.megaburguer.R
@@ -23,6 +24,9 @@ class ManageTablesFragment : Fragment() {
 
     private val viewModel: ManageTablesViewModel by viewModels()
 
+    private lateinit var manageTablesAdapter: ManageTablesAdapter
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +41,10 @@ class ManageTablesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initListeners()
+
+        configRecycleView()
+
+        getTables()
     }
 
     private fun initListeners() {
@@ -46,6 +54,18 @@ class ManageTablesFragment : Fragment() {
 
         binding.btnManage.setOnClickListener {
             validateData()
+        }
+
+    }
+
+    private fun configRecycleView() {
+        manageTablesAdapter = ManageTablesAdapter { tableId ->
+            // Lógica para lidar com o clique no botão de delete
+        }
+
+        with(binding.recycleView){
+            setHasFixedSize(true)
+            adapter = manageTablesAdapter
         }
 
     }
@@ -70,7 +90,8 @@ class ManageTablesFragment : Fragment() {
 
                 }
                 is StateView.Success -> {
-                    Toast.makeText(requireContext(), "ok", Toast.LENGTH_SHORT).show()
+                    getTables()
+                    Toast.makeText(requireContext(), getString(R.string.create_table_success), Toast.LENGTH_SHORT).show()
                 }
 
                 is StateView.Error -> {
@@ -79,6 +100,28 @@ class ManageTablesFragment : Fragment() {
                     }
                 }
             }
+        }
+    }
+
+    private fun getTables() {
+        viewModel.getTables().observe(viewLifecycleOwner) { stateView ->
+           when(stateView) {
+               is StateView.Loading -> {
+                    binding.progressBar.isVisible = true
+               }
+               is StateView.Success -> {
+                   binding.progressBar.isVisible = false
+                   manageTablesAdapter.submitList(stateView.data)
+               }
+
+               is StateView.Error -> {
+                   binding.progressBar.isVisible = false
+                   stateView.message?.let {
+                       showBottomSheet(message = it)
+                   }
+               }
+           }
+
         }
     }
 

@@ -5,4 +5,6 @@ import com.example.megaburguer.data.model.Table
 interface TablesDataSource {
 
     suspend fun saveTable(table: Table)
+
+    suspend fun getTables(): List<Table>
 }
