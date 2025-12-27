@@ -79,6 +79,23 @@
     <string name="icon_change_password">icone alterar senha</string>
     <string name="icon_manage_menu">icone gerenciar mesas</string>
 
+    <!--    Manage Tables Fragment-->
+    <string name="txt_title_manage_tables">Gerenciar Mesas</string>
+    <string name="txt_title_subtitle_manage_tables">Adicionar ou remover mesas</string>
+    <string name="hint_choice_tables">Ex: 13</string>
+    <string name="btn_manage_tables">Adicionar</string>
+    <string name="number_tables">Número da Mesa</string>
+    <string name="txt_add_tables_manage">Adicionar Nova Mesa</string>
+    <string name="txt_tables_register_manage">Mesas Cadastradas</string>
+    <string name="txt_description_grid_manage">img_grid</string>
+    <string name="txt_description_arrow_back_manage">img_arrow_back</string>
+    <string name="txt_description_add_table">Digite um número para criar uma mesa</string>
+
+    Item Tables Manage
+    <string name="txt_card_tables_manage">Mesa</string>
+    <string name="txt_card_number_tables_manage">1</string>
+    <string name="image_delete">icone deletar</string>
+
 
     <!--    Error Firebase Authentication-->
     <string name="account_not_register_or_password_invalid">E-mail ou senha inválidos. Por favor, verifique e tente novamente.</string>
@@ -94,7 +111,8 @@
     <string name="msg_bottom_sheet_logout">Para deslogar clique no botão abaixo</string>
     <string name="btn_bottom_sheet_logout">CONFIRMAR</string>
     <string name="btn_bottom_sheet">Entendi</string>
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

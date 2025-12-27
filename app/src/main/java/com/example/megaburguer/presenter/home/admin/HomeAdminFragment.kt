@@ -51,7 +51,7 @@ class HomeAdminFragment : Fragment() {
         }
 
         binding.cardManageTables.setOnClickListener {
-
+            findNavController().navigate(R.id.action_homeAdminFragment_to_manageTablesFragment)
         }
         binding.cardRegisterUser.setOnClickListener {
             findNavController().navigate(R.id.action_homeAdminFragment_to_registerFragment)
