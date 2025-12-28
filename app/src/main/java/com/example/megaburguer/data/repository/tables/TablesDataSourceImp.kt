@@ -52,4 +52,20 @@ class TablesDataSourceImp @Inject constructor(
         }
     }
 
+    override suspend fun deleteTable(tableId: String) {
+        return suspendCoroutine { continuation ->
+            firebaseDatabase.reference
+                .child("tables")
+                .child(tableId)
+                .removeValue()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        continuation.resumeWith(Result.success(Unit))
+                    } else {
+                        continuation.resumeWith(Result.failure(task.exception!!))
+                    }
+                }
+        }
+    }
+
 }

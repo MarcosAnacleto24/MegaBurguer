@@ -12,12 +12,13 @@ import androidx.navigation.fragment.findNavController
 import com.example.megaburguer.R
 import com.example.megaburguer.data.model.Table
 import com.example.megaburguer.databinding.FragmentManageTablesBinding
+import com.example.megaburguer.util.BaseFragment
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ManageTablesFragment : Fragment() {
+class ManageTablesFragment : BaseFragment() {
 
     private var _binding: FragmentManageTablesBinding? = null
     private val binding get() = _binding!!
@@ -60,7 +61,14 @@ class ManageTablesFragment : Fragment() {
 
     private fun configRecycleView() {
         manageTablesAdapter = ManageTablesAdapter { tableId ->
-            // Lógica para lidar com o clique no botão de delete
+            showBottomSheet(
+                message = getString(R.string.message_delete_table),
+                titleButton = R.string.txt_btn_bottom_sheet_delete,
+                onClick = {
+                    deleteTable(tableId)
+                }
+            )
+
         }
 
         with(binding.recycleView){
@@ -91,6 +99,7 @@ class ManageTablesFragment : Fragment() {
                 }
                 is StateView.Success -> {
                     getTables()
+                    hideKeyboard()
                     Toast.makeText(requireContext(), getString(R.string.create_table_success), Toast.LENGTH_SHORT).show()
                 }
 
@@ -122,6 +131,26 @@ class ManageTablesFragment : Fragment() {
                }
            }
 
+        }
+    }
+
+    private fun deleteTable(tableId: String) {
+        viewModel.deleteTable(tableId).observe(viewLifecycleOwner) { stateView ->
+            when(stateView) {
+                is StateView.Loading -> {
+
+                }
+                is StateView.Success -> {
+
+                    getTables()
+                }
+
+                is StateView.Error -> {
+                    stateView.message?.let {
+                        showBottomSheet(message = it)
+                    }
+                }
+            }
         }
     }
 

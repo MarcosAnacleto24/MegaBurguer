@@ -7,4 +7,6 @@ interface TablesDataSource {
     suspend fun saveTable(table: Table)
 
     suspend fun getTables(): List<Table>
+
+    suspend fun deleteTable(tableId: String)
 }
