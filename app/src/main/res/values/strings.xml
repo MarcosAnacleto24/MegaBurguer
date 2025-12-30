@@ -94,7 +94,30 @@
     <string name="message_delete_table">Para deletar a mesa clique no botão abaixo.</string>
     <string name="txt_btn_bottom_sheet_delete">DELETAR</string>
 
-    Item Tables Manage
+    <!--    Manage Menu Fragment-->
+    <string name="txt_title_manage_menu">Gerenciar Cardápio</string>
+    <string name="txt_title_subtitle_manage_menu">Adicionar e editar itens do menu</string>
+    <string name="txt_add_new_manage_menu_title">Adicionar Novo Item</string>
+    <string name="txt_description_menu_book">img_menu_book</string>
+    <string name="txt_name_item_manage_menu">Nome do item</string>
+    <string name="txt_hint_description_item_manage_menu">Ex: Mega Burguer Especial</string>
+    <string name="txt_price_manage_menu">Preço (R$)</string>
+    <string name="txt_hint_price_manage_menu">0,00</string>
+    <string name="txt_category_price_manage_menu">Categoria</string>
+    <string name="txt_select_category_manage_menu">Selecione</string>
+    <string name="btn_manage_menu">Adicionar Item</string>
+    <string name="txt_title_hamburger">Hambúrgueres</string>
+    <string name="txt_chip_group_entries">Entradas</string>
+    <string name="txt_chip_group_burgers">Hambúgueres</string>
+    <string name="txt_chip_group_drinks">Bebidas</string>
+    <string name="txt_chip_group_combos">Combos</string>
+
+    <!--    Item Manage Menu-->
+    <string name="txt_name_snack_manage_menu">Mega Burguer Especial</string>
+    <string name="txt_price_snack_manage_menu">%R$$s 25,00</string>
+
+
+    <!--    Item Tables Manage-->
     <string name="txt_card_tables_manage">Mesa</string>
     <string name="txt_card_number_tables_manage">1</string>
     <string name="image_delete">icone deletar</string>
