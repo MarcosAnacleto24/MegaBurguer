@@ -111,6 +111,9 @@
     <string name="txt_chip_group_burgers">Hambúgueres</string>
     <string name="txt_chip_group_drinks">Bebidas</string>
     <string name="txt_chip_group_combos">Combos</string>
+    <string name="txt_name_item_empty">Digite o nome do item</string>
+    <string name="txt_price_empty">Digite o preço do item</string>
+    <string name="txt_category_empty">Selecione a Categoria do item</string>
 
     <!--    Item Manage Menu-->
     <string name="txt_name_snack_manage_menu">Mega Burguer Especial</string>

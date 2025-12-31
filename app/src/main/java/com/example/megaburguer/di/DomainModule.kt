@@ -2,6 +2,8 @@ package com.example.megaburguer.di
 
 import com.example.megaburguer.data.repository.auth.AuthFirebaseDataSource
 import com.example.megaburguer.data.repository.auth.AuthFirebaseDataSourceImp
+import com.example.megaburguer.data.repository.menu.MenuDataSource
+import com.example.megaburguer.data.repository.menu.MenuDataSourceImp
 import com.example.megaburguer.data.repository.tables.TablesDataSource
 import com.example.megaburguer.data.repository.tables.TablesDataSourceImp
 import com.example.megaburguer.data.repository.users.UserDataSource
@@ -30,6 +32,8 @@ abstract class DomainModule {
         tablesDataSourceImpl: TablesDataSourceImp
     ): TablesDataSource
 
-
-
+    @Binds
+    abstract fun bindMenuDataSource(
+        menuDataSourceImpl: MenuDataSourceImp
+    ): MenuDataSource
 }

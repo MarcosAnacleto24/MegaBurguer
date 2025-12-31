@@ -54,6 +54,9 @@
         <action
             android:id="@+id/action_homeAdminFragment_to_manageTablesFragment"
             app:destination="@id/manageTablesFragment" />
+        <action
+            android:id="@+id/action_homeAdminFragment_to_manageMenuFragment"
+            app:destination="@id/manageMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -81,5 +84,10 @@
         android:name="com.example.megaburguer.presenter.home.admin.manage_tables.ManageTablesFragment"
         android:label="fragment_manage_tables"
         tools:layout="@layout/fragment_manage_tables" />
+    <fragment
+        android:id="@+id/manageMenuFragment"
+        android:name="com.example.megaburguer.presenter.home.admin.manage_menu.ManageMenuFragment"
+        android:label="fragment_manage_menu"
+        tools:layout="@layout/fragment_manage_menu" />
 
 </navigation>

@@ -42,11 +42,12 @@ class HomeAdminFragment : Fragment() {
         binding.btnLogout.setOnClickListener {
             showBottomSheet(
                 message = getString(R.string.msg_bottom_sheet_logout),
-                titleButton = R.string.btn_bottom_sheet_logout
-            ) {
-                FirebaseHelper.getAuth().signOut()
-                findNavController().navigate(R.id.action_homeAdminFragment_to_loginFragment)
-            }
+                titleButton = R.string.btn_bottom_sheet_logout,
+                onClick = {
+                    FirebaseHelper.getAuth().signOut()
+                    findNavController().navigate(R.id.action_homeAdminFragment_to_loginFragment)
+                }
+            )
 
         }
 
@@ -60,7 +61,7 @@ class HomeAdminFragment : Fragment() {
             findNavController().navigate(R.id.action_homeAdminFragment_to_recoverFragment)
         }
         binding.cardManageMenu.setOnClickListener {
-
+            findNavController().navigate(R.id.action_homeAdminFragment_to_manageMenuFragment)
         }
     }
 

@@ -5,14 +5,30 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.megaburguer.R
+import com.example.megaburguer.data.enum.MenuCategory
+import com.example.megaburguer.data.model.Menu
 import com.example.megaburguer.databinding.FragmentManageMenuBinding
+import com.example.megaburguer.util.BaseFragment
+import com.example.megaburguer.util.MoneyTextWatcher
+import com.example.megaburguer.util.StateView
+import com.example.megaburguer.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ManageMenuFragment : Fragment() {
+class ManageMenuFragment : BaseFragment() {
     private var _binding: FragmentManageMenuBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: ManageMenuViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,6 +37,110 @@ class ManageMenuFragment : Fragment() {
     ): View {
         _binding = FragmentManageMenuBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+            configDropdown()
+
+            initListeners()
+    }
+
+    private fun configDropdown() {
+        // As opções que você quer mostrar no menu
+        val userTypes = arrayOf("Entradas", "Hamburgueres", "Bebidas", "Combos")
+
+        // O adapter que conecta as opções ao componente
+        val adapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, userTypes)
+
+        // Conecta o adapter ao seu AutoCompleteTextView
+        binding.editCategory.setAdapter(adapter)
+    }
+
+    private fun initListeners() {
+        with(binding.editPrice) {
+            addTextChangedListener(MoneyTextWatcher(this))
+
+            addTextChangedListener {
+                if (MoneyTextWatcher.getValueUnMasked(this) > 1000.00f) {
+                    this.setText("R$ 0,00")
+                }
+
+                doAfterTextChanged {
+                    this.text?.length?.let { this.setSelection(it) }
+                }
+            }
+        }
+
+        binding.back.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        binding.btnAddItem.setOnClickListener {
+            hideKeyboard()
+            validateData()
+        }
+    }
+
+    private fun validateData() {
+        val nameItem = binding.editChoiceTable.text.toString().trim()
+        val price = MoneyTextWatcher.getValueUnMasked(binding.editPrice)
+        val category = binding.editCategory.text.toString().trim()
+
+
+
+        when {
+            nameItem.isEmpty() -> showBottomSheet(message = getString(R.string.txt_name_item_empty))
+            price <= 0f -> showBottomSheet(message = getString(R.string.txt_price_empty))
+            category.isEmpty()  -> showBottomSheet(message = getString(R.string.txt_category_empty) )
+
+            else -> {
+
+                val item = Menu(
+                    nameItem = nameItem,
+                    price = price,
+                    category = when(category) {
+                        "Entradas" -> MenuCategory.ENTRIES
+                        "Hamburgueres" -> MenuCategory.HAMBURGERS
+                        "Bebidas" -> MenuCategory.DRINKS
+                        "Combos" -> MenuCategory.COMBOS
+
+                        else -> {
+                            MenuCategory.ENTRIES
+                        }
+                    }
+
+                )
+
+                saveMenu(item)
+
+            }
+        }
+    }
+
+    private fun saveMenu(menu: Menu) {
+        viewModel.saveMenu(menu).observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.Loading -> {
+
+                }
+
+                is StateView.Success -> {
+
+                    Toast.makeText(requireContext(), "item adicionado com sucesso", Toast.LENGTH_SHORT).show()
+                }
+
+                is StateView.Error -> {
+
+                    stateView.message?.let {
+                        showBottomSheet(message = it)
+                    }
+                }
+            }
+        }
+
     }
 
     override fun onDestroyView() {

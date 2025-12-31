@@ -54,6 +54,7 @@ class ManageTablesFragment : BaseFragment() {
         }
 
         binding.btnManage.setOnClickListener {
+            hideKeyboard()
             validateData()
         }
 
@@ -99,7 +100,6 @@ class ManageTablesFragment : BaseFragment() {
                 }
                 is StateView.Success -> {
                     getTables()
-                    hideKeyboard()
                     Toast.makeText(requireContext(), getString(R.string.create_table_success), Toast.LENGTH_SHORT).show()
                 }
 

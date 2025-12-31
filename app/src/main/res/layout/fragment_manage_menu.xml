@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presenter.home.admin.manage_menu.ManageMenuFragment">
 
@@ -158,7 +159,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
                         android:hint="@string/txt_hint_description_item_manage_menu"
-                        android:inputType="number"
+                        android:inputType="text"
                         android:textColor="@color/white"
                         android:textColorHint="@color/color_gray" />
 
@@ -191,7 +192,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
                         android:hint="@string/txt_hint_price_manage_menu"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:textColor="@color/white"
                         android:textColorHint="@color/color_gray" />
 
@@ -232,7 +233,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_manage"
+                    android:id="@+id/btn_add_item"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
