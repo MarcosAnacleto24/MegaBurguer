@@ -5,7 +5,7 @@ import androidx.lifecycle.liveData
 import com.example.megaburguer.data.model.Table
 import com.example.megaburguer.domain.tables.DeleteTablesUseCase
 import com.example.megaburguer.domain.tables.SaveTablesUseCase
-import com.example.megaburguer.domain.tables.getTablesUseCase
+import com.example.megaburguer.domain.tables.GetTablesUseCase
 import com.example.megaburguer.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
@@ -14,7 +14,7 @@ import kotlinx.coroutines.Dispatchers
 @HiltViewModel
 class ManageTablesViewModel @Inject constructor(
     private val saveTablesUseCase: SaveTablesUseCase,
-    private val getTablesUseCase: getTablesUseCase,
+    private val getTablesUseCase: GetTablesUseCase,
     private val deleteTablesUseCase: DeleteTablesUseCase
 ): ViewModel() {
 

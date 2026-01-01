@@ -88,6 +88,19 @@
         android:id="@+id/manageMenuFragment"
         android:name="com.example.megaburguer.presenter.home.admin.manage_menu.ManageMenuFragment"
         android:label="fragment_manage_menu"
-        tools:layout="@layout/fragment_manage_menu" />
+        tools:layout="@layout/fragment_manage_menu" >
+        <action
+            android:id="@+id/action_manageMenuFragment_to_updateManageMenuFragment"
+            app:destination="@id/updateManageMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateManageMenuFragment"
+        android:name="com.example.megaburguer.presenter.home.admin.manage_menu.update_manage_menu.UpdateManageMenuFragment"
+        android:label="fragment_update_manage_menu"
+        tools:layout="@layout/fragment_update_manage_menu" >
+        <argument
+            android:name="menu"
+            app:argType="com.example.megaburguer.data.model.Menu" />
+    </fragment>
 
 </navigation>

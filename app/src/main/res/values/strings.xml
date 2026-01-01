@@ -6,6 +6,7 @@
     <string name="txt_password">Senha</string>
     <string name="divider">divisor</string>
     <string name="error_generic">Error desconhecido, tente novamente mais tarde.</string>
+    <string name="txt_btn_bottom_sheet_delete">DELETAR</string>
 
     <!--    Splash Fragment-->
     <string name="txt_logo_1">Mega</string>
@@ -92,7 +93,7 @@
     <string name="txt_description_add_table">Digite um número para criar uma mesa</string>
     <string name="create_table_success">Mesa criada com sucesso!</string>
     <string name="message_delete_table">Para deletar a mesa clique no botão abaixo.</string>
-    <string name="txt_btn_bottom_sheet_delete">DELETAR</string>
+
 
     <!--    Manage Menu Fragment-->
     <string name="txt_title_manage_menu">Gerenciar Cardápio</string>
@@ -102,23 +103,39 @@
     <string name="txt_name_item_manage_menu">Nome do item</string>
     <string name="txt_hint_description_item_manage_menu">Ex: Mega Burguer Especial</string>
     <string name="txt_price_manage_menu">Preço (R$)</string>
-    <string name="txt_hint_price_manage_menu">0,00</string>
+    <string name="txt_hint_price_manage_menu">R$ 0,00</string>
     <string name="txt_category_price_manage_menu">Categoria</string>
     <string name="txt_select_category_manage_menu">Selecione</string>
     <string name="btn_manage_menu">Adicionar Item</string>
     <string name="txt_title_hamburger">Hambúrgueres</string>
     <string name="txt_chip_group_entries">Entradas</string>
-    <string name="txt_chip_group_burgers">Hambúgueres</string>
+    <string name="txt_chip_group_burgers">Hambúrgueres</string>
     <string name="txt_chip_group_drinks">Bebidas</string>
     <string name="txt_chip_group_combos">Combos</string>
     <string name="txt_name_item_empty">Digite o nome do item</string>
     <string name="txt_price_empty">Digite o preço do item</string>
     <string name="txt_category_empty">Selecione a Categoria do item</string>
+    <string name="message_delete_menu">Para deletar o item clique no botão abaixo.</string>
+
+    <!--    Update Manage Menu Fragment-->
+    <string name="txt_title_update_manage_menu">Editar Item</string>
+    <string name="txt_title_subtitle_update_manage_menu">Editar itens do menu</string>
+    <string name="txt_item_update_manage_menu_title">Atualizar Item</string>
+    <string name="txt_name_item_update_manage_menu">Nome do item</string>
+    <string name="txt_hint_description_item_update_manage_menu">Ex: Mega Burguer Especial</string>
+    <string name="txt_price_update_manage_menu">Preço (R$)</string>
+    <string name="txt_hint_update_price_manage_menu">R$ 0,00</string>
+    <string name="txt_category_price_update_manage_menu">Categoria</string>
+    <string name="txt_select_update_category_manage_menu">Selecione</string>
+    <string name="btn_update_manage_menu">Atualizar Item</string>
+    <string name="txt_update_name_item_empty">Digite o nome do item</string>
+    <string name="txt_update_price_empty">Digite o preço do item</string>
+    <string name="txt_update_category_empty">Selecione a Categoria do item</string>
 
     <!--    Item Manage Menu-->
     <string name="txt_name_snack_manage_menu">Mega Burguer Especial</string>
-    <string name="txt_price_snack_manage_menu">%R$$s 25,00</string>
-
+    <string name="txt_price_snack_manage_menu">R$ %s</string>
+    <string name="image_edit_manage_menu">image edit</string>
 
     <!--    Item Tables Manage-->
     <string name="txt_card_tables_manage">Mesa</string>
@@ -140,7 +157,6 @@
     <string name="msg_bottom_sheet_logout">Para deslogar clique no botão abaixo</string>
     <string name="btn_bottom_sheet_logout">CONFIRMAR</string>
     <string name="btn_bottom_sheet">Entendi</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 

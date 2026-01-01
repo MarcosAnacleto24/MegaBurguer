@@ -1,7 +1,6 @@
 package com.example.megaburguer.presenter.home.admin.manage_menu
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,14 +11,17 @@ import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.megaburguer.R
-import com.example.megaburguer.data.enum.MenuCategory
 import com.example.megaburguer.data.model.Menu
 import com.example.megaburguer.databinding.FragmentManageMenuBinding
 import com.example.megaburguer.util.BaseFragment
 import com.example.megaburguer.util.MoneyTextWatcher
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
+import com.google.android.material.chip.Chip
+import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,6 +30,9 @@ class ManageMenuFragment : BaseFragment() {
     private val binding get() = _binding!!
 
     private val viewModel: ManageMenuViewModel by viewModels()
+    private lateinit var manageMenuAdapter: ManageMenuAdapter
+    private val fullMenuList = mutableListOf<Menu>()
+    private lateinit var typeCategory: String
 
 
     override fun onCreateView(
@@ -45,11 +50,15 @@ class ManageMenuFragment : BaseFragment() {
             configDropdown()
 
             initListeners()
+
+            configRecycleView()
+
+            getMenus()
     }
 
     private fun configDropdown() {
         // As opções que você quer mostrar no menu
-        val userTypes = arrayOf("Entradas", "Hamburgueres", "Bebidas", "Combos")
+        val userTypes = arrayOf("Entradas", "Hambúrgueres", "Bebidas", "Combos")
 
         // O adapter que conecta as opções ao componente
         val adapter =
@@ -74,6 +83,14 @@ class ManageMenuFragment : BaseFragment() {
             }
         }
 
+        // Listener para as categorias
+        binding.chipGroupCategories.setOnCheckedStateChangeListener { _, checkedIds ->
+            // Como é singleSelection, a lista terá apenas um ID
+            if (checkedIds.isNotEmpty()) {
+                updateFilteredList()
+            }
+        }
+
         binding.back.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -81,6 +98,31 @@ class ManageMenuFragment : BaseFragment() {
         binding.btnAddItem.setOnClickListener {
             hideKeyboard()
             validateData()
+        }
+    }
+
+    private fun configRecycleView() {
+        manageMenuAdapter = ManageMenuAdapter(
+            onDeleteClick = { menuId ->
+                showBottomSheet(
+                    message = getString(R.string.message_delete_menu),
+                    titleButton = R.string.txt_btn_bottom_sheet_delete,
+                    onClick = {
+                        deleteMenu(menuId)
+                    }
+                )
+            },
+
+            onEditClick = { menu ->
+                val action = ManageMenuFragmentDirections.actionManageMenuFragmentToUpdateManageMenuFragment(menu)
+                findNavController().navigate(action)
+
+            }
+        )
+
+        with(binding.recycleView) {
+            setHasFixedSize(true)
+            adapter = manageMenuAdapter
         }
     }
 
@@ -98,23 +140,14 @@ class ManageMenuFragment : BaseFragment() {
 
             else -> {
 
-                val item = Menu(
+                val menuItem = Menu(
+                    id = FirebaseDatabase.getInstance().reference.push().key ?: "",
                     nameItem = nameItem,
                     price = price,
-                    category = when(category) {
-                        "Entradas" -> MenuCategory.ENTRIES
-                        "Hamburgueres" -> MenuCategory.HAMBURGERS
-                        "Bebidas" -> MenuCategory.DRINKS
-                        "Combos" -> MenuCategory.COMBOS
-
-                        else -> {
-                            MenuCategory.ENTRIES
-                        }
-                    }
-
+                    category = category
                 )
 
-                saveMenu(item)
+                saveMenu(menuItem)
 
             }
         }
@@ -128,7 +161,7 @@ class ManageMenuFragment : BaseFragment() {
                 }
 
                 is StateView.Success -> {
-
+                    getMenus()
                     Toast.makeText(requireContext(), "item adicionado com sucesso", Toast.LENGTH_SHORT).show()
                 }
 
@@ -141,6 +174,87 @@ class ManageMenuFragment : BaseFragment() {
             }
         }
 
+    }
+
+    private fun getMenus() {
+        viewModel.getMenus().observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.Loading -> {
+                    binding.progressBar.isVisible = true
+                }
+
+                is StateView.Success -> {
+                    binding.progressBar.isVisible = false
+
+                    fullMenuList.clear()
+                    fullMenuList.addAll(stateView.data ?: emptyList())
+
+                    updateFilteredList()
+
+                }
+
+                is StateView.Error -> {
+                    binding.progressBar.isVisible = false
+                    stateView.message?.let {
+                        showBottomSheet(message = it)
+                    }
+                }
+
+            }
+        }
+    }
+
+    private fun deleteMenu(menuId: String) {
+        viewModel.deleteMenu(menuId).observe(viewLifecycleOwner) { stateView ->
+            when(stateView) {
+                is StateView.Loading -> {
+
+                }
+
+
+                is StateView.Success -> {
+                    getMenus()
+                }
+
+                is StateView.Error -> {
+                    stateView.message?.let {
+                        showBottomSheet(message = it)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun updateFilteredList() {
+
+        val selectedChipId = binding.chipGroupCategories.checkedChipId
+
+        when(selectedChipId) {
+
+            R.id.chip_entries -> {
+                 typeCategory = "Entradas"
+            }
+            R.id.chip_burgers -> {
+                typeCategory = "Hambúrgueres"
+            }
+
+            R.id.chip_drinks -> {
+                typeCategory = "Bebidas"
+            }
+
+            R.id.chip_combos -> {
+                typeCategory = "Combos"
+            }
+
+        }
+
+        // Filtra a lista completa de itens
+        val filteredList = fullMenuList.filter { menu ->
+            menu.category.equals(typeCategory, ignoreCase = true)
+        }
+
+        // Envia a nova lista filtrada para o adapter
+        manageMenuAdapter.submitList(filteredList)
     }
 
     override fun onDestroyView() {
