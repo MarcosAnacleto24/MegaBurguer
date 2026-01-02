@@ -80,6 +80,14 @@
     <string name="icon_change_password">icone alterar senha</string>
     <string name="icon_manage_menu">icone gerenciar mesas</string>
 
+    <!--    Home Waiter Fragment-->
+    <string name="txt_panel_title_waiter">Selecione a Mesa</string>
+    <string name="txt_greeting_waiter">Olá, Garçom</string>
+    <string name="txt_caption_home_waiter">Legenda:</string>
+    <string name="txt_available_home_waiter">Disponível</string>D
+    <string name="txt_busy_home_waiter">Ocupado</string>D
+
+
     <!--    Manage Tables Fragment-->
     <string name="txt_title_manage_tables">Gerenciar Mesas</string>
     <string name="txt_title_subtitle_manage_tables">Adicionar ou remover mesas</string>
@@ -131,6 +139,7 @@
     <string name="txt_update_name_item_empty">Digite o nome do item</string>
     <string name="txt_update_price_empty">Digite o preço do item</string>
     <string name="txt_update_category_empty">Selecione a Categoria do item</string>
+    
 
     <!--    Item Manage Menu-->
     <string name="txt_name_snack_manage_menu">Mega Burguer Especial</string>
@@ -141,6 +150,14 @@
     <string name="txt_card_tables_manage">Mesa</string>
     <string name="txt_card_number_tables_manage">1</string>
     <string name="image_delete">icone deletar</string>
+
+    <!--    Item Tables Waiter-->
+    <string name="txt_card_tables_waiter">Mesa</string>
+    <string name="txt_card_number_tables_waiter">1</string>
+    <string name="image_profile_waiter">icone perfil</string>
+
+
+
 
 
     <!--    Error Firebase Authentication-->
