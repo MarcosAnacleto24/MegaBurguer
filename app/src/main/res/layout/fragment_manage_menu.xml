@@ -178,7 +178,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/input_layout_price"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="145dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:background="@drawable/bg_edit"
@@ -203,7 +203,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="72dp"
+                    android:layout_marginEnd="116dp"
                     android:text="@string/txt_category_price_manage_menu"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -212,7 +212,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/input_layout_category"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="145dp"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:background="@drawable/bg_edit"
@@ -298,19 +298,19 @@
                         app:singleSelection="true">
 
                         <com.google.android.material.chip.Chip
-                            android:id="@+id/chip_entries"
-                            style="@style/Widget.MaterialComponents.Chip.Choice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:checked="true"
-                            android:text="@string/txt_chip_group_entries" />
-
-                        <com.google.android.material.chip.Chip
                             android:id="@+id/chip_burgers"
                             style="@style/Widget.MaterialComponents.Chip.Choice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:checked="true"
                             android:text="@string/txt_chip_group_burgers" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_portions"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txt_chip_group_portions" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_drinks"
@@ -332,7 +332,7 @@
 
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/txt_title_items"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -351,7 +351,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView2"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_items"
                     tools:visibility="visible" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -363,7 +363,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView2"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_items"
                     tools:itemCount="4"
                     tools:listitem="@layout/item_manage_menu" />
 

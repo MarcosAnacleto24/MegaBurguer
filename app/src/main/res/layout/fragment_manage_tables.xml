@@ -161,6 +161,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
                         android:hint="@string/hint_choice_tables"
+                        android:maxLength="3"
                         android:inputType="number"
                         android:textColor="@color/white"
                         android:textColorHint="@color/color_gray" />

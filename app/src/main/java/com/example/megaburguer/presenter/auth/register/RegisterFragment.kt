@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.megaburguer.R
 import com.example.megaburguer.databinding.FragmentRegisterBinding
@@ -101,7 +102,8 @@ class RegisterFragment : BaseFragment() {
                 is StateView.Success -> {
                     binding.progressBar.isVisible = false
                     FirebaseHelper.getAuth().signOut()
-                    findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                    findNavController().navigate(R.id.loginFragment, null,
+                        NavOptions.Builder().setPopUpTo(R.id.homeAdmin, true).build())
                     
                 }
                 

@@ -116,7 +116,7 @@
     <string name="txt_select_category_manage_menu">Selecione</string>
     <string name="btn_manage_menu">Adicionar Item</string>
     <string name="txt_title_hamburger">Hambúrgueres</string>
-    <string name="txt_chip_group_entries">Entradas</string>
+    <string name="txt_chip_group_portions">Porções</string>
     <string name="txt_chip_group_burgers">Hambúrgueres</string>
     <string name="txt_chip_group_drinks">Bebidas</string>
     <string name="txt_chip_group_combos">Combos</string>

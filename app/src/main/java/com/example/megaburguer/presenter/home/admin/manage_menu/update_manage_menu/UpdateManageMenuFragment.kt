@@ -21,6 +21,8 @@ import com.example.megaburguer.util.MoneyTextWatcher
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.NumberFormat
+import java.util.Locale
 import kotlin.getValue
 
 @AndroidEntryPoint
@@ -55,8 +57,11 @@ class UpdateManageMenuFragment : BaseFragment() {
 
     private fun configSafeArgs() {
         binding.editChoiceTable.setText(args.menu.nameItem)
-        binding.editPrice.setText(getString(R.string.txt_price_snack_manage_menu,
-            GetMask.getFormatedValue(args.menu.price)))
+
+        // Formata o preço inicial usando a mesma lógica do MoneyTextWatcher para garantir consistência
+        val formattedPrice = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("pt-BR")).format(args.menu.price)
+        binding.editPrice.setText(formattedPrice)
+
         binding.editCategory.setText(args.menu.category)
     }
 
@@ -74,19 +79,7 @@ class UpdateManageMenuFragment : BaseFragment() {
 
     private fun initListeners() {
 
-        with(binding.editPrice) {
-            addTextChangedListener(MoneyTextWatcher(this))
-
-            addTextChangedListener {
-                if (MoneyTextWatcher.getValueUnMasked(this) > 1000.00f) {
-                    this.setText("R$ 0,00")
-                }
-
-                doAfterTextChanged {
-                    this.text?.length?.let { this.setSelection(it) }
-                }
-            }
-        }
+        binding.editPrice.addTextChangedListener(MoneyTextWatcher(binding.editPrice, 1000.00f))
 
         binding.back.setOnClickListener {
             findNavController().popBackStack()
@@ -103,24 +96,19 @@ class UpdateManageMenuFragment : BaseFragment() {
         val price = MoneyTextWatcher.getValueUnMasked(binding.editPrice)
         val category = binding.editCategory.text.toString().trim()
 
-
-
         when {
             nameItem.isEmpty() -> showBottomSheet(message = getString(R.string.txt_update_name_item_empty))
             price <= 0f -> showBottomSheet(message = getString(R.string.txt_update_price_empty))
             category.isEmpty()  -> showBottomSheet(message = getString(R.string.txt_update_category_empty) )
 
             else -> {
-
                 val menuItem = Menu(
                     id = args.menu.id,
                     nameItem = nameItem,
                     price = price,
                     category = category
-                ).copy()
-
+                )
                 updateMenu(menuItem)
-
             }
         }
     }

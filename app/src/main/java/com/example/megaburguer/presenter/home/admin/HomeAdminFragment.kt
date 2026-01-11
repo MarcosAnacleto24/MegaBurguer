@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.megaburguer.R
 import com.example.megaburguer.databinding.FragmentHomeAdminBinding
@@ -45,7 +46,8 @@ class HomeAdminFragment : Fragment() {
                 titleButton = R.string.btn_bottom_sheet_logout,
                 onClick = {
                     FirebaseHelper.getAuth().signOut()
-                    findNavController().navigate(R.id.action_homeAdminFragment_to_loginFragment)
+                    findNavController().navigate(R.id.loginFragment, null,
+                        NavOptions.Builder().setPopUpTo(R.id.homeAdmin, true).build())
                 }
             )
 

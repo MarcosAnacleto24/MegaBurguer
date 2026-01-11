@@ -8,22 +8,31 @@ import java.math.RoundingMode
 import java.text.NumberFormat
 import java.util.Locale
 
-class MoneyTextWatcher(private val editText: EditText) : TextWatcher {
+class MoneyTextWatcher(
+    private val editText: EditText,
+    private val maxValue: Float = 1000.00f
+) : TextWatcher {
 
-    override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+    private var isUpdating = false
 
-    override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-        editText.removeTextChangedListener(this)
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-        val parsed: BigDecimal = parseToBigDecimal(s.toString())
-        val formatted: String = NumberFormat.getCurrencyInstance(PT_BR).format(parsed)
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+    override fun afterTextChanged(s: Editable?) {
+        if (isUpdating) return
+        isUpdating = true
+
+        val parsed = parseToBigDecimal(s.toString())
+        val value = parsed.toFloat()
+
+        val finalValue = if (value > maxValue) BigDecimal.ZERO else parsed
+        val formatted = NumberFormat.getCurrencyInstance(PT_BR).format(finalValue)
 
         editText.setText(formatted)
         editText.setSelection(formatted.length)
-        editText.addTextChangedListener(this)
+        isUpdating = false
     }
-
-    override fun afterTextChanged(editable: Editable) {}
 
     private fun parseToBigDecimal(value: String): BigDecimal {
         val replaceable = String.format(
@@ -64,3 +73,4 @@ class MoneyTextWatcher(private val editText: EditText) : TextWatcher {
         }
     }
 }
+

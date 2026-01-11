@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.megaburguer.R
 import com.example.megaburguer.databinding.FragmentHomeWaiterBinding
@@ -52,7 +53,8 @@ class HomeWaiterFragment : Fragment() {
                 titleButton = R.string.btn_bottom_sheet_logout,
                 onClick = {
                     FirebaseHelper.getAuth().signOut()
-                    findNavController().navigate(R.id.action_homeWaiterFragment_to_loginFragment)
+                    findNavController().navigate(R.id.loginFragment, null,
+                        NavOptions.Builder().setPopUpTo(R.id.homeWaiter, true).build())
                 }
             )
 

@@ -95,7 +95,7 @@ class LoginFragment : BaseFragment() {
 
     private suspend fun checkUserType() {
        when(FirebaseHelper.getUserType()) {
-           "Administrador" -> findNavController().navigate(R.id.action_loginFragment_to_homeAdminFragment)
+           "Administrador" -> findNavController().navigate(R.id.action_loginFragment_to_homeAdmin)
            "Garçom" -> findNavController().navigate(R.id.action_loginFragment_to_homeWaiterFragment)
        }
     }

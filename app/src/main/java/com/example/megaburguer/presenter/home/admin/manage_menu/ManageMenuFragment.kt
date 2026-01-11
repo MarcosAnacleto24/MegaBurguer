@@ -58,7 +58,7 @@ class ManageMenuFragment : BaseFragment() {
 
     private fun configDropdown() {
         // As opções que você quer mostrar no menu
-        val userTypes = arrayOf("Entradas", "Hambúrgueres", "Bebidas", "Combos")
+        val userTypes = arrayOf("Hambúrgueres", "Porções", "Bebidas", "Combos")
 
         // O adapter que conecta as opções ao componente
         val adapter =
@@ -69,19 +69,7 @@ class ManageMenuFragment : BaseFragment() {
     }
 
     private fun initListeners() {
-        with(binding.editPrice) {
-            addTextChangedListener(MoneyTextWatcher(this))
-
-            addTextChangedListener {
-                if (MoneyTextWatcher.getValueUnMasked(this) > 1000.00f) {
-                    this.setText("R$ 0,00")
-                }
-
-                doAfterTextChanged {
-                    this.text?.length?.let { this.setSelection(it) }
-                }
-            }
-        }
+        binding.editPrice.addTextChangedListener(MoneyTextWatcher(binding.editPrice, 1000.00f))
 
         // Listener para as categorias
         binding.chipGroupCategories.setOnCheckedStateChangeListener { _, checkedIds ->
@@ -163,6 +151,8 @@ class ManageMenuFragment : BaseFragment() {
                 is StateView.Success -> {
                     getMenus()
                     Toast.makeText(requireContext(), "item adicionado com sucesso", Toast.LENGTH_SHORT).show()
+                    binding.editChoiceTable.text?.clear()
+                    binding.editPrice.text?.clear()
                 }
 
                 is StateView.Error -> {
@@ -231,11 +221,12 @@ class ManageMenuFragment : BaseFragment() {
 
         when(selectedChipId) {
 
-            R.id.chip_entries -> {
-                 typeCategory = "Entradas"
-            }
             R.id.chip_burgers -> {
                 typeCategory = "Hambúrgueres"
+            }
+
+            R.id.chip_portions -> {
+                typeCategory = "Porções"
             }
 
             R.id.chip_drinks -> {
@@ -247,6 +238,8 @@ class ManageMenuFragment : BaseFragment() {
             }
 
         }
+
+        binding.txtTitleItems.text = typeCategory
 
         // Filtra a lista completa de itens
         val filteredList = fullMenuList.filter { menu ->

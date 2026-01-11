@@ -17,12 +17,12 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_splashFragment_to_homeAdminFragment"
-            app:destination="@id/homeAdminFragment"
+            app:destination="@id/homeAdmin"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_splashFragment_to_homeWaiterFragment"
-            app:destination="@id/homeWaiterFragment"
+            app:destination="@id/homeWaiter"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true"/>
     </fragment>
@@ -32,86 +32,77 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_homeAdminFragment"
-            app:destination="@id/homeAdminFragment"
-            app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true"/>
-        <action
             android:id="@+id/action_loginFragment_to_homeWaiterFragment"
-            app:destination="@id/homeWaiterFragment"
+            app:destination="@id/homeWaiter"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_loginFragment_to_homeAdmin"
+            app:destination="@id/homeAdmin"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true"/>
     </fragment>
-    <fragment
-        android:id="@+id/homeAdminFragment"
-        android:name="com.example.megaburguer.presenter.home.admin.HomeAdminFragment"
-        android:label="fragment_home_admin"
-        tools:layout="@layout/fragment_home_admin" >
-        <action
-            android:id="@+id/action_homeAdminFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
-        <action
-            android:id="@+id/action_homeAdminFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-        <action
-            android:id="@+id/action_homeAdminFragment_to_recoverFragment"
-            app:destination="@id/recoverFragment" />
-        <action
-            android:id="@+id/action_homeAdminFragment_to_manageTablesFragment"
-            app:destination="@id/manageTablesFragment" />
-        <action
-            android:id="@+id/action_homeAdminFragment_to_manageMenuFragment"
-            app:destination="@id/manageMenuFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.example.megaburguer.presenter.auth.register.RegisterFragment"
-        android:label="fragment_register"
-        tools:layout="@layout/fragment_register" >
-        <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:popUpTo="@id/registerFragment"
-            app:popUpToInclusive="true"/>
-    </fragment>
-    <fragment
-        android:id="@+id/homeWaiterFragment"
-        android:name="com.example.megaburguer.presenter.home.waiter.HomeWaiterFragment"
-        android:label="fragment_home_waiter"
-        tools:layout="@layout/fragment_home_waiter" >
-        <action
-            android:id="@+id/action_homeWaiterFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:popUpTo="@id/homeWaiterFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/recoverFragment"
-        android:name="com.example.megaburguer.presenter.auth.recover.RecoverFragment"
-        android:label="fragment_recover"
-        tools:layout="@layout/fragment_recover" />
-    <fragment
-        android:id="@+id/manageTablesFragment"
-        android:name="com.example.megaburguer.presenter.home.admin.manage_tables.ManageTablesFragment"
-        android:label="fragment_manage_tables"
-        tools:layout="@layout/fragment_manage_tables" />
-    <fragment
-        android:id="@+id/manageMenuFragment"
-        android:name="com.example.megaburguer.presenter.home.admin.manage_menu.ManageMenuFragment"
-        android:label="fragment_manage_menu"
-        tools:layout="@layout/fragment_manage_menu" >
-        <action
-            android:id="@+id/action_manageMenuFragment_to_updateManageMenuFragment"
-            app:destination="@id/updateManageMenuFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/updateManageMenuFragment"
-        android:name="com.example.megaburguer.presenter.home.admin.manage_menu.update_manage_menu.UpdateManageMenuFragment"
-        android:label="fragment_update_manage_menu"
-        tools:layout="@layout/fragment_update_manage_menu" >
-        <argument
-            android:name="menu"
-            app:argType="com.example.megaburguer.data.model.Menu" />
-    </fragment>
+    <navigation android:id="@+id/homeAdmin"
+        app:startDestination="@id/homeAdminFragment">
+        <fragment
+            android:id="@+id/homeAdminFragment"
+            android:name="com.example.megaburguer.presenter.home.admin.HomeAdminFragment"
+            android:label="fragment_home_admin"
+            tools:layout="@layout/fragment_home_admin">
+            <action
+                android:id="@+id/action_homeAdminFragment_to_manageTablesFragment"
+                app:destination="@id/manageTablesFragment" />
+            <action
+                android:id="@+id/action_homeAdminFragment_to_registerFragment"
+                app:destination="@id/registerFragment" />
+            <action
+                android:id="@+id/action_homeAdminFragment_to_recoverFragment"
+                app:destination="@id/recoverFragment" />
+            <action
+                android:id="@+id/action_homeAdminFragment_to_manageMenuFragment"
+                app:destination="@id/manageMenuFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/manageTablesFragment"
+            android:name="com.example.megaburguer.presenter.home.admin.manage_tables.ManageTablesFragment"
+            android:label="fragment_manage_tables"
+            tools:layout="@layout/fragment_manage_tables" />
+        <fragment
+            android:id="@+id/registerFragment"
+            android:name="com.example.megaburguer.presenter.auth.register.RegisterFragment"
+            android:label="fragment_register"
+            tools:layout="@layout/fragment_register"/>
+        <fragment
+            android:id="@+id/recoverFragment"
+            android:name="com.example.megaburguer.presenter.auth.recover.RecoverFragment"
+            android:label="fragment_recover"
+            tools:layout="@layout/fragment_recover" />
+        <fragment
+            android:id="@+id/manageMenuFragment"
+            android:name="com.example.megaburguer.presenter.home.admin.manage_menu.ManageMenuFragment"
+            android:label="fragment_manage_menu"
+            tools:layout="@layout/fragment_manage_menu">
+            <action
+                android:id="@+id/action_manageMenuFragment_to_updateManageMenuFragment"
+                app:destination="@id/updateManageMenuFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/updateManageMenuFragment"
+            android:name="com.example.megaburguer.presenter.home.admin.manage_menu.update_manage_menu.UpdateManageMenuFragment"
+            android:label="fragment_update_manage_menu"
+            tools:layout="@layout/fragment_update_manage_menu">
+            <argument
+                android:name="menu"
+                app:argType="com.example.megaburguer.data.model.Menu" />
+        </fragment>
+    </navigation>
+    <navigation android:id="@+id/homeWaiter"
+        app:startDestination="@id/homeWaiterFragment">
+        <fragment
+            android:id="@+id/homeWaiterFragment"
+            android:name="com.example.megaburguer.presenter.home.waiter.HomeWaiterFragment"
+            android:label="fragment_home_waiter"
+            tools:layout="@layout/fragment_home_waiter"/>
+    </navigation>
 
 </navigation>
