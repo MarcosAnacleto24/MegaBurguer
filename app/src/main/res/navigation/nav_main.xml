@@ -102,7 +102,32 @@
             android:id="@+id/homeWaiterFragment"
             android:name="com.example.megaburguer.presenter.home.waiter.HomeWaiterFragment"
             android:label="fragment_home_waiter"
-            tools:layout="@layout/fragment_home_waiter"/>
+            tools:layout="@layout/fragment_home_waiter">
+            <action
+                android:id="@+id/action_homeWaiterFragment_to_createOrderFragment"
+                app:destination="@id/createOrderFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/createOrderFragment"
+            android:name="com.example.megaburguer.presenter.home.waiter.createOrder.CreateOrderFragment"
+            android:label="fragment_create_order"
+            tools:layout="@layout/fragment_create_order" >
+            <argument
+                android:name="table"
+                app:argType="com.example.megaburguer.data.model.Table" />
+            <action
+                android:id="@+id/action_createOrderFragment_to_viewOrderFragment"
+                app:destination="@id/viewOrderFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/viewOrderFragment"
+            android:name="com.example.megaburguer.presenter.home.waiter.createOrder.viewOrder.ViewOrderFragment"
+            android:label="fragment_view_order"
+            tools:layout="@layout/fragment_view_order" >
+            <argument
+                android:name="orderItems"
+                app:argType="com.example.megaburguer.data.model.OrderItem[]" />
+        </fragment>
     </navigation>
 
 </navigation>

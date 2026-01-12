@@ -63,9 +63,11 @@ class HomeWaiterFragment : Fragment() {
     }
     
     private fun configRecycleView() {
-        homeWaiterAdapter = HomeWaiterAdapter { tableId ->
+        homeWaiterAdapter = HomeWaiterAdapter { table ->
 
-            Toast.makeText(requireContext(), "Mesa $tableId selecionada", Toast.LENGTH_SHORT).show()
+            val action = HomeWaiterFragmentDirections.actionHomeWaiterFragmentToCreateOrderFragment(table)
+            findNavController().navigate(action)
+
         }
 
         with(binding.recyclerView){

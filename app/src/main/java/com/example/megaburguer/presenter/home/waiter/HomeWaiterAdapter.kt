@@ -9,7 +9,7 @@ import com.example.megaburguer.data.model.Table
 import com.example.megaburguer.databinding.ItemTablesWaiterBinding
 
 class HomeWaiterAdapter(
-    private val onTableClick: (tableId: String) -> Unit
+    private val onTableClick: (table: Table) -> Unit
 ) : ListAdapter<Table, HomeWaiterAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     companion object {
@@ -51,7 +51,7 @@ class HomeWaiterAdapter(
 
             // Configura o clique do card da mesa
             binding.cardTable.setOnClickListener {
-                onTableClick(table.id)
+                onTableClick(table)
             }
         }
     }

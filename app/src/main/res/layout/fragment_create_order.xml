@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fitsSystemWindows="false"
+    android:fitsSystemWindows="true"
     tools:context=".presenter.home.waiter.createOrder.CreateOrderFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -38,7 +38,7 @@
 
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/txt_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -59,7 +59,7 @@
                     android:textColor="@color/mega_burger_orange_strong"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/back"
-                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title"
                     app:layout_constraintVertical_bias="0.272" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -154,7 +154,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@+id/btn_add_item"
+            app:layout_constraintBottom_toTopOf="@+id/btn_view_orders"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/horizontal_scroll_view"
@@ -162,7 +162,7 @@
             tools:listitem="@layout/item_create_orders" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_add_item"
+            android:id="@+id/btn_view_orders"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
