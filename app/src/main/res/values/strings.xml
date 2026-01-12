@@ -7,6 +7,10 @@
     <string name="divider">divisor</string>
     <string name="error_generic">Error desconhecido, tente novamente mais tarde.</string>
     <string name="txt_btn_bottom_sheet_delete">DELETAR</string>
+    <string name="txt_chip_group_burgers">Hambúrgueres</string>
+    <string name="txt_chip_group_portions">Porções</string>
+    <string name="txt_chip_group_drinks">Bebidas</string>
+    <string name="txt_chip_group_combos">Combos</string>
 
     <!--    Splash Fragment-->
     <string name="txt_logo_1">Mega</string>
@@ -116,10 +120,6 @@
     <string name="txt_select_category_manage_menu">Selecione</string>
     <string name="btn_manage_menu">Adicionar Item</string>
     <string name="txt_title_hamburger">Hambúrgueres</string>
-    <string name="txt_chip_group_portions">Porções</string>
-    <string name="txt_chip_group_burgers">Hambúrgueres</string>
-    <string name="txt_chip_group_drinks">Bebidas</string>
-    <string name="txt_chip_group_combos">Combos</string>
     <string name="txt_name_item_empty">Digite o nome do item</string>
     <string name="txt_price_empty">Digite o preço do item</string>
     <string name="txt_category_empty">Selecione a Categoria do item</string>
@@ -139,7 +139,13 @@
     <string name="txt_update_name_item_empty">Digite o nome do item</string>
     <string name="txt_update_price_empty">Digite o preço do item</string>
     <string name="txt_update_category_empty">Selecione a Categoria do item</string>
-    
+
+    <!--    Create Order Fragment-->
+    <string name="txt_title_create_order">Mesa %s</string>
+    <string name="txt_title_subtitle_create_order">Selecione os itens</string>
+    <string name="btn_create_order">Ver Pedidos</string>
+    <string name="btn_create_order_add_item">Adicionar</string>
+
 
     <!--    Item Manage Menu-->
     <string name="txt_name_snack_manage_menu">Mega Burguer Especial</string>
@@ -155,9 +161,6 @@
     <string name="txt_card_tables_waiter">Mesa</string>
     <string name="txt_card_number_tables_waiter">1</string>
     <string name="image_profile_waiter">icone perfil</string>
-
-
-
 
 
     <!--    Error Firebase Authentication-->
