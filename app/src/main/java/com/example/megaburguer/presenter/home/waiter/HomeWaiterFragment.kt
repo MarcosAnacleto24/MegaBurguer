@@ -39,6 +39,8 @@ class HomeWaiterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         
         initListeners()
+
+        getUser()
         
         configRecycleView()
         
@@ -58,6 +60,26 @@ class HomeWaiterFragment : Fragment() {
                 }
             )
 
+        }
+
+    }
+
+    private fun getUser() {
+        viewModel.getUser(FirebaseHelper.getUserId()).observe(viewLifecycleOwner) { stateView ->
+            when(stateView) {
+                is StateView.Loading -> {
+
+                }
+
+                is StateView.Success -> {
+                    binding.textGreeting.text = getString(R.string.txt_greeting_waiter, stateView.data?.name)
+                }
+
+                is StateView.Error -> {
+                    binding.textGreeting.text = getString(R.string.txt_greeting_waiter_sub)
+                }
+
+            }
         }
 
     }

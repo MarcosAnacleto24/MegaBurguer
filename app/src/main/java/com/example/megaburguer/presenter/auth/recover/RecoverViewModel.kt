@@ -3,7 +3,7 @@ package com.example.megaburguer.presenter.auth.recover
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.megaburguer.domain.auth.RecoverUseCase
-import com.example.megaburguer.domain.users.getUsersUseCase
+import com.example.megaburguer.domain.users.GetUsersUseCase
 import com.example.megaburguer.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 @HiltViewModel
 class RecoverViewModel @Inject constructor(
     private val recoverUseCase: RecoverUseCase,
-    private val getUsersUseCase: getUsersUseCase
+    private val getUsersUseCase: GetUsersUseCase
 ): ViewModel() {
 
     fun recover(email: String) = liveData(Dispatchers.IO) {

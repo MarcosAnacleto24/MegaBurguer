@@ -71,9 +71,8 @@
                         android:id="@+id/text_greeting"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
                         android:layout_marginTop="8dp"
-                        android:text="@string/txt_greeting"
+                        android:text="@string/txt_greeting_admin"
                         android:textColor="@color/mega_burger_orange_strong"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"

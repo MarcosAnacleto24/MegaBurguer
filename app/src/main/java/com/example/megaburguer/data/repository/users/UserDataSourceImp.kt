@@ -43,4 +43,24 @@ private val firebaseDatabase: FirebaseDatabase
 
     }
 
+    override suspend fun getUser(userId: String): User? {
+        return suspendCoroutine { continuation ->
+            firebaseDatabase.reference
+                .child("users")
+                .child(userId)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+
+                        val user = snapshot.getValue(User::class.java)
+                        continuation.resumeWith(Result.success(user))
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        continuation.resumeWith(Result.failure(error.toException()))
+                    }
+
+                })
+        }
+    }
+
 }

@@ -66,7 +66,8 @@
 
     <!--    Home Admin Fragment-->
     <string name="txt_panel_title">Painel Administrativo</string>
-    <string name="txt_greeting">Olá, Administrador</string>
+    <string name="txt_greeting_admin">Olá, %s</string>
+    <string name="txt_greeting_admin_sub">Olá, Adm</string>
     <string name="txt_select_option_title">Selecione uma opção</string>
     <string name="txt_select_option_subtitle">Escolha uma área para gerenciar</string>
     <string name="txt_manage_tables_title">Gerenciar Mesas</string>
@@ -86,7 +87,8 @@
 
     <!--    Home Waiter Fragment-->
     <string name="txt_panel_title_waiter">Selecione a Mesa</string>
-    <string name="txt_greeting_waiter">Olá, Garçom</string>
+    <string name="txt_greeting_waiter">Olá, %s</string>
+    <string name="txt_greeting_waiter_sub">Olá, Atendente</string>
     <string name="txt_caption_home_waiter">Legenda:</string>
     <string name="txt_available_home_waiter">Disponível</string>D
     <string name="txt_busy_home_waiter">Ocupado</string>D

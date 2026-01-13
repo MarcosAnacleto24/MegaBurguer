@@ -5,4 +5,8 @@ import com.example.megaburguer.data.model.User
 interface UserDataSource {
 
     suspend fun getUsers(): List<User>
+
+    suspend fun getUser(userId: String): User?
+
+
 }

@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.megaburguer.R
 import com.example.megaburguer.databinding.FragmentHomeAdminBinding
 import com.example.megaburguer.util.FirebaseHelper
+import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,6 +21,7 @@ class HomeAdminFragment : Fragment() {
 
     private var _binding: FragmentHomeAdminBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: HomeAdminViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +38,8 @@ class HomeAdminFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initListeners()
+
+        getUser()
 
     }
 
@@ -65,6 +70,27 @@ class HomeAdminFragment : Fragment() {
         binding.cardManageMenu.setOnClickListener {
             findNavController().navigate(R.id.action_homeAdminFragment_to_manageMenuFragment)
         }
+    }
+
+    private fun getUser() {
+        viewModel.getUser(FirebaseHelper.getUserId()).observe(viewLifecycleOwner) { stateView ->
+            when(stateView) {
+                is StateView.Loading -> {
+
+                }
+
+                is StateView.Success -> {
+                    binding.textGreeting.text = getString(R.string.txt_greeting_admin, stateView.data?.name)
+
+                }
+
+                is StateView.Error -> {
+                    binding.textGreeting.text = getString(R.string.txt_greeting_admin_sub)
+                }
+
+            }
+        }
+
     }
 
 
