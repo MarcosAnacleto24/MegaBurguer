@@ -2,9 +2,13 @@ package com.example.megaburguer.presenter.home.waiter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.megaburguer.R
+import com.example.megaburguer.data.enum.TableStatus
 import com.example.megaburguer.data.model.Table
 import com.example.megaburguer.databinding.ItemTablesWaiterBinding
 
@@ -49,10 +53,23 @@ class HomeWaiterAdapter(
             // Define o texto do número da mesa
             binding.txtTableNumber.text = table.number
 
-            // Configura o clique do card da mesa
-            binding.cardTable.setOnClickListener {
-                onTableClick(table)
+            val context = binding.root.context
+
+
+            if (table.status == TableStatus.CLOSED) {
+                binding.cardTable.strokeColor = ContextCompat.getColor(context, R.color.mega_burger_orange_strong)
+                binding.cardTable.setOnClickListener {
+                    onTableClick(table)
+                }
+            } else {
+                binding.cardTable.strokeColor = ContextCompat.getColor(context, R.color.mega_burger_gray)
+                // Configura o clique do card da mesa
+                binding.cardTable.setOnClickListener {
+                    onTableClick(table)
+                }
             }
+
+
         }
     }
 }

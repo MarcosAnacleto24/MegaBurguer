@@ -10,8 +10,4 @@ data class Table(
     var id: String = "",
     val number: String = "",
     var status: TableStatus = TableStatus.OPEN
-): Parcelable {
-    init {
-        this.id = FirebaseDatabase.getInstance().reference.push().key ?: ""
-    }
-}
+): Parcelable

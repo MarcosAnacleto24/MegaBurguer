@@ -90,8 +90,9 @@
     <string name="txt_greeting_waiter">Olá, %s</string>
     <string name="txt_greeting_waiter_sub">Olá, Atendente</string>
     <string name="txt_caption_home_waiter">Legenda:</string>
-    <string name="txt_available_home_waiter">Disponível</string>D
-    <string name="txt_busy_home_waiter">Ocupado</string>D
+    <string name="txt_available_home_waiter">Disponível</string>
+    <string name="txt_busy_home_waiter">Ocupada</string>
+    <string name="txt_table_busy_home_waiter">Mesa Ocupada</string>
 
 
     <!--    Manage Tables Fragment-->
@@ -107,6 +108,7 @@
     <string name="txt_description_add_table">Digite um número para criar uma mesa</string>
     <string name="create_table_success">Mesa criada com sucesso!</string>
     <string name="message_delete_table">Para deletar a mesa clique no botão abaixo.</string>
+    <string name="txt_message_add_success_manage_table">item adicionado com sucesso</string>
 
 
     <!--    Manage Menu Fragment-->

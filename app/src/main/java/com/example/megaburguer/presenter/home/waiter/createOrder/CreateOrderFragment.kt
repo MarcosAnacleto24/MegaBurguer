@@ -6,13 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.megaburguer.R
+import com.example.megaburguer.data.enum.TableStatus
 import com.example.megaburguer.data.model.Menu
 import com.example.megaburguer.data.model.OrderItem
 import com.example.megaburguer.databinding.FragmentCreateOrderBinding
+import com.example.megaburguer.presenter.home.SharedOrderViewModel
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,6 +33,10 @@ class CreateOrderFragment : Fragment() {
     private val itemQuantityMap = mutableMapOf<String, Int>() // id do item -> quantidade
 
     private lateinit var typeCategory: String
+
+    private val sharedViewModel: SharedOrderViewModel by activityViewModels()
+
+    private var orderSent = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -176,6 +183,9 @@ class CreateOrderFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        if (!orderSent) {
+            sharedViewModel.setTableStatus(args.table.id, TableStatus.OPEN)
+        }
         _binding = null
     }
 

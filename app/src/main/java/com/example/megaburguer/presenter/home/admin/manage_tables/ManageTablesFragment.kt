@@ -15,6 +15,7 @@ import com.example.megaburguer.databinding.FragmentManageTablesBinding
 import com.example.megaburguer.util.BaseFragment
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
+import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -84,7 +85,10 @@ class ManageTablesFragment : BaseFragment() {
 
         if (numberTable.isNotEmpty()) {
 
-            val table = Table(number = numberTable)
+            val table = Table(
+                id = FirebaseDatabase.getInstance().reference.push().key ?: "",
+                number = numberTable
+            )
             saveTable(table)
 
         } else {
@@ -101,6 +105,7 @@ class ManageTablesFragment : BaseFragment() {
                 is StateView.Success -> {
                     getTables()
                     Toast.makeText(requireContext(), getString(R.string.create_table_success), Toast.LENGTH_SHORT).show()
+                    binding.editChoiceTable.text?.clear()
                 }
 
                 is StateView.Error -> {

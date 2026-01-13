@@ -150,7 +150,7 @@ class ManageMenuFragment : BaseFragment() {
 
                 is StateView.Success -> {
                     getMenus()
-                    Toast.makeText(requireContext(), "item adicionado com sucesso", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.txt_message_add_success_manage_table), Toast.LENGTH_SHORT).show()
                     binding.editChoiceTable.text?.clear()
                     binding.editPrice.text?.clear()
                 }

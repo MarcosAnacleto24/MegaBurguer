@@ -7,15 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.megaburguer.R
+import com.example.megaburguer.data.enum.TableStatus
 import com.example.megaburguer.databinding.FragmentHomeWaiterBinding
+import com.example.megaburguer.presenter.home.SharedOrderViewModel
 import com.example.megaburguer.util.FirebaseHelper
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.getValue
 
 @AndroidEntryPoint
 class HomeWaiterFragment : Fragment() {
@@ -23,7 +27,9 @@ class HomeWaiterFragment : Fragment() {
     private var _binding: FragmentHomeWaiterBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomeWaiterViewModel by viewModels()
-    private lateinit var homeWaiterAdapter: HomeWaiterAdapter 
+    private lateinit var homeWaiterAdapter: HomeWaiterAdapter
+
+    private val sharedViewModel: SharedOrderViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -37,14 +43,19 @@ class HomeWaiterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
         initListeners()
 
         getUser()
         
         configRecycleView()
-        
+
         getTables()
+
+        observeTables()
+
+        openTable()
+
     }
 
     private fun initListeners() {
@@ -86,9 +97,15 @@ class HomeWaiterFragment : Fragment() {
     
     private fun configRecycleView() {
         homeWaiterAdapter = HomeWaiterAdapter { table ->
+            if (table.status == TableStatus.OPEN) {
 
-            val action = HomeWaiterFragmentDirections.actionHomeWaiterFragmentToCreateOrderFragment(table)
-            findNavController().navigate(action)
+                updateTableStatus(table.id, TableStatus.CLOSED)
+                val action = HomeWaiterFragmentDirections.actionHomeWaiterFragmentToCreateOrderFragment(table)
+                findNavController().navigate(action)
+            } else {
+                Toast.makeText(requireContext(), getString(R.string.txt_table_busy_home_waiter), Toast.LENGTH_SHORT).show()
+            }
+
 
         }
 
@@ -122,6 +139,55 @@ class HomeWaiterFragment : Fragment() {
                 
             }
 
+        }
+    }
+
+    private fun updateTableStatus(tableId: String, newStatus: TableStatus) {
+        viewModel.updateTableStatus(tableId, newStatus).observe(viewLifecycleOwner) { stateView ->
+            when(stateView) {
+                is StateView.Loading -> {
+
+                }
+
+                is StateView.Success -> {
+
+                }
+
+                is StateView.Error -> {
+                    stateView.message?.let {
+                        showBottomSheet(message = it)
+                    }
+                }
+
+            }
+        }
+    }
+
+    private fun observeTables() {
+        viewModel.observeTables().observe(viewLifecycleOwner){ stateView ->
+            when(stateView) {
+                is StateView.Loading -> {
+
+                }
+
+                is StateView.Success -> {
+                    homeWaiterAdapter.submitList(stateView.data)
+                }
+
+                is StateView.Error -> {
+
+                }
+            }
+
+        }
+    }
+
+    private fun openTable() {
+        sharedViewModel.tableStatusEvent.observe(viewLifecycleOwner) { pair ->
+            pair?.let { (tableId, status) ->
+                updateTableStatus(tableId, status)
+                sharedViewModel.consumeEvent() // Limpa o evento após consumir
+            }
         }
     }
 
