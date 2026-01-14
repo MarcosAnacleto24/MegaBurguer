@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.navArgs
 import com.example.megaburguer.R
 import com.example.megaburguer.databinding.FragmentViewOrderBinding
 
@@ -13,6 +15,9 @@ class ViewOrderFragment : Fragment() {
 
     private var _binding: FragmentViewOrderBinding? = null
     private val binding get() = _binding!!
+
+    private val args: ViewOrderFragmentArgs by navArgs()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,

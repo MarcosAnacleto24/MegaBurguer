@@ -8,6 +8,7 @@ data class OrderItem(
     val id: String = "",
     val nameItem: String = "",
     val price: Float = 0f,
-    var quantity: Int = 0,
-    val printed: Boolean = false
+    val quantity: Int = 0,
+    val observation: String = "",
+    var printed: Boolean = false
 ): Parcelable

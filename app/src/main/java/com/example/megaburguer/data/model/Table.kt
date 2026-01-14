@@ -11,5 +11,5 @@ data class Table(
     val number: String = "",
     var status: TableStatus = TableStatus.OPEN,
     var lastUpdated: Long = 0L,
-    var lockedBy: String = "",
+    var lockedBy: String = ""
 ): Parcelable

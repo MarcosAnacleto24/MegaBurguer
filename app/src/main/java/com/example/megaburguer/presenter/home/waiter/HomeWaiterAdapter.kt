@@ -14,7 +14,6 @@ import com.example.megaburguer.databinding.ItemTablesWaiterBinding
 
 class HomeWaiterAdapter(
     private val onTableClick: (table: Table, position: Int) -> Unit,
-
 ) : ListAdapter<Table, HomeWaiterAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     companion object {

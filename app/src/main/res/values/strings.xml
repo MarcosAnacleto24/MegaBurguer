@@ -187,5 +187,14 @@
     <string name="btn_bottom_sheet">Entendi</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!--    Bottom Sheet Observation-->
+    <string name="txt_message_bottom_sheet_observation">Alguma observação?(Opcional)</string>
+    <string name="txt_edit_hint_bottom_sheet_observation">Ex: sem cebola, sem bacon, sem queijo,com gelo e limâo...\n\n</string>
+    <string name="btn_bottom_sheet_observation_cancel">Cancelar</string>
+    <string name="btn_bottom_sheet_observation_save">Salvar</string>
+    <string name="txt_price_bottom_sheet_observation">R$ %s</string>
+
+
+
 
 </resources>

@@ -8,12 +8,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.megaburguer.R
 import com.example.megaburguer.data.model.Menu
+import com.example.megaburguer.data.model.Table
 import com.example.megaburguer.databinding.ItemCreateOrdersBinding
 import com.example.megaburguer.util.GetMask
 
 class CreateOrderAdapter(
     private val onAddItemClick: (menu: Menu, position: Int) -> Unit,
-    private val quantityMap: Map<String, Int>
+    private val quantityMap: Map<String, Int>,
+    private val onAddObservationClick: (menu: Menu) -> Unit
 ) : ListAdapter<Menu, CreateOrderAdapter.MyViewHolder>(DIFF_CALLBACK) {
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Menu>() {
@@ -66,6 +68,11 @@ class CreateOrderAdapter(
 
             binding.btnAddItem.setOnClickListener {
                 onAddItemClick(menu, adapterPosition)
+            }
+
+            binding.btnObs.setOnClickListener {
+                onAddObservationClick(menu)
+
             }
 
         }

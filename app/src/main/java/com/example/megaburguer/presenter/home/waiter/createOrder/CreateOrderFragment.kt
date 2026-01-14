@@ -18,6 +18,7 @@ import com.example.megaburguer.databinding.FragmentCreateOrderBinding
 import com.example.megaburguer.presenter.home.SharedOrderViewModel
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
+import com.example.megaburguer.util.showObservationDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,6 +37,8 @@ class CreateOrderFragment : Fragment() {
     private val sharedViewModel: SharedOrderViewModel by activityViewModels()
 
     private var orderSent = false
+
+    private var observationSave = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -80,7 +83,8 @@ class CreateOrderFragment : Fragment() {
                         id = id,
                         nameItem = menu?.nameItem ?: "",
                         price = menu?.price ?: 0f,
-                        quantity = qtd
+                        quantity = qtd,
+                        observation = observationSave
                     )
                 }
 
@@ -101,7 +105,22 @@ class CreateOrderFragment : Fragment() {
     private fun configRecycleView() {
         createOrderAdapter = CreateOrderAdapter(
             onAddItemClick = { menu, position -> onAddItem(menu, position)  },
-            quantityMap = itemQuantityMap
+
+            quantityMap = itemQuantityMap,
+
+            onAddObservationClick = { menu ->
+                showObservationDialog(
+                    nameItem = menu.nameItem,
+                    priceItem = menu.price,
+                    onSaveClick = { observation ->
+                        if (observation.isNotEmpty()) {
+                            observationSave = observation
+                        }
+                    }
+                )
+
+            }
+
 
         )
 
