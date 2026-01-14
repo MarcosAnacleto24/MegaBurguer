@@ -1,11 +1,13 @@
 package com.example.megaburguer.presenter.home.waiter
 
 import android.os.Bundle
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.postDelayed
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -13,12 +15,14 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.megaburguer.R
 import com.example.megaburguer.data.enum.TableStatus
+import com.example.megaburguer.data.model.Table
 import com.example.megaburguer.databinding.FragmentHomeWaiterBinding
 import com.example.megaburguer.presenter.home.SharedOrderViewModel
 import com.example.megaburguer.util.FirebaseHelper
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.logging.Handler
 import kotlin.getValue
 
 @AndroidEntryPoint
@@ -28,9 +32,16 @@ class HomeWaiterFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: HomeWaiterViewModel by viewModels()
     private lateinit var homeWaiterAdapter: HomeWaiterAdapter
-
     private val sharedViewModel: SharedOrderViewModel by activityViewModels()
 
+    val tenMinutes: Long = 10L * 60L * 1000L
+    private val handler = android.os.Handler(Looper.getMainLooper())
+    private val refreshRunnable = object : Runnable {
+        override fun run() {
+            getTables()
+            handler.postDelayed(this, 10000) // a cada 10 segundos
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,6 +67,7 @@ class HomeWaiterFragment : Fragment() {
 
         openTable()
 
+        handler.post(refreshRunnable)
     }
 
     private fun initListeners() {
@@ -96,18 +108,29 @@ class HomeWaiterFragment : Fragment() {
     }
     
     private fun configRecycleView() {
-        homeWaiterAdapter = HomeWaiterAdapter { table ->
-            if (table.status == TableStatus.OPEN) {
+        homeWaiterAdapter = HomeWaiterAdapter (
+            onTableClick = { table, position ->
+                if (table.status == TableStatus.OPEN) {
 
-                updateTableStatus(table.id, TableStatus.CLOSED)
-                val action = HomeWaiterFragmentDirections.actionHomeWaiterFragmentToCreateOrderFragment(table)
-                findNavController().navigate(action)
-            } else {
-                Toast.makeText(requireContext(), getString(R.string.txt_table_busy_home_waiter), Toast.LENGTH_SHORT).show()
+                    homeWaiterAdapter.notifyItemChanged(position)
+                    updateTableStatus(table.id, TableStatus.CLOSED, FirebaseHelper.getUserId())
+                    val action = HomeWaiterFragmentDirections.actionHomeWaiterFragmentToCreateOrderFragment(table)
+                    findNavController().navigate(action)
+
+                } else if(table.lockedBy == FirebaseHelper.getUserId()) {
+
+                    homeWaiterAdapter.notifyItemChanged(position)
+                    updateTableStatus(table.id, TableStatus.CLOSED, FirebaseHelper.getUserId())
+                    val action = HomeWaiterFragmentDirections.actionHomeWaiterFragmentToCreateOrderFragment(table)
+                    findNavController().navigate(action)
+
+                } else {
+                    Toast.makeText(requireContext(), getString(R.string.txt_table_busy_home_waiter), Toast.LENGTH_SHORT).show()
+                }
+
             }
 
-
-        }
+        )
 
         with(binding.recyclerView){
             setHasFixedSize(true)
@@ -128,6 +151,7 @@ class HomeWaiterFragment : Fragment() {
                 is StateView.Success -> {
                     binding.progressBar.isVisible = false
                     homeWaiterAdapter.submitList(stateView.data)
+                    releaseTrappedTables(stateView.data?: emptyList())
                 }
 
                 is StateView.Error -> {
@@ -142,8 +166,17 @@ class HomeWaiterFragment : Fragment() {
         }
     }
 
-    private fun updateTableStatus(tableId: String, newStatus: TableStatus) {
-        viewModel.updateTableStatus(tableId, newStatus).observe(viewLifecycleOwner) { stateView ->
+    private fun releaseTrappedTables(tables: List<Table>) {
+        val now = System.currentTimeMillis()
+        tables.forEach { table ->
+            if (table.status == TableStatus.CLOSED && (now - table.lastUpdated > tenMinutes)) {
+                updateTableStatus(table.id, TableStatus.OPEN)
+            }
+        }
+    }
+
+    private fun updateTableStatus(tableId: String, newStatus: TableStatus, userId: String = "") {
+        viewModel.updateTableStatus(tableId, newStatus, userId).observe(viewLifecycleOwner) { stateView ->
             when(stateView) {
                 is StateView.Loading -> {
 
@@ -191,7 +224,13 @@ class HomeWaiterFragment : Fragment() {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        handler.removeCallbacks(refreshRunnable)
+    }
+
     override fun onDestroyView() {
+        handler.removeCallbacks(refreshRunnable)
         super.onDestroyView()
         _binding = null
     }

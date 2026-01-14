@@ -62,11 +62,11 @@ class HomeWaiterViewModel @Inject constructor(
 
     }
 
-    fun updateTableStatus(tableId: String, newStatus: TableStatus) = liveData(Dispatchers.IO) {
+    fun updateTableStatus(tableId: String, newStatus: TableStatus, userId: String) = liveData(Dispatchers.IO) {
         emit(StateView.Loading())
 
         try {
-            updateTableStatusUseCase.invoke(tableId, newStatus)
+            updateTableStatusUseCase.invoke(tableId, newStatus,userId )
             emit(StateView.Success(Unit))
 
         } catch (ex: Exception) {

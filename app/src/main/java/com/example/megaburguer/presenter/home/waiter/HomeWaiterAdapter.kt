@@ -13,7 +13,8 @@ import com.example.megaburguer.data.model.Table
 import com.example.megaburguer.databinding.ItemTablesWaiterBinding
 
 class HomeWaiterAdapter(
-    private val onTableClick: (table: Table) -> Unit
+    private val onTableClick: (table: Table, position: Int) -> Unit,
+
 ) : ListAdapter<Table, HomeWaiterAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     companion object {
@@ -56,16 +57,18 @@ class HomeWaiterAdapter(
             val context = binding.root.context
 
 
-            if (table.status == TableStatus.CLOSED) {
+            if (table.status == TableStatus.CLOSED ) {
                 binding.cardTable.strokeColor = ContextCompat.getColor(context, R.color.mega_burger_orange_strong)
                 binding.cardTable.setOnClickListener {
-                    onTableClick(table)
+                    onTableClick(table, adapterPosition)
                 }
+
             } else {
+
                 binding.cardTable.strokeColor = ContextCompat.getColor(context, R.color.mega_burger_gray)
                 // Configura o clique do card da mesa
                 binding.cardTable.setOnClickListener {
-                    onTableClick(table)
+                    onTableClick(table, adapterPosition)
                 }
             }
 

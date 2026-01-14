@@ -26,7 +26,6 @@ class CreateOrderFragment : Fragment() {
     private val binding get() = _binding!!
     private val args: CreateOrderFragmentArgs by navArgs()
     private lateinit var createOrderAdapter: CreateOrderAdapter
-
     private val viewModel: CreateOrderViewModel by viewModels()
     private val fullMenuList = mutableListOf<Menu>()
 

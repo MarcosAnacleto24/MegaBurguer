@@ -7,7 +7,8 @@ import jakarta.inject.Inject
 class UpdateTableStatusUseCase @Inject constructor(
     private val tablesDataSourceImp: TablesDataSourceImp
 ) {
-    suspend operator fun invoke(tableId: String, newStatus: TableStatus) {
-        tablesDataSourceImp.updateTableStatus(tableId, newStatus)
+    suspend operator fun invoke(tableId: String, newStatus: TableStatus, userId: String) {
+        val now = System.currentTimeMillis()
+        tablesDataSourceImp.updateTableStatus(tableId, newStatus, now, userId)
     }
 }

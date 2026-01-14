@@ -148,7 +148,6 @@
     <string name="txt_title_create_order">Mesa %s</string>
     <string name="txt_title_subtitle_create_order">Selecione os itens</string>
     <string name="btn_create_order">Ver Pedidos</string>
-    <string name="btn_create_order_add_item">Adicionar</string>
     <string name="message_empty_order">Adicione um pedido para conseguir visualiza-lo.</string>
 
 
@@ -169,6 +168,8 @@
 
     <!--    Item Create Order-->
     <string name="txt_quantity_item">%sx</string>
+    <string name="btn_create_order_add_item">Adicionar</string>
+    <string name="txt_btn_obs">OBS</string>
 
     <!--    Error Firebase Authentication-->
     <string name="account_not_register_or_password_invalid">E-mail ou senha inválidos. Por favor, verifique e tente novamente.</string>

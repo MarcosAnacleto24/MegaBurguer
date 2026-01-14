@@ -14,6 +14,6 @@ interface TablesDataSource {
 
     suspend fun deleteTable(tableId: String)
 
-    suspend fun updateTableStatus(tableId: String, newStatus: TableStatus)
+    suspend fun updateTableStatus(tableId: String, newStatus: TableStatus,  lastUpdated: Long, lockedBy: String)
 
 }

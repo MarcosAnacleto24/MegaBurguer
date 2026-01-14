@@ -13,6 +13,7 @@
     <color name="mega_burger_background">#1C1C1E</color>
     <color name="mega_burger_red">#E93237</color>
     <color name="mega_burger_gray">#727C95</color>
+    <color name="mega_burger_green">#00A53E</color>
     <color name="color_gray">#A1A5B4</color>
     <color name="mega_burger_blue">#4892E9</color>
 </resources>

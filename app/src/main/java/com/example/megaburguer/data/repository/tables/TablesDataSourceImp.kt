@@ -94,13 +94,18 @@ class TablesDataSourceImp @Inject constructor(
         }
     }
 
-    override suspend fun updateTableStatus(tableId: String, newStatus: TableStatus) {
+    override suspend fun updateTableStatus(tableId: String, newStatus: TableStatus,  lastUpdated: Long, lockedBy: String) {
         return suspendCoroutine { continuation ->
+            val data = mapOf(
+                "status" to newStatus,
+                "lastUpdated" to lastUpdated,
+                "lockedBy" to lockedBy
+            )
+
             firebaseDatabase.reference
                 .child("tables")
                 .child(tableId)
-                .child("status")
-                .setValue(newStatus)
+                .updateChildren(data)
                 .addOnCompleteListener{ task ->
                     if (task.isSuccessful) {
                         continuation.resumeWith(Result.success(Unit))

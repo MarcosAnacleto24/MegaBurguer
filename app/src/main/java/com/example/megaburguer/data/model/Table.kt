@@ -9,5 +9,7 @@ import kotlinx.parcelize.Parcelize
 data class Table(
     var id: String = "",
     val number: String = "",
-    var status: TableStatus = TableStatus.OPEN
+    var status: TableStatus = TableStatus.OPEN,
+    var lastUpdated: Long = 0L,
+    var lockedBy: String = "",
 ): Parcelable
