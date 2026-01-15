@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.megaburguer.R
 import com.example.megaburguer.databinding.FragmentViewOrderBinding
@@ -35,6 +36,15 @@ class ViewOrderFragment : Fragment() {
     }
 
     private fun initListeners() {
+
+        binding.back.setOnClickListener {
+            findNavController().popBackStack()
+
+        }
+
+    }
+
+    private fun configInformation() {
 
     }
 

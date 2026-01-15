@@ -10,7 +10,7 @@
         android:id="@+id/card_table"
         android:layout_width="100dp"
         android:layout_height="120dp"
-        app:cardBackgroundColor="@color/mega_burger_gray_card"
+        app:cardBackgroundColor="@color/mega_burger_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

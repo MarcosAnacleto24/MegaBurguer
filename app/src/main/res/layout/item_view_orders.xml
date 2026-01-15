@@ -27,77 +27,93 @@
                 android:id="@+id/name_item"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/btn_add_item"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Mega Burger Clássico" />
 
             <TextView
-                android:id="@+id/txt_number"
+                android:id="@+id/txt_value_each"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textColor="@color/mega_burger_orange_strong"
+                android:textColor="@color/mega_burger_gray"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name_item"
-                tools:text="R$ 25,90" />
+                tools:text="@string/txt_value_each_view_order" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_add_item"
+            <TextView
+                android:id="@+id/txt_value_sub_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:insetTop="6dp"
-                android:insetBottom="6dp"
-                android:text="@string/btn_create_order_add_item"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                app:backgroundTint="@color/mega_burger_green"
-                app:cornerRadius="8dp"
-                app:icon="@drawable/ic_add"
-                app:iconGravity="textStart"
-                app:iconPadding="4dp"
-                app:iconTint="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textColor="@color/mega_burger_orange_strong"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_value_each"
+                tools:text="@string/txt_value_sub_total_view_order" />
+
+            <TextView
+                android:id="@+id/txt_less"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_more_less_indicator"
+                android:layout_marginEnd="8dp"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:text="@string/btn_less_view_order"
+                android:textColor="@color/mega_burger_gray"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/txt_quantity_item"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/txt_quantity_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/bg_quantity_indicator"
                 android:paddingHorizontal="8dp"
-                android:paddingVertical="2dp"
-                android:text=""
-                android:textColor="@color/mega_burger_green"
+                android:paddingVertical="6dp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
-                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/txt_more"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="1" />
+
+            <TextView
+                android:id="@+id/txt_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_more_less_indicator"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:text="@string/btn_more_view_order"
+                android:textColor="@color/mega_burger_gray"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_add_item"
-                tools:visibility="visible" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_obs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
                 android:insetTop="6dp"
                 android:insetBottom="6dp"
-                android:text="@string/txt_btn_obs"
-                android:textColor="@color/white"
-                app:backgroundTint="@color/mega_burger_orange_primary"
+                android:text="@string/btn_remove_item_view_order"
+                android:textColor="@color/mega_burger_red"
+                app:backgroundTint="@color/mega_burger_background"
                 app:cornerRadius="8dp"
-                app:icon="@drawable/ic_edit_note"
+                app:icon="@drawable/ic_delete"
                 app:iconGravity="textStart"
                 app:iconPadding="4dp"
-                app:iconTint="@color/white"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_number" />
+                app:iconTint="@color/mega_burger_red"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_quantity_item" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

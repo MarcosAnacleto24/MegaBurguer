@@ -150,6 +150,13 @@
     <string name="btn_create_order">Ver Pedidos</string>
     <string name="message_empty_order">Adicione um pedido para conseguir visualiza-lo.</string>
 
+    <!--    View Order Fragment-->
+    <string name="txt_title_view_order">Resumo do Pedido</string>
+    <string name="txt_title_view_order_sub">Mesa %s</string>
+    <string name="txt_waiter_view_order">Atendente:</string>
+    <string name="txt_total_items_view_order">Total de itens:</string>
+    <string name="txt_total_value_view_order">Total:</string>
+    <string name="btn_send_kitchen_view_order">Enviar para Cozinha</string>
 
     <!--    Item Manage Menu-->
     <string name="txt_name_snack_manage_menu">Mega Burguer Especial</string>
@@ -171,6 +178,15 @@
     <string name="btn_create_order_add_item">Adicionar</string>
     <string name="txt_btn_obs">OBS</string>
 
+    <!--    Item View Order-->
+    <string name="txt_value_each_view_order">%s cada</string>
+    <string name="txt_value_sub_total_view_order">Subtotal: %s</string>
+    <string name="btn_less_view_order">-</string>
+    <string name="btn_more_view_order">+</string>
+    <string name="btn_remove_item_view_order">Remover</string>
+    <string name="btn_add_item">Adicionar">Subtotal: %s</string>
+
+
     <!--    Error Firebase Authentication-->
     <string name="account_not_register_or_password_invalid">E-mail ou senha inválidos. Por favor, verifique e tente novamente.</string>
     <string name="email_invalid">O formato do e-mail digitado é inválido.</string>
@@ -189,7 +205,7 @@
 
     <!--    Bottom Sheet Observation-->
     <string name="txt_message_bottom_sheet_observation">Alguma observação?(Opcional)</string>
-    <string name="txt_edit_hint_bottom_sheet_observation">Ex: sem cebola, sem bacon, sem queijo,com gelo e limâo...\n\n</string>
+    <string name="txt_edit_hint_bottom_sheet_observation">Ex: sem cebola, sem bacon, sem queijo, com gelo e limâo…\n\n</string>
     <string name="btn_bottom_sheet_observation_cancel">Cancelar</string>
     <string name="btn_bottom_sheet_observation_save">Salvar</string>
     <string name="txt_price_bottom_sheet_observation">R$ %s</string>
