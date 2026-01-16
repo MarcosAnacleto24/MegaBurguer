@@ -38,7 +38,7 @@ class CreateOrderFragment : Fragment() {
 
     private var orderSent = false
 
-    private var observationSave = ""
+    private val observationSaveMap = mutableMapOf<String, String>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -81,15 +81,22 @@ class CreateOrderFragment : Fragment() {
                     val menu = fullMenuList.find { it.id == id }
                     OrderItem(
                         id = id,
+                        idTable = args.table.id,
+                        nameTable = args.table.number,
                         nameItem = menu?.nameItem ?: "",
                         price = menu?.price ?: 0f,
                         quantity = qtd,
-                        observation = observationSave
+                        observation = observationSaveMap[id] ?: ""
                     )
                 }
 
             if (orderItems.isNotEmpty()) {
-                val action = CreateOrderFragmentDirections.actionCreateOrderFragmentToViewOrderFragment(orderItems.toTypedArray())
+                orderSent = true
+                val action =
+                    CreateOrderFragmentDirections.actionCreateOrderFragmentToViewOrderFragment(
+                        orderItems.toTypedArray(),
+                        args.table
+                    )
                 findNavController().navigate(action)
             } else {
                 showBottomSheet(message = getString(R.string.message_empty_order))
@@ -99,25 +106,35 @@ class CreateOrderFragment : Fragment() {
     }
 
     private fun configTitleOrder() {
-        binding.txtTitle.text = getString(R.string.txt_title_create_order, args.table.number)
+        binding.txtTitle.text = getString(R.string.txt_title_table, args.table.number)
     }
 
     private fun configRecycleView() {
         createOrderAdapter = CreateOrderAdapter(
-            onAddItemClick = { menu, position -> onAddItem(menu, position)  },
+            onAddItemClick = { menu, position -> onAddItem(menu, position) },
 
             quantityMap = itemQuantityMap,
 
             onAddObservationClick = { menu ->
-                showObservationDialog(
-                    nameItem = menu.nameItem,
-                    priceItem = menu.price,
-                    onSaveClick = { observation ->
-                        if (observation.isNotEmpty()) {
-                            observationSave = observation
+
+                val quant = itemQuantityMap[menu.id] ?: 0
+
+                if (quant > 0) {
+                    showObservationDialog(
+                        nameItem = menu.nameItem,
+                        priceItem = menu.price,
+                        onSaveClick = { observation ->
+                            if (observation.isNotEmpty()) {
+                                observationSaveMap[menu.id,] = observation
+                            } else {
+                                observationSaveMap.remove(menu.id)
+                            }
                         }
-                    }
-                )
+                    )
+                } else {
+                    showBottomSheet(message = getString(R.string.message_add_empty_order))
+                }
+
 
             }
 
@@ -170,7 +187,7 @@ class CreateOrderFragment : Fragment() {
 
         val selectedChipId = binding.chipGroupCategories.checkedChipId
 
-        when(selectedChipId) {
+        when (selectedChipId) {
 
             R.id.chip_burgers -> {
                 typeCategory = "Hambúrgueres"

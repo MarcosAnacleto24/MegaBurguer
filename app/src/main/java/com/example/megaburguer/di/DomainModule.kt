@@ -4,6 +4,8 @@ import com.example.megaburguer.data.repository.auth.AuthFirebaseDataSource
 import com.example.megaburguer.data.repository.auth.AuthFirebaseDataSourceImp
 import com.example.megaburguer.data.repository.menu.MenuDataSource
 import com.example.megaburguer.data.repository.menu.MenuDataSourceImp
+import com.example.megaburguer.data.repository.orderItems.OrderItemDataSource
+import com.example.megaburguer.data.repository.orderItems.OrderItemDataSourceImp
 import com.example.megaburguer.data.repository.tables.TablesDataSource
 import com.example.megaburguer.data.repository.tables.TablesDataSourceImp
 import com.example.megaburguer.data.repository.users.UserDataSource
@@ -36,4 +38,9 @@ abstract class DomainModule {
     abstract fun bindMenuDataSource(
         menuDataSourceImpl: MenuDataSourceImp
     ): MenuDataSource
+
+    @Binds
+    abstract fun bindOrderItemDataSource(
+        orderItemDataSourceImp: OrderItemDataSource
+    ): OrderItemDataSource
 }

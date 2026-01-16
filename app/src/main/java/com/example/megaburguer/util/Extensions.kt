@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import com.example.megaburguer.R
 import com.example.megaburguer.databinding.LayoutBottomSheetBinding
 import com.example.megaburguer.databinding.LayoutBottomSheetObservationBinding
+import com.example.megaburguer.databinding.LayoutBottomSheetViewObservationBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -76,6 +77,39 @@ fun Fragment.showObservationDialog(
     binding.editObservation.requestFocus()
     val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
     imm?.showSoftInput(binding.editObservation, InputMethodManager.SHOW_IMPLICIT)
+
+    dialog.show()
+}
+
+fun Fragment.showViewObservationDialog(
+    nameItem: String,
+    priceItem: Float,
+    observationItem: String,
+    themeResId: Int = android.R.style.Theme_Material_Light_Dialog // ou outro tema se quiser
+) {
+    val dialog = Dialog(requireContext(), themeResId)
+    val binding = LayoutBottomSheetViewObservationBinding.inflate(layoutInflater, null, false)
+
+    binding.nameItem.text = nameItem
+    binding.txtPrice.text = getString(
+        R.string.txt_price_bottom_sheet_observation,
+        GetMask.getFormatedValue(priceItem)
+    )
+    binding.editObservation.setText(observationItem)
+
+
+    binding.btnSave.setOnClickListener {
+        dialog.dismiss()
+    }
+
+    binding.btnClose.setOnClickListener { dialog.dismiss() }
+
+    dialog.setContentView(binding.root)
+    dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+    dialog.window?.setLayout(
+        ViewGroup.LayoutParams.MATCH_PARENT,
+        ViewGroup.LayoutParams.WRAP_CONTENT
+    )
 
     dialog.show()
 }

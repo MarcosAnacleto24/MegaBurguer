@@ -127,6 +127,14 @@
             <argument
                 android:name="orderItems"
                 app:argType="com.example.megaburguer.data.model.OrderItem[]" />
+            <argument
+                android:name="table"
+                app:argType="com.example.megaburguer.data.model.Table" />
+            <action
+                android:id="@+id/action_viewOrderFragment_to_homeWaiterFragment"
+                app:destination="@id/homeWaiterFragment"
+                app:popUpTo="@id/viewOrderFragment"
+                app:popUpToInclusive="true" />
         </fragment>
     </navigation>
 

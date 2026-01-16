@@ -51,11 +51,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/text_subtitle"
+                    android:id="@+id/txt_subtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="@string/txt_title_view_order_sub"
+                    android:text="@string/txt_title_table"
                     android:textColor="@color/mega_burger_orange_strong"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/back"
@@ -173,6 +173,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
+            android:layout_marginStart="24dp"
             android:textAlignment="textEnd"
             android:textStyle="bold"
             android:textColor="@color/white"

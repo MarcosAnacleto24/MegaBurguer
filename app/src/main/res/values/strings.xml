@@ -11,6 +11,7 @@
     <string name="txt_chip_group_portions">Porções</string>
     <string name="txt_chip_group_drinks">Bebidas</string>
     <string name="txt_chip_group_combos">Combos</string>
+    <string name="txt_title_table">Mesa %s</string>
 
     <!--    Splash Fragment-->
     <string name="txt_logo_1">Mega</string>
@@ -145,18 +146,18 @@
     <string name="txt_update_category_empty">Selecione a Categoria do item</string>
 
     <!--    Create Order Fragment-->
-    <string name="txt_title_create_order">Mesa %s</string>
     <string name="txt_title_subtitle_create_order">Selecione os itens</string>
     <string name="btn_create_order">Ver Pedidos</string>
     <string name="message_empty_order">Adicione um pedido para conseguir visualiza-lo.</string>
+    <string name="message_add_empty_order">Para criar uma observação adicione um item.</string>
 
     <!--    View Order Fragment-->
     <string name="txt_title_view_order">Resumo do Pedido</string>
-    <string name="txt_title_view_order_sub">Mesa %s</string>
     <string name="txt_waiter_view_order">Atendente:</string>
     <string name="txt_total_items_view_order">Total de itens:</string>
     <string name="txt_total_value_view_order">Total:</string>
     <string name="btn_send_kitchen_view_order">Enviar para Cozinha</string>
+    <string name="txt_price_view_order">R$ %s</string>
 
     <!--    Item Manage Menu-->
     <string name="txt_name_snack_manage_menu">Mega Burguer Especial</string>
@@ -179,12 +180,12 @@
     <string name="txt_btn_obs">OBS</string>
 
     <!--    Item View Order-->
-    <string name="txt_value_each_view_order">%s cada</string>
-    <string name="txt_value_sub_total_view_order">Subtotal: %s</string>
+    <string name="txt_value_each_view_order">R$: %s cada</string>
+    <string name="txt_value_sub_total_view_order">Subtotal: R$: %s</string>
     <string name="btn_less_view_order">-</string>
     <string name="btn_more_view_order">+</string>
     <string name="btn_remove_item_view_order">Remover</string>
-    <string name="btn_add_item">Adicionar">Subtotal: %s</string>
+    <string name="btn_view_obs_view_order">Ver OBS</string>
 
 
     <!--    Error Firebase Authentication-->
@@ -209,6 +210,12 @@
     <string name="btn_bottom_sheet_observation_cancel">Cancelar</string>
     <string name="btn_bottom_sheet_observation_save">Salvar</string>
     <string name="txt_price_bottom_sheet_observation">R$ %s</string>
+
+    <!--    Bottom Sheet View Observation-->
+    <string name="txt_message_bottom_sheet_view_observation">Sua observação:</string>
+    <string name="txt_edit_hint_bottom_sheet_view_observation">\n\n\n</string>
+    <string name="btn_bottom_sheet_view_observation_save">OK</string>
+    <string name="txt_price_bottom_sheet_view_observation">R$ %s</string>
 
 
 

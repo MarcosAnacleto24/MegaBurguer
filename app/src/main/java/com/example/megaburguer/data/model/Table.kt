@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Table(
-    var id: String = "",
+    val id: String = "",
     val number: String = "",
     var status: TableStatus = TableStatus.OPEN,
     var lastUpdated: Long = 0L,

@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_marginStart="16dp"
-                    android:text="@string/txt_title_create_order"
+                    android:text="@string/txt_title_table"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"
