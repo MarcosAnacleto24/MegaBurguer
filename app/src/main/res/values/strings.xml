@@ -50,19 +50,23 @@
     <string name="txt_title_recover">Alterar Senha</string>
     <string name="txt_user_recover">Selecione o Usuário</string>
     <string name="txt_title_subtitle_recover">Alterar senha de usuários</string>
-    <string name="txt_title_subtitle_recover_2">Selecione o usuário e digite a\n nova senha</string>
-    <string name="hint_password_new_recover">Digite a nova senha</string>
-    <string name="hint_password_new_repeat_recover">Digite a senha novamente</string>
+    <string name="txt_title_subtitle_recover_2">Selecione o usuário</string>
     <string name="hint_select_user_recover">-- Selecione um usuário --</string>
     <string name="btn_recover">Alterar Senha</string>
-    <string name="txt_Password_recover">Nova Senha</string>
-    <string name="txt_Password_recover_repeat">Confirmar Nova Senha</string>
     <string name="name_empty_recover">Selecione um usuário </string>
-    <string name="email_empty_recover">Preencha o campo email</string>
-    <string name="password_empty_recover">Preencha o campo senha</string>
-    <string name="password_empty_recover_repeat">Preencha o campo de confirmação de senha</string>
-    <string name="type_user_empty_recover">Selecione o tipo de usuário</string>
     <string name="link_recover_password">Link de recuperação de senha enviado com sucesso!</string>
+
+    <!--   Delete User Fragment-->
+    <string name="txt_title_delete_user">Deletar Usuário</string>
+    <string name="txt_title_subtitle_delete_user">Excluir usuários registrados</string>
+    <string name="icon_delete">icone deletar</string>
+    <string name="txt_title_delete_user_2">Deletar usuário</string>
+    <string name="txt_title_subtitle_delete_user_2">Selecione o usuário</string>
+    <string name="txt_delete_user">Selecione o Usuário</string>
+    <string name="hint_select_user_delete">-- Selecione um usuário --</string>
+    <string name="btn_delete_user">Excluir Usuário</string>
+    <string name="name_empty_delete_user">Selecione um usuário </string>
+    <string name="delete_user_success_message">Usuário deletado com sucesso</string>
 
 
     <!--    Home Admin Fragment-->
@@ -77,6 +81,8 @@
     <string name="txt_register_user_new">Cadastrar novos garçons</string>
     <string name="txt_change_password_title">Alterar Senha</string>
     <string name="txt_change_password_user">Trocar senha de usuários</string>
+    <string name="txt_delete_user_title">Deletar usuário</string>
+    <string name="txt_delete_user_subtitle">Excluir usuários registrados</string>
     <string name="txt_manage_menu_title">Gerenciar Cardápio</string>
     <string name="txt_add_new_menu_title">Adicionar novos lanches e preços</string>
     <string name="icon_settings">icone configuração</string>

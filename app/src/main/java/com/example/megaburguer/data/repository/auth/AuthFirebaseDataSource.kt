@@ -10,6 +10,7 @@ interface AuthFirebaseDataSource {
 
     suspend fun recover(email: String)
 
+    suspend fun deleteUser(userId: String): Result<Unit>
 
 
 }

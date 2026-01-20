@@ -61,6 +61,9 @@
             <action
                 android:id="@+id/action_homeAdminFragment_to_manageMenuFragment"
                 app:destination="@id/manageMenuFragment" />
+            <action
+                android:id="@+id/action_homeAdminFragment_to_deleteUserFragment"
+                app:destination="@id/deleteUserFragment" />
         </fragment>
         <fragment
             android:id="@+id/manageTablesFragment"
@@ -95,6 +98,10 @@
                 android:name="menu"
                 app:argType="com.example.megaburguer.data.model.Menu" />
         </fragment>
+        <fragment
+            android:id="@+id/deleteUserFragment"
+            android:name="com.example.megaburguer.presenter.auth.delete.DeleteUserFragment"
+            android:label="DeleteUserFragment" />
     </navigation>
     <navigation android:id="@+id/homeWaiter"
         app:startDestination="@id/homeWaiterFragment">

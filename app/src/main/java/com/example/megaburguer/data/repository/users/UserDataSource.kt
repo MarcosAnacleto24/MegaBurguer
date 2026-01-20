@@ -8,5 +8,4 @@ interface UserDataSource {
 
     suspend fun getUser(userId: String): User?
 
-
 }

@@ -67,6 +67,9 @@ class HomeAdminFragment : Fragment() {
         binding.cardChangePassword.setOnClickListener {
             findNavController().navigate(R.id.action_homeAdminFragment_to_recoverFragment)
         }
+        binding.cardDeleteUser.setOnClickListener {
+            findNavController().navigate(R.id.action_homeAdminFragment_to_deleteUserFragment)
+        }
         binding.cardManageMenu.setOnClickListener {
             findNavController().navigate(R.id.action_homeAdminFragment_to_manageMenuFragment)
         }

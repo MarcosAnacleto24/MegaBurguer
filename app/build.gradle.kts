@@ -73,6 +73,9 @@ dependencies {
     //Splash
     implementation(libs.androidx.core.splashscreen)
 
+    //Appwrite
+    implementation(libs.sdk.for1.android)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
