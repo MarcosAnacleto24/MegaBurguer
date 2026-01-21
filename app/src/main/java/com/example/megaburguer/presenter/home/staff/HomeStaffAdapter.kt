@@ -1,4 +1,4 @@
-package com.example.megaburguer.presenter.home.waiter
+package com.example.megaburguer.presenter.home.staff
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,9 +11,9 @@ import com.example.megaburguer.data.enum.TableStatus
 import com.example.megaburguer.data.model.Table
 import com.example.megaburguer.databinding.ItemTablesBinding
 
-class HomeWaiterAdapter(
+class HomeStaffAdapter(
     private val onTableClick: (table: Table, position: Int) -> Unit,
-) : ListAdapter<Table, HomeWaiterAdapter.MyViewHolder>(DIFF_CALLBACK) {
+) : ListAdapter<Table, HomeStaffAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Table>() {

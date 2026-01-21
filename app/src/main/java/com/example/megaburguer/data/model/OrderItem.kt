@@ -8,6 +8,7 @@ data class OrderItem(
     val id: String = "",
     val idTable: String = "",
     val nameTable: String = "",
+    val nameWaiter: String = "",
     val nameItem: String = "",
     val price: Float = 0f,
     var quantity: Int = 0,

@@ -68,7 +68,6 @@
     <string name="name_empty_delete_user">Selecione um usuário </string>
     <string name="delete_user_success_message">Usuário deletado com sucesso</string>
 
-
     <!--    Home Admin Fragment-->
     <string name="txt_panel_title">Painel Administrativo</string>
     <string name="txt_greeting_admin">Olá, %s</string>
@@ -101,6 +100,14 @@
     <string name="txt_busy_home_waiter">Ocupada</string>
     <string name="txt_table_busy_home_waiter">Mesa Ocupada</string>
 
+    <!--    Home Staff Fragment-->
+    <string name="txt_panel_title_staff">Selecione a Mesa</string>
+    <string name="txt_greeting_staff">Olá, %s</string>
+    <string name="txt_caption_home_staff">Legenda:</string>
+    <string name="txt_available_home_staff">Disponível</string>
+    <string name="txt_busy_home_staff">Ocupada</string>
+    <string name="btn_view_extract_day_staff">Ver extrato\n diário</string>
+
 
     <!--    Manage Tables Fragment-->
     <string name="txt_title_manage_tables">Gerenciar Mesas</string>
@@ -116,7 +123,6 @@
     <string name="create_table_success">Mesa criada com sucesso!</string>
     <string name="message_delete_table">Para deletar a mesa clique no botão abaixo.</string>
     <string name="txt_message_add_success_manage_table">item adicionado com sucesso</string>
-
 
     <!--    Manage Menu Fragment-->
     <string name="txt_title_manage_menu">Gerenciar Cardápio</string>
@@ -164,6 +170,23 @@
     <string name="txt_total_value_view_order">Total:</string>
     <string name="btn_send_kitchen_view_order">Enviar para Cozinha</string>
     <string name="txt_price_view_order">R$ %s</string>
+
+    <!--    Table Details Fragment-->
+    <string name="txt_title_table_details">Pedido - Mesa %s</string>
+    <string name="txt_title_subtitle_table_details">Resumo do Pedido</string>
+    <string name="txt_waiter_table_details">Atendentes:</string>
+    <string name="txt_total_items_table_details">Total de itens:</string>
+    <string name="txt_total_value_table_details">Total:</string>
+    <string name="btn_send_kitchen_table_details">Encerrar Conta - Cliente Pagou</string>
+    <string name="txt_price_table_details">R$ %s</string>
+    <string name="txt_info_table_details">Nenhum pedido registrado!</string>
+    <string name="txt_message_bottom_sheet_table_details">Para encerrar conta é necessário ter pedido registrado.</string>
+    <string name="txt_message_print_bottom_sheet_table_details">Para imprimir a conta é necessário ter pedido registrado.</string>
+    <string name="btn_send_print_table_Details">Imprimir</string>
+    <string name="txt_message_close_account_success_table_details">Conta da %s encerrada com sucesso</string>
+
+
+
 
     <!--    Item Manage Menu-->
     <string name="txt_name_snack_manage_menu">Mega Burguer Especial</string>
@@ -222,8 +245,6 @@
     <string name="txt_edit_hint_bottom_sheet_view_observation">\n\n\n</string>
     <string name="btn_bottom_sheet_view_observation_save">OK</string>
     <string name="txt_price_bottom_sheet_view_observation">R$ %s</string>
-
-
 
 
 </resources>

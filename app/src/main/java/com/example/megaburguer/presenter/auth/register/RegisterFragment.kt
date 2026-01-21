@@ -50,7 +50,7 @@ class RegisterFragment : BaseFragment() {
 
     private fun configDropdown() {
         // As opções que você quer mostrar no menu
-        val userTypes = arrayOf("Garçom", "Administrador")
+        val userTypes = arrayOf("Garçom", "Administrador", "Cozinha/Caixa")
 
         // O adapter que conecta as opções ao componente
         val adapter =

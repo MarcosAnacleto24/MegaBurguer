@@ -18,6 +18,7 @@ import com.example.megaburguer.presenter.home.SharedOrderViewModel
 import com.example.megaburguer.util.FirebaseHelper
 import com.example.megaburguer.util.GetMask
 import com.example.megaburguer.util.StateView
+import com.example.megaburguer.util.showBottomSheet
 import com.example.megaburguer.util.showViewObservationDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.getValue
@@ -102,7 +103,9 @@ class ViewOrderFragment : Fragment() {
                 }
 
                 is StateView.Error -> {
-
+                    stateView.message?.let {
+                        showBottomSheet(message = it)
+                    }
                 }
 
             }
@@ -125,7 +128,9 @@ class ViewOrderFragment : Fragment() {
                 }
 
                 is StateView.Error -> {
-
+                    stateView.message?.let {
+                        showBottomSheet(message = it)
+                    }
                 }
             }
         }

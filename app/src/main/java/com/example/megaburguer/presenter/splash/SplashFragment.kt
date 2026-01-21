@@ -44,6 +44,10 @@ class SplashFragment : Fragment() {
             when(FirebaseHelper.getUserType()) {
                 "Administrador" -> findNavController().navigate(R.id.action_splashFragment_to_homeAdminFragment)
                 "Garçom" ->  findNavController().navigate(R.id.action_splashFragment_to_homeWaiterFragment)
+                "Cozinha/Caixa" -> findNavController().navigate(R.id.action_splashFragment_to_homeStaff)
+
+
+
 
             }
         } else {

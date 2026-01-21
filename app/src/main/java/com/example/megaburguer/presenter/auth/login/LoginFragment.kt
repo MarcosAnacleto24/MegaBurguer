@@ -97,6 +97,8 @@ class LoginFragment : BaseFragment() {
        when(FirebaseHelper.getUserType()) {
            "Administrador" -> findNavController().navigate(R.id.action_loginFragment_to_homeAdmin)
            "Garçom" -> findNavController().navigate(R.id.action_loginFragment_to_homeWaiterFragment)
+           "Cozinha/Caixa" -> findNavController().navigate(R.id.action_loginFragment_to_homeStaff)
+
        }
     }
 

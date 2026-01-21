@@ -83,6 +83,7 @@ class CreateOrderFragment : Fragment() {
                         id = id,
                         idTable = args.table.id,
                         nameTable = args.table.number,
+                        nameWaiter = args.nameUser,
                         nameItem = menu?.nameItem ?: "",
                         price = menu?.price ?: 0f,
                         quantity = qtd,

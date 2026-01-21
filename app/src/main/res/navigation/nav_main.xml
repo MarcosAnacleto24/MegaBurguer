@@ -25,6 +25,11 @@
             app:destination="@id/homeWaiter"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_splashFragment_to_homeStaff"
+            app:destination="@id/homeStaff"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -39,6 +44,11 @@
         <action
             android:id="@+id/action_loginFragment_to_homeAdmin"
             app:destination="@id/homeAdmin"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_loginFragment_to_homeStaff"
+            app:destination="@id/homeStaff"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true"/>
     </fragment>
@@ -125,6 +135,9 @@
             <action
                 android:id="@+id/action_createOrderFragment_to_viewOrderFragment"
                 app:destination="@id/viewOrderFragment" />
+            <argument
+                android:name="nameUser"
+                app:argType="string" />
         </fragment>
         <fragment
             android:id="@+id/viewOrderFragment"
@@ -142,6 +155,27 @@
                 app:destination="@id/homeWaiterFragment"
                 app:popUpTo="@id/viewOrderFragment"
                 app:popUpToInclusive="true" />
+        </fragment>
+    </navigation>
+    <navigation android:id="@+id/homeStaff"
+        app:startDestination="@id/homeStaffFragment">
+        <fragment
+            android:id="@+id/homeStaffFragment"
+            android:name="com.example.megaburguer.presenter.home.staff.HomeStaffFragment"
+            android:label="fragment_home_staff"
+            tools:layout="@layout/fragment_home_staff" >
+            <action
+                android:id="@+id/action_homeStaffFragment_to_tableDetailsFragment"
+                app:destination="@id/tableDetailsFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/tableDetailsFragment"
+            android:name="com.example.megaburguer.presenter.home.staff.tableDetails.TableDetailsFragment"
+            android:label="fragment_table_details"
+            tools:layout="@layout/fragment_table_details" >
+            <argument
+                android:name="table"
+                app:argType="com.example.megaburguer.data.model.Table" />
         </fragment>
     </navigation>
 
