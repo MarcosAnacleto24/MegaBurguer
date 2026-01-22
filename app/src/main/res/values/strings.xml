@@ -12,6 +12,7 @@
     <string name="txt_chip_group_drinks">Bebidas</string>
     <string name="txt_chip_group_combos">Combos</string>
     <string name="txt_title_table">Mesa %s</string>
+    <string name="btn_send_print">Imprimir</string>
 
     <!--    Splash Fragment-->
     <string name="txt_logo_1">Mega</string>
@@ -182,10 +183,21 @@
     <string name="txt_info_table_details">Nenhum pedido registrado!</string>
     <string name="txt_message_bottom_sheet_table_details">Para encerrar conta é necessário ter pedido registrado.</string>
     <string name="txt_message_print_bottom_sheet_table_details">Para imprimir a conta é necessário ter pedido registrado.</string>
-    <string name="btn_send_print_table_Details">Imprimir</string>
     <string name="txt_message_close_account_success_table_details">Conta da %s encerrada com sucesso</string>
 
-
+    <!--    Extract Fragment-->
+    <string name="txt_title_toolbar_extract">Extrato - Diário</string>
+    <string name="txt_title_subtitle_extract">Resumo do dia</string>
+    <string name="btn_extract_clean_day">Limpar Histórico do Dia</string>
+    <string name="txt_current_date">Data:</string>
+    <string name="txt_sold_total_extract">TOTAL VENDIDO:</string>
+    <string name="txt_info_extract">Nenhum pedido registrado!</string>
+    <string name="txt_message_bottom_sheet_extract">Para limpar histórico é necessário ter pedido registrado.</string>
+    <string name="txt_message_print_bottom_sheet_extract">Para imprimir o extrato é necessário ter pedido registrado.</string>
+    <string name="txt_title_extract">EXTRATO DO DIA</string>
+    <string name="txt_line_extract">--------------------------------------------</string>
+    <string name="txt_price_snack_extract">R$ %s</string>
+    <string name="txt_extract_clean_success">Histórico do dia limpo com sucesso!</string>
 
 
     <!--    Item Manage Menu-->
@@ -215,6 +227,11 @@
     <string name="btn_more_view_order">+</string>
     <string name="btn_remove_item_view_order">Remover</string>
     <string name="btn_view_obs_view_order">Ver OBS</string>
+
+    <!--    Item Extract Line-->
+    <string name="txt_quantity_item_extract_line">%sx %s</string>
+    <string name="txt_value_each_extract_line">R$: %s cada</string>
+    <string name="txt_value_sub_total_extract_line">R$: %s</string>
 
 
     <!--    Error Firebase Authentication-->

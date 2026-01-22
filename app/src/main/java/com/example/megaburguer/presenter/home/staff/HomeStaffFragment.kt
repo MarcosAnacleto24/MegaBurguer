@@ -88,6 +88,13 @@ class HomeStaffFragment : Fragment() {
                 ).show()
 
             }
+
+            val extractClean = bundle.getBoolean("extract_clean")
+            val extractMessage = bundle.getString("extract_message")
+            if (extractClean) {
+                Toast.makeText(requireContext(), extractMessage, Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
 
@@ -109,7 +116,7 @@ class HomeStaffFragment : Fragment() {
         }
 
         binding.btnViewExtract.setOnClickListener {
-            //findNavController().navigate(R.id.action_homeStaffFragment_to_extractFragment)
+            findNavController().navigate(R.id.action_homeStaffFragment_to_extractFragment)
         }
 
     }

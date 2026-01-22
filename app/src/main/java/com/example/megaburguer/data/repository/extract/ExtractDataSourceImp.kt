@@ -59,4 +59,19 @@ class ExtractDataSourceImp @Inject constructor(
 
         }
     }
+
+    override suspend fun deleteExtract() {
+        return suspendCancellableCoroutine { continuation ->
+            firebaseDatabase.reference
+                .child("extracts")
+                .removeValue()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        continuation.resumeWith(Result.success(Unit))
+                    } else {
+                        continuation.resumeWith(Result.failure(task.exception!!))
+                    }
+                }
+        }
+    }
 }

@@ -8,7 +8,7 @@ interface ExtractDataSource {
 
     suspend fun getExtractList(): List<OrderItem>
 
-
+    suspend fun deleteExtract()
 
 
 }

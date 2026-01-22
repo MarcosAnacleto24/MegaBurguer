@@ -167,6 +167,9 @@
             <action
                 android:id="@+id/action_homeStaffFragment_to_tableDetailsFragment"
                 app:destination="@id/tableDetailsFragment" />
+            <action
+                android:id="@+id/action_homeStaffFragment_to_extractFragment"
+                app:destination="@id/extractFragment" />
         </fragment>
         <fragment
             android:id="@+id/tableDetailsFragment"
@@ -177,6 +180,11 @@
                 android:name="table"
                 app:argType="com.example.megaburguer.data.model.Table" />
         </fragment>
+        <fragment
+            android:id="@+id/extractFragment"
+            android:name="com.example.megaburguer.presenter.home.staff.extract.ExtractFragment"
+            android:label="fragment_extract"
+            tools:layout="@layout/fragment_extract" />
     </navigation>
 
 </navigation>
