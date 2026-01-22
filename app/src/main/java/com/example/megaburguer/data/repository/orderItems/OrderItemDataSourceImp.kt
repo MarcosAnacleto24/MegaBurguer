@@ -20,7 +20,8 @@ class OrderItemDataSourceImp @Inject constructor(
                     firebaseDatabase.reference
                         .child("tables")
                         .child(orderItem.idTable)
-                        .child("orders").push().setValue(orderItem)
+                        .child("orders")
+                        .child(orderItem.id).setValue(orderItem)
                         .addOnCompleteListener { task ->
                             if (continuation.isActive) {
 

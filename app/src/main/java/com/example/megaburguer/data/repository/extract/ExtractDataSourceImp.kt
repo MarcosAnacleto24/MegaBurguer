@@ -17,7 +17,7 @@ class ExtractDataSourceImp @Inject constructor(
                 orderItemList.forEach { orderItem ->
                     firebaseDatabase.reference
                         .child("extracts")
-                        .push().setValue(orderItem)
+                        .child(orderItem.id).setValue(orderItem)
                         .addOnCompleteListener { task ->
                             if (continuation.isActive) {
 

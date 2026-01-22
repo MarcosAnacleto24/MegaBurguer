@@ -19,6 +19,7 @@ import com.example.megaburguer.presenter.home.SharedOrderViewModel
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
 import com.example.megaburguer.util.showObservationDialog
+import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -77,17 +78,18 @@ class CreateOrderFragment : Fragment() {
         binding.btnViewOrders.setOnClickListener {
             val orderItems = itemQuantityMap
                 .filter { it.value > 0 }
-                .map { (id, qtd) ->
-                    val menu = fullMenuList.find { it.id == id }
+                .map { (idItem, qtd) ->
+                    val menu = fullMenuList.find { it.id == idItem }
                     OrderItem(
-                        id = id,
+                        id = FirebaseDatabase.getInstance().reference.push().key ?: "",
+                        idItem = idItem,
                         idTable = args.table.id,
                         nameTable = args.table.number,
                         nameWaiter = args.nameUser,
                         nameItem = menu?.nameItem ?: "",
                         price = menu?.price ?: 0f,
                         quantity = qtd,
-                        observation = observationSaveMap[id] ?: ""
+                        observation = observationSaveMap[idItem] ?: ""
                     )
                 }
 
