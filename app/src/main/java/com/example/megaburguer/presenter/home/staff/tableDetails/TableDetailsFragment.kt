@@ -1,15 +1,21 @@
 package com.example.megaburguer.presenter.home.staff.tableDetails
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.megaburguer.R
@@ -18,9 +24,13 @@ import com.example.megaburguer.data.model.OrderItem
 import com.example.megaburguer.databinding.FragmentTableDetailsBinding
 import com.example.megaburguer.presenter.home.SharedOrderViewModel
 import com.example.megaburguer.util.GetMask
+import com.example.megaburguer.util.PrinterHelper
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class TableDetailsFragment : Fragment() {
@@ -35,7 +45,6 @@ class TableDetailsFragment : Fragment() {
     private val currentOrderItems = mutableListOf<OrderItem>()
     private val sharedViewModel: SharedOrderViewModel by activityViewModels()
     private var orderSent = false
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -80,7 +89,19 @@ class TableDetailsFragment : Fragment() {
 
         binding.btnPrint.setOnClickListener {
             if (currentOrderItems.isNotEmpty()) {
-                printOrder()
+                // VERIFICAÇÃO SIMPLES
+                if (hasBluetoothPermission()) {
+                    // Tem permissão? Prepara a lista e imprime
+                    val itemsUpdate = currentOrderItems.map { item ->
+                        val newQtd = itemQuantityMap[item.id] ?: item.quantity
+                        item.copy(quantity = newQtd)
+                    }
+                    printOrder(itemsUpdate)
+                } else {
+                    // Não tem permissão? Manda o usuário voltar ou avisa
+                    showBottomSheet(message = "Permissão de Bluetooth necessária. Por favor, habilite nas configurações ou reinicie o app.")
+                }
+
             } else {
                 showBottomSheet(message = getString(R.string.txt_message_print_bottom_sheet_table_details))
             }
@@ -201,8 +222,49 @@ class TableDetailsFragment : Fragment() {
         )
     }
 
-    private fun printOrder() {
-        Toast.makeText(requireContext(), "imprimindo", Toast.LENGTH_SHORT).show()
+    private fun hasBluetoothPermission(): Boolean {
+        // Se for Android antigo (< 12), sempre retorna true (permissão é dada na instalação)
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+            return true
+        }
+
+        // Se for Android novo (12+), verifica se foi concedida
+        val connectGranted = ContextCompat.checkSelfPermission(
+            requireContext(), Manifest.permission.BLUETOOTH_CONNECT
+        ) == PackageManager.PERMISSION_GRANTED
+
+        val scanGranted = ContextCompat.checkSelfPermission(
+            requireContext(), Manifest.permission.BLUETOOTH_SCAN
+        ) == PackageManager.PERMISSION_GRANTED
+
+        return connectGranted && scanGranted
+    }
+
+
+    private fun printOrder(orderListItem: List<OrderItem>) {
+        binding.progressBar.isVisible = true
+        // 1. Verifique permissões antes (especialmente Bluetooth no Android 12)
+        // Se já tiver permissão:
+
+        val total = orderListItem.sumOf {  it.price.toDouble() * it.quantity }
+
+        // Roda em uma thread de IO (Background)
+        lifecycleScope.launch(Dispatchers.IO) {
+
+            // Chama o helper que você criou (que retorna String)
+            val result = PrinterHelper().printBluetooth(orderListItem, total)
+
+            withContext(Dispatchers.Main) {
+                binding.progressBar.isVisible = false
+
+                if (result == "Success") {
+                    Toast.makeText(requireContext(), "Enviado para impressora!", Toast.LENGTH_SHORT).show()
+                } else {
+                    showBottomSheet(message = result)
+                }
+            }
+
+        }
     }
 
     private fun saveExtractList(orderItemList: List<OrderItem>) {

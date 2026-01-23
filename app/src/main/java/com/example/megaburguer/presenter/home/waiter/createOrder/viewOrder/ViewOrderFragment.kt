@@ -121,6 +121,27 @@ class ViewOrderFragment : Fragment() {
                 }
 
                 is StateView.Success -> {
+                    saveOrderPrint(orderItemList)
+                }
+
+                is StateView.Error -> {
+                    stateView.message?.let {
+                        showBottomSheet(message = it)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun saveOrderPrint(orderPrintList: List<OrderItem>) {
+        viewModel.saveOrderPrintList(orderPrintList).observe(viewLifecycleOwner) { stateView ->
+            when(stateView) {
+                is StateView.Loading -> {
+
+                }
+
+                is StateView.Success -> {
+
                     sharedViewModel.setTableStatus(args.table.id, TableStatus.OPEN)
 
                     findNavController().navigate(R.id.homeWaiter, null,
@@ -132,6 +153,7 @@ class ViewOrderFragment : Fragment() {
                         showBottomSheet(message = it)
                     }
                 }
+
             }
         }
     }

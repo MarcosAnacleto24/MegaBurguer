@@ -3,6 +3,8 @@ package com.example.megaburguer.presenter.home.staff
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.megaburguer.data.enum.TableStatus
+import com.example.megaburguer.domain.orderPrint.DeleteOrderPrintUseCase
+import com.example.megaburguer.domain.orderPrint.ObserveOrderPrintUseCase
 import com.example.megaburguer.domain.tables.GetTablesUseCase
 import com.example.megaburguer.domain.tables.ObserveTablesUseCase
 import com.example.megaburguer.domain.tables.UpdateTableStatusUseCase
@@ -17,7 +19,9 @@ class HomeStaffViewModel @Inject constructor(
     private val getTablesUseCase: GetTablesUseCase,
     private val getUserUseCase: GetUserUseCase,
     private val observeTablesUseCase: ObserveTablesUseCase,
-    private val updateTableStatusUseCase: UpdateTableStatusUseCase
+    private val updateTableStatusUseCase: UpdateTableStatusUseCase,
+    private val observeOrderPrintUseCase: ObserveOrderPrintUseCase,
+    private val deleteOrderPrintUseCase: DeleteOrderPrintUseCase
 ) : ViewModel() {
 
     fun getTables() = liveData(Dispatchers.IO) {
@@ -72,6 +76,33 @@ class HomeStaffViewModel @Inject constructor(
             emit(StateView.Error(ex.message.toString()))
         }
 
+    }
+
+    fun observeOrderPrint() = liveData(Dispatchers.IO) {
+        emit(StateView.Loading())
+
+        try {
+            observeOrderPrintUseCase.invoke().collect { orderPrint ->
+                emit(StateView.Success(orderPrint))
+            }
+
+
+        } catch (ex: Exception) {
+            emit(StateView.Error(ex.message.toString()))
+        }
+
+    }
+
+    fun deletePrintedItems(itemIds: List<String>) = liveData(Dispatchers.IO) {
+        emit(StateView.Loading())
+
+        try {
+            deleteOrderPrintUseCase.invoke(itemIds)
+            emit(StateView.Success(Unit))
+
+        } catch (ex: Exception) {
+           emit(StateView.Error(ex.message.toString()))
+        }
     }
 
 }

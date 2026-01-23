@@ -76,6 +76,9 @@ dependencies {
     //Appwrite
     implementation(libs.sdk.for1.android)
 
+    //https://github.com/DantSu/ESCPOS-ThermalPrinter-Android?tab=readme-ov-file#android-version
+    implementation(libs.escpos.thermalprinter.android)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

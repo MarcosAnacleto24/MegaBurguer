@@ -1,21 +1,31 @@
 package com.example.megaburguer.presenter.home.staff.extract
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.megaburguer.R
 import com.example.megaburguer.data.model.OrderItem
 import com.example.megaburguer.databinding.FragmentExtractBinding
 import com.example.megaburguer.util.GetMask
+import com.example.megaburguer.util.PrinterHelper
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -62,7 +72,11 @@ class ExtractFragment : Fragment() {
 
         binding.btnPrint.setOnClickListener {
             if (extractList.isNotEmpty()) {
-                printExtract()
+                if (hasBluetoothPermission()) {
+                    printExtract()
+                } else {
+                    showBottomSheet(message = "Permissão de Bluetooth necessária. Por favor, habilite nas configurações ou reinicie o app.")
+                }
             } else {
                 showBottomSheet(message = getString(R.string.txt_message_print_bottom_sheet_extract))
             }
@@ -142,6 +156,24 @@ class ExtractFragment : Fragment() {
             GetMask.getFormatedValue(totalPrice.toFloat()))
     }
 
+    private fun hasBluetoothPermission(): Boolean {
+        // Se for Android antigo (< 12), sempre retorna true (permissão é dada na instalação)
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+            return true
+        }
+
+        // Se for Android novo (12+), verifica se foi concedida
+        val connectGranted = ContextCompat.checkSelfPermission(
+            requireContext(), Manifest.permission.BLUETOOTH_CONNECT
+        ) == PackageManager.PERMISSION_GRANTED
+
+        val scanGranted = ContextCompat.checkSelfPermission(
+            requireContext(), Manifest.permission.BLUETOOTH_SCAN
+        ) == PackageManager.PERMISSION_GRANTED
+
+        return connectGranted && scanGranted
+    }
+
     private fun cleanExtract() {
         viewModel.deleteExtract().observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
@@ -173,7 +205,29 @@ class ExtractFragment : Fragment() {
     }
 
     private fun printExtract() {
-        print("Imprimindo extrato...")
+        binding.progressBar.isVisible = true
+        // 1. Verifique permissões antes (especialmente Bluetooth no Android 12)
+        // Se já tiver permissão:
+
+        val total = extractList.sumOf {  it.price.toDouble() * it.quantity }
+
+        // Roda em uma thread de IO (Background)
+        lifecycleScope.launch(Dispatchers.IO) {
+
+            // Chama o helper que você criou (que retorna String)
+            val result = PrinterHelper().printBluetooth(extractList, total)
+
+            withContext(Dispatchers.Main) {
+                binding.progressBar.isVisible = false
+
+                if (result == "Success") {
+                    Toast.makeText(requireContext(), "Enviado para impressora!", Toast.LENGTH_SHORT).show()
+                } else {
+                    showBottomSheet(message = result)
+                }
+            }
+
+        }
     }
 
 
