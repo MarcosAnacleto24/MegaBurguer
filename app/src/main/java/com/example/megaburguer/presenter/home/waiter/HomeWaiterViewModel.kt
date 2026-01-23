@@ -1,7 +1,6 @@
 package com.example.megaburguer.presenter.home.waiter
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
 import com.example.megaburguer.data.enum.TableStatus
 import com.example.megaburguer.domain.tables.GetTablesUseCase

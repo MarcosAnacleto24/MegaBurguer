@@ -1,6 +1,5 @@
 package com.example.megaburguer.data.repository.orderItems
 
-import com.example.megaburguer.data.model.Menu
 import com.example.megaburguer.data.model.OrderItem
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -8,7 +7,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import jakarta.inject.Inject
 import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlin.coroutines.suspendCoroutine
 
 class OrderItemDataSourceImp @Inject constructor(
     private val firebaseDatabase: FirebaseDatabase

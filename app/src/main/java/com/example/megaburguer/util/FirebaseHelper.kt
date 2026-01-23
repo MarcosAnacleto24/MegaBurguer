@@ -1,6 +1,5 @@
 package com.example.megaburguer.util
 
-import com.example.megaburguer.R
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.database

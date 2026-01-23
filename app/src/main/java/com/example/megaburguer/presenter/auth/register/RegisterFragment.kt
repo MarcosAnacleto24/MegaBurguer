@@ -1,12 +1,10 @@
 package com.example.megaburguer.presenter.auth.register
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
@@ -17,7 +15,6 @@ import com.example.megaburguer.util.BaseFragment
 import com.example.megaburguer.util.FirebaseHelper
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
-import com.google.android.material.internal.ViewUtils.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

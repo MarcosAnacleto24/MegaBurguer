@@ -1,6 +1,5 @@
 package com.example.megaburguer.presenter.auth.login
 
-import android.provider.Settings.Global.getString
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.megaburguer.R

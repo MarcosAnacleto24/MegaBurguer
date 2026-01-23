@@ -1,7 +1,6 @@
 package com.example.megaburguer.data.repository.orderPrint
 
 import com.example.megaburguer.data.model.OrderItem
-import com.example.megaburguer.data.model.Table
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase

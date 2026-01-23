@@ -3,7 +3,6 @@ package com.example.megaburguer.presenter.auth.delete
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.megaburguer.domain.auth.DeleteUserUseCase
-import com.example.megaburguer.domain.auth.RecoverUseCase
 import com.example.megaburguer.domain.users.GetUsersUseCase
 import com.example.megaburguer.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel

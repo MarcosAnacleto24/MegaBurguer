@@ -1,14 +1,11 @@
 package com.example.megaburguer.presenter.home.admin.manage_menu.update_manage_menu
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
-import androidx.core.widget.addTextChangedListener
-import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -16,14 +13,12 @@ import com.example.megaburguer.R
 import com.example.megaburguer.data.model.Menu
 import com.example.megaburguer.databinding.FragmentUpdateManageMenuBinding
 import com.example.megaburguer.util.BaseFragment
-import com.example.megaburguer.util.GetMask
 import com.example.megaburguer.util.MoneyTextWatcher
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.NumberFormat
 import java.util.Locale
-import kotlin.getValue
 
 @AndroidEntryPoint
 class UpdateManageMenuFragment : BaseFragment() {

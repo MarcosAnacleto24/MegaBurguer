@@ -6,7 +6,6 @@ import com.example.megaburguer.data.model.Menu
 import com.example.megaburguer.domain.menu.DeleteMenuUseCase
 import com.example.megaburguer.domain.menu.GetMenuUseCase
 import com.example.megaburguer.domain.menu.SaveMenuUseCase
-import com.example.megaburguer.domain.menu.UpdateMenuUseCase
 import com.example.megaburguer.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject

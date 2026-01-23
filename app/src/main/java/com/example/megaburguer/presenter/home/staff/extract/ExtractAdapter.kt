@@ -2,17 +2,12 @@ package com.example.megaburguer.presenter.home.staff.extract
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.megaburguer.R
-import com.example.megaburguer.data.model.Menu
 import com.example.megaburguer.data.model.OrderItem
-import com.example.megaburguer.data.model.Table
-import com.example.megaburguer.databinding.ItemCreateOrdersBinding
 import com.example.megaburguer.databinding.ItemExtractLineBinding
-import com.example.megaburguer.databinding.ItemViewOrdersBinding
 import com.example.megaburguer.util.GetMask
 
 class ExtractAdapter() : ListAdapter<OrderItem,

@@ -13,8 +13,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.megaburguer.R
 import com.example.megaburguer.data.model.User
 import com.example.megaburguer.databinding.FragmentDeleteUserBinding
-import com.example.megaburguer.databinding.FragmentRecoverBinding
-import com.example.megaburguer.presenter.auth.recover.RecoverViewModel
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint

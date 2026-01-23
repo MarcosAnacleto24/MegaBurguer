@@ -1,7 +1,6 @@
 package com.example.megaburguer.data.model
 
 import android.os.Parcelable
-import com.google.firebase.database.FirebaseDatabase
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

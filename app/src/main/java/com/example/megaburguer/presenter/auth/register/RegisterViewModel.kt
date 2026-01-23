@@ -3,7 +3,6 @@ package com.example.megaburguer.presenter.auth.register
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.megaburguer.R
-import com.example.megaburguer.data.model.User
 import com.example.megaburguer.domain.auth.RegisterUseCase
 import com.example.megaburguer.util.StateView
 import com.google.firebase.auth.FirebaseAuthException

@@ -7,10 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.megaburguer.R
-import com.example.megaburguer.data.model.Menu
 import com.example.megaburguer.data.model.OrderItem
-import com.example.megaburguer.data.model.Table
-import com.example.megaburguer.databinding.ItemCreateOrdersBinding
 import com.example.megaburguer.databinding.ItemViewOrdersBinding
 import com.example.megaburguer.util.GetMask
 

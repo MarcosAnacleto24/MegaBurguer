@@ -7,12 +7,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.isVisible
-import androidx.core.widget.addTextChangedListener
-import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.megaburguer.R
 import com.example.megaburguer.data.model.Menu
 import com.example.megaburguer.databinding.FragmentManageMenuBinding
@@ -20,7 +16,6 @@ import com.example.megaburguer.util.BaseFragment
 import com.example.megaburguer.util.MoneyTextWatcher
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
-import com.google.android.material.chip.Chip
 import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.AndroidEntryPoint
 

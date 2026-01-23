@@ -1,6 +1,5 @@
 package com.example.megaburguer.data.repository.menu
 
-import android.util.Log
 import com.example.megaburguer.data.model.Menu
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

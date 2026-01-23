@@ -2,21 +2,14 @@ package com.example.megaburguer.util
 
 import android.app.Dialog
 import android.content.Context
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
-import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import com.example.megaburguer.R
 import com.example.megaburguer.databinding.LayoutBottomSheetBinding
 import com.example.megaburguer.databinding.LayoutBottomSheetObservationBinding
 import com.example.megaburguer.databinding.LayoutBottomSheetViewObservationBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 fun Fragment.showBottomSheet(
     titleDialog: Int? = null,
