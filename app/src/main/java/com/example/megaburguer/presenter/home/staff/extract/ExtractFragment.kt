@@ -75,7 +75,7 @@ class ExtractFragment : Fragment() {
                 if (hasBluetoothPermission()) {
                     printExtract()
                 } else {
-                    showBottomSheet(message = "Permissão de Bluetooth necessária. Por favor, habilite nas configurações ou reinicie o app.")
+                    showBottomSheet(message = getString(R.string.txt_message_not_permission_bluetooth))
                 }
             } else {
                 showBottomSheet(message = getString(R.string.txt_message_print_bottom_sheet_extract))
@@ -221,7 +221,7 @@ class ExtractFragment : Fragment() {
                 binding.progressBar.isVisible = false
 
                 if (result == "Success") {
-                    Toast.makeText(requireContext(), "Enviado para impressora!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.txt_message_send_success), Toast.LENGTH_SHORT).show()
                 } else {
                     showBottomSheet(message = result)
                 }

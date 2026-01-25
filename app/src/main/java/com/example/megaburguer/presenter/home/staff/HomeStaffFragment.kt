@@ -67,10 +67,10 @@ class HomeStaffFragment : Fragment() {
         if (allGranted) {
             // Permissão aceita!
             // Aqui você pode iniciar a lógica de "Escutar pedidos para imprimir" se quiser
-            Toast.makeText(requireContext(), "Permissão de impressora concedida", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.txt_message_permission_yes_staff), Toast.LENGTH_SHORT).show()
         } else {
             // Permissão negada
-            showBottomSheet(message = "Sem a permissão de Bluetooth, a impressão automática e manual não funcionará.")
+            showBottomSheet(message = getString(R.string.txt_message_permission_not_staff))
         }
     }
 
@@ -315,7 +315,7 @@ class HomeStaffFragment : Fragment() {
                         processAndPrintOrders(orderList)
                     } else if (orderList.isNotEmpty() && !hasBluetoothPermission()) {
                         // Opcional: Avisar que tem pedidos mas sem permissão
-                        Toast.makeText(requireContext(), "Pedidos na fila, ative o Bluetooth!", Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(), getString(R.string.txt_message_orders_line_staff), Toast.LENGTH_LONG).show()
                     }
                 }
 

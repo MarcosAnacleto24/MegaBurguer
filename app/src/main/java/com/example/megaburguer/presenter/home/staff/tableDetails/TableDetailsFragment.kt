@@ -98,7 +98,7 @@ class TableDetailsFragment : Fragment() {
                     printOrder(itemsUpdate)
                 } else {
                     // Não tem permissão? Manda o usuário voltar ou avisa
-                    showBottomSheet(message = "Permissão de Bluetooth necessária. Por favor, habilite nas configurações ou reinicie o app.")
+                    showBottomSheet(message = getString(R.string.txt_message_not_permission_bluetooth))
                 }
 
             } else {
@@ -257,7 +257,7 @@ class TableDetailsFragment : Fragment() {
                 binding.progressBar.isVisible = false
 
                 if (result == "Success") {
-                    Toast.makeText(requireContext(), "Enviado para impressora!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.txt_message_send_success), Toast.LENGTH_SHORT).show()
                 } else {
                     showBottomSheet(message = result)
                 }
