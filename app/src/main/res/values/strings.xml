@@ -14,6 +14,7 @@
     <string name="txt_title_table">Mesa %s</string>
     <string name="btn_send_print">Imprimir</string>
     <string name="back_icon">icone voltar</string>
+    <string name="icon_lock">icone cadeado</string>
 
     <!--    Splash Fragment-->
     <string name="txt_logo_1">Mega</string>

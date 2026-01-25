@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     style="@style/MegaBurguer.Text.Subtitle"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     android:text="@string/txt_title_table"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/back"
