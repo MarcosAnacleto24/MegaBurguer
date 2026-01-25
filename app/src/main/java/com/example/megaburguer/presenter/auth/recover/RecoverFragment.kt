@@ -73,7 +73,7 @@ class RecoverFragment : Fragment() {
         val userNames = userList.map { it.name }
 
         val adapter =
-            ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, userNames)
+            ArrayAdapter(requireContext(), R.layout.item_dropdown, userNames)
 
         binding.editSelectUser.setAdapter(adapter)
     }

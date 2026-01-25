@@ -29,10 +29,8 @@
                     android:id="@+id/text_panel_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/MegaBurguer.Text.Title"
                     android:text="@string/txt_panel_title_waiter"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,8 +51,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    style="@style/MegaBurguer.Text.Subtitle"
                     android:text="@string/txt_greeting_waiter"
-                    android:textColor="@color/mega_burger_orange_strong"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_panel_title" />
@@ -78,7 +76,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/color_default"
+        style="@style/CustomConstraintLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -134,10 +132,9 @@
                     android:id="@+id/text_manage_menu_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    style="@style/MegaBurguer.Text.Title"
                     android:text="@string/txt_caption_home_waiter"
-                    android:textColor="@color/white"
                     android:textSize="16sp"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

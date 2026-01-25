@@ -51,7 +51,7 @@ class RegisterFragment : BaseFragment() {
 
         // O adapter que conecta as opções ao componente
         val adapter =
-            ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, userTypes)
+            ArrayAdapter(requireContext(), R.layout.item_dropdown, userTypes)
 
         // Conecta o adapter ao seu AutoCompleteTextView
         binding.editTypeUser.setAdapter(adapter)

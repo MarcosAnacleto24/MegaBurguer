@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     android:fitsSystemWindows="true"
     tools:context=".presenter.home.admin.HomeAdminFragment">
 
@@ -42,10 +41,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    style="@style/MegaBurguer.Text.Title"
                     android:text="@string/txt_panel_title"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/ic_settings"
                     app:layout_constraintStart_toEndOf="@+id/ic_settings"
                     app:layout_constraintTop_toTopOf="@+id/ic_settings" />
@@ -67,8 +64,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    style="@style/MegaBurguer.Text.Subtitle"
                     android:text="@string/txt_greeting_admin"
-                    android:textColor="@color/mega_burger_orange_strong"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ic_settings" />
@@ -92,7 +89,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/color_default"
+        style="@style/CustomConstraintLayout"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,10 +101,9 @@
             android:id="@+id/text_select_option_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/MegaBurguer.Text.Title"
             android:text="@string/txt_select_option_title"
-            android:textColor="@color/white"
             android:textSize="20sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -115,9 +111,8 @@
             android:id="@+id/text_select_option_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/MegaBurguer.Text.Subtitle.Gray"
             android:text="@string/txt_select_option_subtitle"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_select_option_title" />
 
@@ -142,13 +137,10 @@
                     android:id="@+id/card_manage_tables"
                     android:layout_width="0dp"
                     android:layout_height="100dp"
-                    app:cardBackgroundColor="@color/mega_burger_background"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="0dp"
+                    style="@style/MegaBurguer.Card.Highlight"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:strokeColor="@color/mega_burger_orange_primary">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -160,7 +152,7 @@
                             android:id="@+id/card_manage_table"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:cardBackgroundColor="@color/mega_burger_orange_icon"
+                            style="@style/MegaBurguer.Card.IconContainer"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -182,10 +174,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
+                            style="@style/MegaBurguer.Text.Title"
                             android:text="@string/txt_manage_tables_title"
-                            android:textColor="@color/white"
                             android:textSize="16sp"
-                            android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/card_manage_table"
                             app:layout_constraintTop_toTopOf="@+id/card_manage_table" />
@@ -194,8 +185,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="@string/txt_add_or_remove_tables"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="14sp"
+                            style="@style/MegaBurguer.Text.Subtitle.Gray"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/text_manage_tables_title"
                             app:layout_constraintTop_toBottomOf="@+id/text_manage_tables_title" />
@@ -208,13 +198,10 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_marginTop="18dp"
-                    app:cardBackgroundColor="@color/mega_burger_background"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="0dp"
+                    style="@style/MegaBurguer.Card.Highlight"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/card_manage_tables"
-                    app:strokeColor="@color/mega_burger_orange_primary">
+                    app:layout_constraintTop_toBottomOf="@+id/card_manage_tables">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -226,7 +213,7 @@
                             android:id="@+id/card_register"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:cardBackgroundColor="@color/mega_burger_orange_icon"
+                            style="@style/MegaBurguer.Card.IconContainer"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -250,10 +237,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
+                            style="@style/MegaBurguer.Text.Title"
                             android:text="@string/txt_register_user_title"
-                            android:textColor="@color/white"
                             android:textSize="16sp"
-                            android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/card_register"
                             app:layout_constraintTop_toTopOf="@+id/card_register" />
@@ -262,8 +248,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="@string/txt_register_user_new"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="14sp"
+                            style="@style/MegaBurguer.Text.Subtitle.Gray"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/text_register_user_title"
                             app:layout_constraintTop_toBottomOf="@+id/text_register_user_title" />
@@ -276,13 +261,10 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_marginTop="18dp"
-                    app:cardBackgroundColor="@color/mega_burger_background"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="0dp"
+                    style="@style/MegaBurguer.Card.Highlight"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/card_register_user"
-                    app:strokeColor="@color/mega_burger_orange_primary">
+                    app:layout_constraintTop_toBottomOf="@+id/card_register_user">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -294,11 +276,10 @@
                             android:id="@+id/card_change"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:cardBackgroundColor="@color/mega_burger_orange_icon"
+                            style="@style/MegaBurguer.Card.IconContainer"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:strokeWidth="0dp">
+                            app:layout_constraintTop_toTopOf="parent">
 
                             <ImageView
                                 android:id="@+id/ic_change_password"
@@ -318,10 +299,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:text="@string/txt_change_password_title"
-                            android:textColor="@color/white"
+                            style="@style/MegaBurguer.Text.Title"
                             android:textSize="16sp"
-                            android:textStyle="bold"
+                            android:text="@string/txt_change_password_title"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/card_change"
                             app:layout_constraintTop_toTopOf="@+id/card_change" />
@@ -330,8 +310,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="@string/txt_change_password_user"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="14sp"
+                            style="@style/MegaBurguer.Text.Subtitle.Gray"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/text_change_password_title"
                             app:layout_constraintTop_toBottomOf="@+id/text_change_password_title" />
@@ -344,13 +323,10 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_marginTop="18dp"
-                    app:cardBackgroundColor="@color/mega_burger_background"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="0dp"
+                    style="@style/MegaBurguer.Card.Highlight"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/card_change_password"
-                    app:strokeColor="@color/mega_burger_orange_primary">
+                    app:layout_constraintTop_toBottomOf="@+id/card_change_password">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -362,7 +338,7 @@
                             android:id="@+id/card_delete"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:cardBackgroundColor="@color/mega_burger_orange_icon"
+                            style="@style/MegaBurguer.Card.IconContainer"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -387,9 +363,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:text="@string/txt_delete_user_title"
-                            android:textColor="@color/white"
+                            style="@style/MegaBurguer.Text.Title"
                             android:textSize="16sp"
-                            android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/card_delete"
                             app:layout_constraintTop_toTopOf="@+id/card_delete" />
@@ -398,8 +373,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="@string/txt_delete_user_subtitle"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="14sp"
+                            style="@style/MegaBurguer.Text.Subtitle.Gray"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/text_delete"
                             app:layout_constraintTop_toBottomOf="@+id/text_delete" />
@@ -412,13 +386,10 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_marginTop="18dp"
-                    app:cardBackgroundColor="@color/mega_burger_background"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="0dp"
+                    style="@style/MegaBurguer.Card.Highlight"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/card_delete_user"
-                    app:strokeColor="@color/mega_burger_orange_primary">
+                    app:layout_constraintTop_toBottomOf="@+id/card_delete_user">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -430,7 +401,7 @@
                             android:id="@+id/card_manage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:cardBackgroundColor="@color/mega_burger_orange_icon"
+                            style="@style/MegaBurguer.Card.IconContainer"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -455,9 +426,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:text="@string/txt_manage_menu_title"
-                            android:textColor="@color/white"
+                            style="@style/MegaBurguer.Text.Title"
                             android:textSize="16sp"
-                            android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toEndOf="@+id/card_manage"
@@ -467,8 +437,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="@string/txt_add_new_menu_title"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="14sp"
+                            style="@style/MegaBurguer.Text.Subtitle.Gray"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/text_manage_menu_title"
                             app:layout_constraintTop_toBottomOf="@+id/text_manage_menu_title" />

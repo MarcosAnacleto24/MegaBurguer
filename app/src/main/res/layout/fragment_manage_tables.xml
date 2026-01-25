@@ -54,10 +54,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="12dp"
+                    style="@style/MegaBurguer.Text.Title"
                     android:text="@string/txt_title_manage_tables"
-                    android:textColor="@color/white"
                     android:textSize="20sp"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/imageView"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/txt_title_subtitle_manage_tables"
-                    android:textColor="@color/mega_burger_orange_strong"
+                    style="@style/MegaBurguer.Text.Subtitle"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView"
                     app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -94,7 +93,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="16dp"
-        android:background="@color/color_default"
+       style="@style/CustomConstraintLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -105,7 +104,7 @@
             android:id="@+id/materialCardView2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/mega_burger_background"
+            style="@style/MegaBurguer.Card.Container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -122,10 +121,8 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/MegaBurguer.Text.Title"
                     android:text="@string/txt_add_tables_manage"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -135,20 +132,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
+                    style="@style/MegaBurguer.Text.Label"
                     android:text="@string/number_tables"
-                    android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/input_layout_type"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/MegaBurguer.InputLayout.Edit"
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:background="@drawable/bg_edit"
-                    app:boxStrokeColor="@color/color_gray"
-                    app:hintEnabled="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView9">
@@ -156,11 +150,13 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_choice_table"
                         android:layout_width="match_parent"
-                        android:layout_height="52dp"
+                        android:layout_height="wrap_content"
+                        style="@style/MegaBurguer.InputEditText"
                         android:hint="@string/hint_choice_tables"
                         android:inputType="number"
+                        android:imeOptions="actionDone"
                         android:maxLength="3"
-                        android:textColor="@color/white"
+                        android:maxLines="1"
                         android:textColorHint="@color/color_gray" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -168,17 +164,13 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_manage"
-                    android:layout_width="136dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:backgroundTint="@color/mega_burger_orange_primary"
-                    android:paddingVertical="14dp"
+                    android:layout_marginStart="12dp"
+                    style="@style/MegaBurguer.Button.Primary"
+                    android:paddingVertical="15dp"
                     android:text="@string/btn_manage_tables"
-                    android:textColor="@color/white"
-                    app:cornerRadius="8dp"
                     app:icon="@drawable/ic_add"
-                    app:iconGravity="textStart"
-                    app:iconTint="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/input_layout_type" />
@@ -192,13 +184,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/mega_burger_background"
+            style="@style/MegaBurguer.Card.Container"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView2"
-            app:strokeColor="@color/mega_burger_gray">
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView2">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -209,10 +200,8 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/MegaBurguer.Text.Title"
                     android:text="@string/txt_tables_register_manage"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -232,7 +221,7 @@
                     android:id="@+id/progressBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
+                    style="@style/MegaBurguer.ProgressBar"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

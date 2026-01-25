@@ -29,10 +29,8 @@
                     android:id="@+id/text_panel_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="@style/MegaBurguer.Text.Title"
                     android:text="@string/txt_panel_title_staff"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,8 +51,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    style="@style/MegaBurguer.Text.Subtitle"
                     android:text="@string/txt_greeting_staff"
-                    android:textColor="@color/mega_burger_orange_strong"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_panel_title" />
@@ -78,7 +76,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/color_default"
+        style="@style/CustomConstraintLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -102,7 +100,7 @@
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            style="@style/MegaBurguer.ProgressBar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -116,13 +114,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:layout_marginHorizontal="12dp"
-            app:cardBackgroundColor="@color/mega_burger_background"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
+            style="@style/MegaBurguer.Card.Container"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:strokeColor="@color/mega_burger_gray">
+            app:layout_constraintStart_toStartOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -134,10 +129,9 @@
                     android:id="@+id/text_manage_menu_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    style="@style/MegaBurguer.Text.Title"
                     android:text="@string/txt_caption_home_staff"
-                    android:textColor="@color/white"
                     android:textSize="16sp"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

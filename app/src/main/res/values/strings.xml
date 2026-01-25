@@ -13,6 +13,7 @@
     <string name="txt_chip_group_combos">Combos</string>
     <string name="txt_title_table">Mesa %s</string>
     <string name="btn_send_print">Imprimir</string>
+    <string name="back_icon">icone voltar</string>
 
     <!--    Splash Fragment-->
     <string name="txt_logo_1">Mega</string>
@@ -68,6 +69,8 @@
     <string name="btn_delete_user">Excluir Usuário</string>
     <string name="name_empty_delete_user">Selecione um usuário </string>
     <string name="delete_user_success_message">Usuário deletado com sucesso</string>
+    <string name="delete_icon">icone deletar</string>
+
 
     <!--    Home Admin Fragment-->
     <string name="txt_panel_title">Painel Administrativo</string>

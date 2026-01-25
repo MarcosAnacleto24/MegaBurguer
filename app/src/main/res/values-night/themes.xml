@@ -16,6 +16,8 @@
         <item name="android:colorBackground">@color/mega_burger_background</item>
     </style>
 
+
+
     <style name="BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@color/white</item>
     </style>

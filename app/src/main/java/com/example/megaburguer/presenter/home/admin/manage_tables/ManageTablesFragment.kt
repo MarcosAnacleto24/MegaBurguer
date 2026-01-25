@@ -58,6 +58,20 @@ class ManageTablesFragment : BaseFragment() {
             validateData()
         }
 
+
+        binding.editChoiceTable.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_DONE) {
+
+                hideKeyboard()
+                validateData()
+
+                binding.editChoiceTable.clearFocus()
+
+                return@setOnEditorActionListener true
+            }
+            false
+        }
+
     }
 
     private fun configRecycleView() {
