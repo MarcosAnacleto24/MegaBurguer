@@ -122,9 +122,7 @@ class ManageTablesFragment : BaseFragment() {
                 }
 
                 is StateView.Error -> {
-                    stateView.message?.let {
-                        showBottomSheet(message = it)
-                    }
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
             }
         }
@@ -143,9 +141,7 @@ class ManageTablesFragment : BaseFragment() {
 
                is StateView.Error -> {
                    binding.progressBar.isVisible = false
-                   stateView.message?.let {
-                       showBottomSheet(message = it)
-                   }
+                   showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                }
            }
 

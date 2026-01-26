@@ -42,7 +42,7 @@ class ExtractFragment : Fragment() {
 
     private val extractList = mutableListOf<OrderItem>()
 
-
+    private lateinit var date: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -114,9 +114,7 @@ class ExtractFragment : Fragment() {
 
                 is StateView.Error -> {
                     binding.progressBar.isVisible = false
-                    stateView.message?.let {
-                        showBottomSheet(message = it)
-                    }
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
             }
         }
@@ -148,7 +146,7 @@ class ExtractFragment : Fragment() {
 
     private fun configInformation() {
         val ptBr = Locale.forLanguageTag("pt-BR")
-        val date = SimpleDateFormat("dd/MM/yyyy - HH:mm", ptBr).format(Date())
+        date = SimpleDateFormat("dd/MM/yyyy - HH:mm", ptBr).format(Date())
         val totalPrice = extractList.sumOf { it.price.toLong() * it.quantity }
 
         binding.txtDate.text = date
@@ -195,9 +193,7 @@ class ExtractFragment : Fragment() {
 
                 is StateView.Error -> {
 
-                    stateView.message?.let {
-                        showBottomSheet(message = it)
-                    }
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
             }
 
@@ -206,8 +202,6 @@ class ExtractFragment : Fragment() {
 
     private fun printExtract() {
         binding.progressBar.isVisible = true
-        // 1. Verifique permissões antes (especialmente Bluetooth no Android 12)
-        // Se já tiver permissão:
 
         val total = extractList.sumOf {  it.price.toDouble() * it.quantity }
 
@@ -215,7 +209,7 @@ class ExtractFragment : Fragment() {
         lifecycleScope.launch(Dispatchers.IO) {
 
             // Chama o helper que você criou (que retorna String)
-            val result = PrinterHelper().printBluetooth(extractList, total)
+            val result = PrinterHelper().printDailyExtract(extractList, total, date)
 
             withContext(Dispatchers.Main) {
                 binding.progressBar.isVisible = false

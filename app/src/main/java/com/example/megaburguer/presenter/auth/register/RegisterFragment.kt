@@ -15,6 +15,7 @@ import com.example.megaburguer.util.BaseFragment
 import com.example.megaburguer.util.FirebaseHelper
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
+import com.example.megaburguer.util.showBottomSheetModal
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -98,9 +99,14 @@ class RegisterFragment : BaseFragment() {
                 
                 is StateView.Success -> {
                     binding.progressBar.isVisible = false
-                    FirebaseHelper.getAuth().signOut()
-                    findNavController().navigate(R.id.loginFragment, null,
-                        NavOptions.Builder().setPopUpTo(R.id.homeAdmin, true).build())
+                    showBottomSheetModal(message = getString(R.string.txt_message_register)) {
+
+                        FirebaseHelper.getAuth().signOut()
+
+                        findNavController().navigate(R.id.loginFragment, null,
+                            NavOptions.Builder().setPopUpTo(R.id.homeAdmin, true).build())
+                    }
+
                     
                 }
                 

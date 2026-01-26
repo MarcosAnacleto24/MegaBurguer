@@ -2,6 +2,7 @@ package com.example.megaburguer.data.repository.tables
 
 import com.example.megaburguer.data.enum.TableStatus
 import com.example.megaburguer.data.model.Table
+import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -25,7 +26,12 @@ class TablesDataSourceImp @Inject constructor(
                     if (task.isSuccessful) {
                         continuation.resumeWith(Result.success(Unit))
                     } else {
-                        continuation.resumeWith(Result.failure(task.exception!!))
+                        val errorMessage = when (val exception = task.exception) {
+                            is FirebaseNetworkException -> "Sem conexão com a internet."
+                            is com.google.firebase.database.DatabaseException -> "Erro de permissão ou dados inválidos."
+                            else -> "Erro ao salvar item: ${exception?.message}" // Fallback
+                        }
+                        continuation.resumeWith(Result.failure(Exception(errorMessage)))
                     }
                 }
         }
@@ -48,9 +54,15 @@ class TablesDataSourceImp @Inject constructor(
                     }
 
                     override fun onCancelled(error: DatabaseError) {
-                        error.toException().let{
-                            continuation.resumeWith(Result.failure(it))
+                        val errorMessage = when (error.code) {
+                            DatabaseError.PERMISSION_DENIED -> "Sem permissão para visualizar o cardápio."
+                            DatabaseError.NETWORK_ERROR,
+                            DatabaseError.DISCONNECTED -> "Verifique sua conexão com a internet."
+                            DatabaseError.EXPIRED_TOKEN -> "Sua sessão expirou. Faça login novamente."
+                            else -> "Erro ao carregar mesas. Tente novamente."
                         }
+
+                        continuation.resumeWith(Result.failure(Exception(errorMessage)))
                     }
                 })
         }
@@ -71,7 +83,15 @@ class TablesDataSourceImp @Inject constructor(
             }
 
             override fun onCancelled(error: DatabaseError) {
-                close(error.toException())
+                val errorMessage = when (error.code) {
+                    DatabaseError.PERMISSION_DENIED -> "Sem permissão para visualizar o cardápio."
+                    DatabaseError.NETWORK_ERROR,
+                    DatabaseError.DISCONNECTED -> "Verifique sua conexão com a internet."
+                    DatabaseError.EXPIRED_TOKEN -> "Sua sessão expirou. Faça login novamente."
+                    else -> "Erro ao carregar mesas. Tente novamente."
+                }
+
+                close(Exception(errorMessage))
             }
         }
         tablesRef.addValueEventListener(listener)
@@ -88,7 +108,12 @@ class TablesDataSourceImp @Inject constructor(
                     if (task.isSuccessful) {
                         continuation.resumeWith(Result.success(Unit))
                     } else {
-                        continuation.resumeWith(Result.failure(task.exception!!))
+                        val errorMessage = when (val exception = task.exception) {
+                            is FirebaseNetworkException -> "Sem conexão com a internet."
+                            is com.google.firebase.database.DatabaseException -> "Erro de permissão ou dados inválidos."
+                            else -> "Erro ao deletar item: ${exception?.message}" // Fallback
+                        }
+                        continuation.resumeWith(Result.failure(Exception(errorMessage)))
                     }
                 }
         }
@@ -110,7 +135,12 @@ class TablesDataSourceImp @Inject constructor(
                     if (task.isSuccessful) {
                         continuation.resumeWith(Result.success(Unit))
                     } else {
-                        continuation.resumeWith(Result.failure(task.exception!!))
+                        val errorMessage = when (val exception = task.exception) {
+                            is FirebaseNetworkException -> "Sem conexão com a internet."
+                            is com.google.firebase.database.DatabaseException -> "Erro de permissão ou dados inválidos."
+                            else -> "Erro ao atualizar item: ${exception?.message}" // Fallback
+                        }
+                        continuation.resumeWith(Result.failure(Exception(errorMessage)))
                     }
                 }
 

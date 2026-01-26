@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
@@ -103,9 +104,7 @@ class ViewOrderFragment : Fragment() {
                 }
 
                 is StateView.Error -> {
-                    stateView.message?.let {
-                        showBottomSheet(message = it)
-                    }
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
 
             }
@@ -125,9 +124,7 @@ class ViewOrderFragment : Fragment() {
                 }
 
                 is StateView.Error -> {
-                    stateView.message?.let {
-                        showBottomSheet(message = it)
-                    }
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
             }
         }
@@ -142,6 +139,14 @@ class ViewOrderFragment : Fragment() {
 
                 is StateView.Success -> {
 
+                    val bundle = Bundle().apply {
+                        putBoolean("send_success", true)
+                        putString("order_print_message", getString(R.string.txt_message_order_send_success))
+                    }
+
+                    // Define o resultado para a tela anterior pegar
+                    setFragmentResult("close_request", bundle)
+
                     sharedViewModel.setTableStatus(args.table.id, TableStatus.OPEN)
 
                     findNavController().navigate(R.id.homeWaiter, null,
@@ -149,9 +154,7 @@ class ViewOrderFragment : Fragment() {
                 }
 
                 is StateView.Error -> {
-                    stateView.message?.let {
-                        showBottomSheet(message = it)
-                    }
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
 
             }

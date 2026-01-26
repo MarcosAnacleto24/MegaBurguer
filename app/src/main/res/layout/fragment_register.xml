@@ -172,7 +172,7 @@
                                style="@style/MegaBurguer.InputEditText"
                                android:layout_width="match_parent"
                                android:layout_height="wrap_content"
-                               android:hint="@string/hint_user_full_name"
+                               android:hint="@string/hint_user_name_register"
                                android:inputType="textPersonName" />
 
                        </com.google.android.material.textfield.TextInputLayout>

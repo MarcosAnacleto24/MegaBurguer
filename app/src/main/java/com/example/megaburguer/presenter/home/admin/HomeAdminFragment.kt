@@ -88,6 +88,7 @@ class HomeAdminFragment : Fragment() {
 
                 is StateView.Error -> {
                     binding.textGreeting.text = getString(R.string.txt_greeting_admin_sub)
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
 
             }

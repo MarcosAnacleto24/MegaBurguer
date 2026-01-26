@@ -47,6 +47,12 @@ class HomeStaffFragment : Fragment() {
 
     val tenMinutes: Long = 10L * 60L * 1000L
 
+    // Controle para não processar o mesmo ID duas vezes
+    private val processingOrderIds = java.util.Collections.synchronizedSet(HashSet<String>())
+
+    // Mutex para garantir que uma impressão espere a outra terminar (Fila)
+    private val printerMutex = kotlinx.coroutines.sync.Mutex()
+
     private val handler = android.os.Handler(Looper.getMainLooper())
     private val refreshRunnable = object : Runnable {
         override fun run() {
@@ -59,7 +65,7 @@ class HomeStaffFragment : Fragment() {
         }
     }
 
-    // 1. O Launcher que gerencia a resposta do usuário
+    // O Launcher que gerencia a resposta do usuário
     private val requestBluetoothPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
@@ -165,6 +171,7 @@ class HomeStaffFragment : Fragment() {
 
                 is StateView.Error -> {
                     binding.textGreeting.text = getString(R.string.txt_greeting_waiter_sub)
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
 
             }
@@ -230,9 +237,7 @@ class HomeStaffFragment : Fragment() {
 
                 is StateView.Error -> {
                     binding.progressBar.isVisible = false
-                    stateView.message?.let {
-                        showBottomSheet(message = it)
-                    }
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
 
             }
@@ -262,9 +267,7 @@ class HomeStaffFragment : Fragment() {
                     }
 
                     is StateView.Error -> {
-                        stateView.message?.let {
-                            showBottomSheet(message = it)
-                        }
+                        showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                     }
 
                 }
@@ -283,7 +286,7 @@ class HomeStaffFragment : Fragment() {
                 }
 
                 is StateView.Error -> {
-
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
             }
 
@@ -310,17 +313,20 @@ class HomeStaffFragment : Fragment() {
 
                     val orderList = stateView.data ?: emptyList()
 
-                    // Só processa se tiver itens e se tiver permissão
+                    // Se a lista estiver vazia, limpamos nosso controle para evitar bugs futuros
+                    if (orderList.isEmpty()) {
+                        processingOrderIds.clear()
+                    }
+
                     if (orderList.isNotEmpty() && hasBluetoothPermission()) {
                         processAndPrintOrders(orderList)
                     } else if (orderList.isNotEmpty() && !hasBluetoothPermission()) {
-                        // Opcional: Avisar que tem pedidos mas sem permissão
                         Toast.makeText(requireContext(), getString(R.string.txt_message_orders_line_staff), Toast.LENGTH_LONG).show()
                     }
                 }
 
                 is StateView.Error -> {
-
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
 
                 }
             }
@@ -371,41 +377,69 @@ class HomeStaffFragment : Fragment() {
     }
 
     // Função que agrupa e manda imprimir
+    // Função que agrupa, imprime UM POR UM e deleta
     private fun processAndPrintOrders(allOrders: List<OrderItem>) {
-        val groupedOrders = allOrders.groupBy { it.idTable }
+        // FILTRAGEM INTELIGENTE
+        // Pega apenas os pedidos que AINDA NÃO estão na lista de processamento
+        val newOrders = allOrders.filter { !processingOrderIds.contains(it.id) }
 
-        groupedOrders.forEach { (tableId, items) ->
-            // Manda imprimir este grupo específico
-            printOrderGroup(tableId, items)
-        }
-    }
+        // Se não tem nada novo (ou seja, são só os pedidos repetidos do "Eco"), para aqui.
+        if (newOrders.isEmpty()) return
 
-    private fun printOrderGroup(tableId: String, items: List<OrderItem>) {
-        // Calculo do total desse grupo
-        val total = items.sumOf { it.price.toDouble() * it.quantity }
+        // Marca os novos como "Em Processamento" imediatamente
+        newOrders.forEach { processingOrderIds.add(it.id) }
+
+        // Agrupa só os novos
+        val groupedOrders = newOrders.groupBy { it.idTable }
 
         lifecycleScope.launch(Dispatchers.IO) {
-            val printerHelper = PrinterHelper()
+            // BLOQUEIO DE FILA (MUTEX)
+            // Se já tiver uma impressão rodando, isso aqui espera ela terminar antes de começar.
+            // Isso evita que duas threads tentem usar o Bluetooth ao mesmo tempo.
+            printerMutex.lock()
 
-            // Dica: Você pode modificar o PrinterHelper para aceitar o "tableId" e imprimir no cabeçalho "Mesa: X"
-            val result = printerHelper.printBluetooth(items, total)
+            try {
+                val printerHelper = PrinterHelper()
 
-            withContext(Dispatchers.Main) {
-                if (result == "Success") {
-                    Toast.makeText(requireContext(), "Mesa $tableId impressa!", Toast.LENGTH_SHORT).show()
+                groupedOrders.forEach { (_, items) ->
+                    val tableNameStr = items.firstOrNull()?.nameTable ?: "0"
+                    val tableNumberInt = tableNameStr.filter { it.isDigit() }.toIntOrNull() ?: 0
 
-                    // 2. SUCESSO? MANDAR DELETAR APENAS ESSES ITENS
-                    val idsToDelete = items.map { it.id } // Pega os IDs do Firebase
-                    viewModel.deletePrintedItems(idsToDelete).observe(viewLifecycleOwner) {
-                        // Pode observar o resultado da deleção se quiser, mas geralmente não precisa fazer nada
+                    // Imprime
+                    val result = printerHelper.printKitchenTicket(items, tableNumberInt)
+
+                    if (result == "Success") {
+                        withContext(Dispatchers.Main) {
+
+                            // Deleta do banco
+                            val idsToDelete = items.map { it.id }
+                            viewModel.deletePrintedItems(idsToDelete).observe(viewLifecycleOwner) {}
+                        }
+
+                        // Pausa para cortar
+                        try {
+                            Thread.sleep(4000)
+                        } catch (e: InterruptedException) {
+                            e.printStackTrace()
+                        }
+
+                    } else {
+                        // EM CASO DE ERRO DE IMPRESSÃO
+                        // Removemos os IDs da "Lista Negra" para que o app tente imprimir de novo na próxima atualização
+                        items.forEach { processingOrderIds.remove(it.id) }
+
+                        withContext(Dispatchers.Main) {
+                            showBottomSheet(message = result)
+                        }
                     }
-                } else {
-                    // Falhou a impressão? Não deleta. Assim tentará de novo na próxima atualização.
-                    //showBottomSheet(message = "Erro ao imprimir Mesa $tableId: $result")
                 }
+            } finally {
+                // Libera a fila para a próxima leva de pedidos
+                printerMutex.unlock()
             }
         }
     }
+
 
     override fun onResume() {
         super.onResume()

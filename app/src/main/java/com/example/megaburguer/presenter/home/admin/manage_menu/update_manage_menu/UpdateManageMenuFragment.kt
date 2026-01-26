@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -117,14 +118,21 @@ class UpdateManageMenuFragment : BaseFragment() {
 
                 is StateView.Success -> {
                     binding.progressBar.isVisible = false
+
+                    val bundle = Bundle().apply {
+                        putBoolean("item_updated", true)
+                        putString("item_message", getString(R.string.txt_message_add_success_update_manage_table))
+                    }
+
+                    // Define o resultado para a tela anterior pegar
+                    setFragmentResult("close_request", bundle)
+
                     findNavController().popBackStack()
                 }
 
                 is StateView.Error -> {
                     binding.progressBar.isVisible = false
-                    stateView.message?.let {
-                        showBottomSheet(message = it)
-                    }
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
 
 

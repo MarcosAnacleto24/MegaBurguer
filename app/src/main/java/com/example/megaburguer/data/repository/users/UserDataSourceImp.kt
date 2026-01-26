@@ -34,7 +34,15 @@ private val firebaseDatabase: FirebaseDatabase
                     }
 
                     override fun onCancelled(error: DatabaseError) {
-                        continuation.resumeWith(Result.failure(error.toException()))
+                        val errorMessage = when (error.code) {
+                            DatabaseError.PERMISSION_DENIED -> "Sem permissão para visualizar o cardápio."
+                            DatabaseError.NETWORK_ERROR,
+                            DatabaseError.DISCONNECTED -> "Verifique sua conexão com a internet."
+                            DatabaseError.EXPIRED_TOKEN -> "Sua sessão expirou. Faça login novamente."
+                            else -> "Erro ao carregar usuários. Tente novamente."
+                        }
+
+                        continuation.resumeWith(Result.failure(Exception(errorMessage)))
                     }
 
                 })
@@ -56,7 +64,15 @@ private val firebaseDatabase: FirebaseDatabase
                     }
 
                     override fun onCancelled(error: DatabaseError) {
-                        continuation.resumeWith(Result.failure(error.toException()))
+                        val errorMessage = when (error.code) {
+                            DatabaseError.PERMISSION_DENIED -> "Sem permissão para visualizar o cardápio."
+                            DatabaseError.NETWORK_ERROR,
+                            DatabaseError.DISCONNECTED -> "Verifique sua conexão com a internet."
+                            DatabaseError.EXPIRED_TOKEN -> "Sua sessão expirou. Faça login novamente."
+                            else -> "Erro ao carregar usuário. Tente novamente."
+                        }
+
+                        continuation.resumeWith(Result.failure(Exception(errorMessage)))
                     }
 
                 })

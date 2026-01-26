@@ -30,6 +30,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @AndroidEntryPoint
 class TableDetailsFragment : Fragment() {
@@ -44,6 +47,7 @@ class TableDetailsFragment : Fragment() {
     private val currentOrderItems = mutableListOf<OrderItem>()
     private val sharedViewModel: SharedOrderViewModel by activityViewModels()
     private var orderSent = false
+    private lateinit var date: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -242,16 +246,18 @@ class TableDetailsFragment : Fragment() {
 
     private fun printOrder(orderListItem: List<OrderItem>) {
         binding.progressBar.isVisible = true
-        // 1. Verifique permissões antes (especialmente Bluetooth no Android 12)
-        // Se já tiver permissão:
 
         val total = orderListItem.sumOf {  it.price.toDouble() * it.quantity }
+        val tableNumber = args.table.number.toInt()
+        val ptBr = Locale.forLanguageTag("pt-BR")
+        date = SimpleDateFormat("dd/MM/yyyy - HH:mm", ptBr).format(Date())
+
 
         // Roda em uma thread de IO (Background)
         lifecycleScope.launch(Dispatchers.IO) {
 
-            // Chama o helper que você criou (que retorna String)
-            val result = PrinterHelper().printBluetooth(orderListItem, total)
+
+            val result = PrinterHelper().printClosingAccount(orderListItem, total, tableNumber, date )
 
             withContext(Dispatchers.Main) {
                 binding.progressBar.isVisible = false
@@ -280,9 +286,7 @@ class TableDetailsFragment : Fragment() {
                 }
 
                 is StateView.Error -> {
-                    stateView.message?.let {
-                        showBottomSheet(message = it)
-                    }
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
             }
         }
@@ -316,9 +320,7 @@ class TableDetailsFragment : Fragment() {
                 }
 
                 is StateView.Error -> {
-                    stateView.message?.let {
-                        showBottomSheet(message = it)
-                    }
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
 
             }

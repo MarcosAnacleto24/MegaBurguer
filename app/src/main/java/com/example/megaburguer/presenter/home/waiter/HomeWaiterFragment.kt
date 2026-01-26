@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
@@ -101,9 +102,28 @@ class HomeWaiterFragment : Fragment() {
 
                 is StateView.Error -> {
                     binding.textGreeting.text = getString(R.string.txt_greeting_waiter_sub)
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
 
             }
+        }
+
+        // Escuta se veio algum resultado da tela anterior
+        setFragmentResultListener("close_request") { _, bundle ->
+            val orderSend = bundle.getBoolean("send_success")
+            val orderMessage = bundle.getString("order_print_message")
+            if (orderSend) {
+
+                Toast.makeText(requireContext(), orderMessage, Toast.LENGTH_SHORT).show()
+
+            }
+
+            val extractClean = bundle.getBoolean("extract_clean")
+            val extractMessage = bundle.getString("extract_message")
+            if (extractClean) {
+                Toast.makeText(requireContext(), extractMessage, Toast.LENGTH_SHORT).show()
+            }
+
         }
 
     }
@@ -156,9 +176,7 @@ class HomeWaiterFragment : Fragment() {
 
                 is StateView.Error -> {
                     binding.progressBar.isVisible = false
-                    stateView.message?.let {
-                        showBottomSheet(message = it)
-                    }
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
                 
             }
@@ -187,9 +205,7 @@ class HomeWaiterFragment : Fragment() {
                 }
 
                 is StateView.Error -> {
-                    stateView.message?.let {
-                        showBottomSheet(message = it)
-                    }
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
 
             }
@@ -209,7 +225,7 @@ class HomeWaiterFragment : Fragment() {
                 }
 
                 is StateView.Error -> {
-
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
             }
 

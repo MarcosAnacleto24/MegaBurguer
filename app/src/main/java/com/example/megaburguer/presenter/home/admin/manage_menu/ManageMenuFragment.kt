@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.megaburguer.R
@@ -82,6 +83,24 @@ class ManageMenuFragment : BaseFragment() {
             hideKeyboard()
             validateData()
         }
+
+        // Escuta se veio algum resultado da tela anterior
+        setFragmentResultListener("close_request") { _, bundle ->
+            val itemUpdated = bundle.getBoolean("item_updated")
+            val itemMessage = bundle.getString("item_message")
+            if (itemUpdated) {
+
+                Toast.makeText(requireContext(), itemMessage, Toast.LENGTH_SHORT).show()
+
+            }
+
+            val extractClean = bundle.getBoolean("extract_clean")
+            val extractMessage = bundle.getString("extract_message")
+            if (extractClean) {
+                Toast.makeText(requireContext(), extractMessage, Toast.LENGTH_SHORT).show()
+            }
+
+        }
     }
 
     private fun configRecycleView() {
@@ -152,9 +171,7 @@ class ManageMenuFragment : BaseFragment() {
 
                 is StateView.Error -> {
 
-                    stateView.message?.let {
-                        showBottomSheet(message = it)
-                    }
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
             }
         }
@@ -180,9 +197,7 @@ class ManageMenuFragment : BaseFragment() {
 
                 is StateView.Error -> {
                     binding.progressBar.isVisible = false
-                    stateView.message?.let {
-                        showBottomSheet(message = it)
-                    }
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
 
             }
@@ -202,9 +217,7 @@ class ManageMenuFragment : BaseFragment() {
                 }
 
                 is StateView.Error -> {
-                    stateView.message?.let {
-                        showBottomSheet(message = it)
-                    }
+                    showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
                 }
             }
         }

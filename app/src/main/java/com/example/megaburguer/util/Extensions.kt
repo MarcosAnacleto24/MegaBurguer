@@ -106,3 +106,34 @@ fun Fragment.showViewObservationDialog(
 
     dialog.show()
 }
+
+
+
+fun Fragment.showBottomSheetModal(
+    titleDialog: Int? = null,
+    titleButton: Int? = null,
+    message: String,
+    onClose: () -> Unit // Essa ação roda SEMPRE que o dialog fechar
+) {
+    val bottomSheetDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
+    val bottomSheetBinding = LayoutBottomSheetBinding.inflate(layoutInflater, null, false)
+
+    bottomSheetBinding.txtTitle.text = getString(titleDialog ?: R.string.title_bottom_sheet)
+    bottomSheetBinding.txtMessage.text = message
+    bottomSheetBinding.btnOk.text = getString(titleButton ?: R.string.btn_bottom_sheet)
+
+
+    bottomSheetBinding.btnOk.setOnClickListener {
+        bottomSheetDialog.dismiss()
+    }
+
+    bottomSheetDialog.setOnDismissListener {
+        onClose()
+    }
+
+    // Configurações padrão para impedir que o usuário cancele tocando fora (opcional, mas recomendado para login)
+    bottomSheetDialog.setCanceledOnTouchOutside(true) // Pode deixar true, pois o dismiss vai jogar pro login de qualquer jeito
+
+    bottomSheetDialog.setContentView(bottomSheetBinding.root)
+    bottomSheetDialog.show()
+}

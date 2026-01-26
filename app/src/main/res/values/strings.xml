@@ -39,16 +39,17 @@
     <string name="txt_type_user_register">Tipo de Usuário</string>
     <string name="txt_title_subtitle_register">Cadastrar novos garçons</string>
     <string name="hint_user">Usuário</string>
-    <string name="hint_user_full_name">Digite seu nome completo</string>
+    <string name="hint_user_name_register">Digite seu nome</string>
     <string name="hint_email_register">Digite um e-mail válido</string>
     <string name="hint_password_register">Digite uma senha forte</string>
     <string name="hint_select_type_user_register">Selecione o tipo de usuário</string>
-    <string name="txt_description_full_name">Nome Completo</string>
+    <string name="txt_description_full_name">Usuário/Nome</string>
     <string name="btn_register">Cadastrar Usuário</string>
     <string name="name_empty_register">Digite seu nome </string>
     <string name="email_empty_register">Preencha o campo email</string>
     <string name="password_empty_register">Preencha o campo senha</string>
     <string name="type_user_empty_register">Selecione o tipo de usuário</string>
+    <string name="txt_message_register">Por questões de segurança você será redirecionado para a tela de login</string>
 
     <!--   Recover Fragment-->
     <string name="txt_new_user_recover">Redefinir Senha</string>
@@ -166,6 +167,8 @@
     <string name="txt_update_name_item_empty">Digite o nome do item</string>
     <string name="txt_update_price_empty">Digite o preço do item</string>
     <string name="txt_update_category_empty">Selecione a Categoria do item</string>
+    <string name="txt_message_add_success_update_manage_table">item atualizado com sucesso!</string>
+
 
     <!--    Create Order Fragment-->
     <string name="txt_title_subtitle_create_order">Selecione os itens</string>
@@ -180,6 +183,8 @@
     <string name="txt_total_value_view_order">Total:</string>
     <string name="btn_send_kitchen_view_order">Enviar para Cozinha</string>
     <string name="txt_price_view_order">R$ %s</string>
+    <string name="txt_message_order_send_success">Pedido enviado para cozinha.</string>
+
 
     <!--    Table Details Fragment-->
     <string name="txt_title_table_details">Pedido - Mesa %s</string>
@@ -200,11 +205,14 @@
     <string name="txt_title_subtitle_extract">Resumo do dia</string>
     <string name="btn_extract_clean_day">Limpar Histórico do Dia</string>
     <string name="txt_current_date">Data:</string>
-    <string name="txt_sold_total_extract">TOTAL VENDIDO:</string>
+    <string name="txt_sold_total_extract">TOTAL:</string>
     <string name="txt_info_extract">Nenhum pedido registrado!</string>
     <string name="txt_message_bottom_sheet_extract">Para limpar histórico é necessário ter pedido registrado.</string>
     <string name="txt_message_print_bottom_sheet_extract">Para imprimir o extrato é necessário ter pedido registrado.</string>
     <string name="txt_title_extract">EXTRATO DO DIA</string>
+    <string name="txt_title_mega_burger">MEGA BURGUER</string>
+    <string name="txt_quantity_item_extract">Qtd Item</string>
+    <string name="txt_value_extract">Valor</string>
     <string name="txt_line_extract">--------------------------------------------</string>
     <string name="txt_price_snack_extract">R$ %s</string>
     <string name="txt_extract_clean_success">Histórico do dia limpo com sucesso!</string>
