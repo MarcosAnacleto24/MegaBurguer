@@ -68,7 +68,7 @@ Utilizando a biblioteca **[ESCPOS-ThermalPrinter-Android](https://github.com/Dan
 <img src="prints/prints-splash.png" alt="Tela Splash" width="180"/>
 <img src="prints/prints-login.png" alt="Tela Login" width="180"/>
 <img src="prints/prints-home-admin.png" alt="Home Admin" width="180"/>
-<img src="prints/prints-manege-tables.png" alt="Gerenciar mesas" width="180"/>
+<img src="prints/prints-manege-table.png" alt="Gerenciar mesas" width="180"/>
 <img src="prints/prints-register.png" alt="Registrar Ssuário" width="180"/>
 <img src="prints/prints-recover.png" alt="Alterar Senha" width="180"/>
 <img src="prints/prints-delte-user.png" alt="Deletar Usuário" width="180"/>
