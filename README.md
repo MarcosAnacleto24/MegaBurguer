@@ -91,7 +91,7 @@ Utilizando a biblioteca **[ESCPOS-ThermalPrinter-Android](https://github.com/Dan
 <img src="prints/prints-home-waiter.png" alt="Home Garçom" width="180"/>
 <img src="prints/prints-create-order.png" alt="Criar Pedido" width="180"/>
 <img src="prints/prints-add-observation.png" alt="Adicionar Observação" width="180"/>
-<img src="prints/prints-view-order.jpg" alt="Ver Pedido e Enviar Para Cozinha" width="180"/>
+<img src="prints/prints-view-order.png" alt="Ver Pedido e Enviar Para Cozinha" width="180"/>
 
 </div>
 
