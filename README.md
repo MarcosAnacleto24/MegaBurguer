@@ -61,12 +61,19 @@ Utilizando a biblioteca **[ESCPOS-ThermalPrinter-Android](https://github.com/Dan
 
 ---
 
-## 📱 Telas do Aplicativo
+## 📱 Telas Iniciais
 
 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
 
 <img src="prints/prints-splash.png" alt="Tela Splash" width="180"/>
 <img src="prints/prints-login.png" alt="Tela Login" width="180"/>
+
+</div>
+
+## 📱 Telas do Admin
+
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+
 <img src="prints/prints-home-admin.png" alt="Home Admin" width="180"/>
 <img src="prints/prints-manege-table.png" alt="Gerenciar mesas" width="180"/>
 <img src="prints/prints-register.png" alt="Registrar Ssuário" width="180"/>
@@ -75,6 +82,7 @@ Utilizando a biblioteca **[ESCPOS-ThermalPrinter-Android](https://github.com/Dan
 <img src="prints/prints-manage-menu.png" alt="Gerenciar Cardápio" width="180"/>
 
 </div>
+
 
 ### Operação e Impressão
 
