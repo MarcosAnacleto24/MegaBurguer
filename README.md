@@ -105,6 +105,16 @@ Utilizando a biblioteca **[ESCPOS-ThermalPrinter-Android](https://github.com/Dan
 
 </div>
 
+## 📱 Imagens de impressão
+
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+
+<img src="prints/img-order.jpg" alt="Impressão do Pedido" width="180"/>
+<img src="prints/imag-via-establishment-customer.jpg" alt="Impressão Via Estabelecimento/Cliente" width="180"/>
+<img src="prints/img-extract-day.jpg" alt="Impressão Extrato do Dia" width="180"/>
+
+</div>
+
 ---
 
 ## Sobre o Projeto
