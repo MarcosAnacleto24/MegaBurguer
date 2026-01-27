@@ -84,13 +84,24 @@ Utilizando a biblioteca **[ESCPOS-ThermalPrinter-Android](https://github.com/Dan
 </div>
 
 
-### Operação e Impressão
+## 📱 Telas do Garçom
 
 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
 
-<img src="prints/prints-cardapio.png" alt="Cardápio" width="180"/>
-<img src="prints/prints-cozinha.png" alt="Tela da Cozinha" width="180"/>
-<img src="prints/prints-cupom-impresso.jpg" alt="Exemplo de Cupom Impresso" width="180"/>
+<img src="prints/prints-home-waiter.png" alt="Home Garçom" width="180"/>
+<img src="prints/prints-create-order.png" alt="Criar Pedido" width="180"/>
+<img src="prints/prints-add-obsrvation.png" alt="Adicionar Observação" width="180"/>
+<img src="prints/prints-view-order.jpg" alt="Ver Pedido e Enviar Para Cozinha" width="180"/>
+
+</div>
+
+## 📱 Telas da Cozinha/Caixa
+
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+
+<img src="prints/prints-home-kitchen-box.png" alt="Home Cozinha/Caixa" width="180"/>
+<img src="prints/prints-close-account.png" alt="Fechar Conta" width="180"/>
+<img src="prints/prints-view-extract.png" alt="Ver extrato do dia" width="180"/>
 
 </div>
 
