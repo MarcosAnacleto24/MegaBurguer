@@ -31,6 +31,7 @@ import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -52,6 +53,11 @@ class HomeStaffFragment : Fragment() {
 
     // Mutex para garantir que uma impressão espere a outra terminar (Fila)
     private val printerMutex = kotlinx.coroutines.sync.Mutex()
+
+    private var printJob: kotlinx.coroutines.Job? = null
+
+    // Guarda sempre a versão mais atual da lista de pedidos vinda do Firebase
+    private var latestOrderList: List<OrderItem> = emptyList()
 
     private val handler = android.os.Handler(Looper.getMainLooper())
     private val refreshRunnable = object : Runnable {
@@ -305,32 +311,39 @@ class HomeStaffFragment : Fragment() {
     private fun observeOrderPrint() {
         viewModel.observeOrderPrint().observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
-                is StateView.Loading -> {
-
-                }
+                is StateView.Loading -> { }
 
                 is StateView.Success -> {
+                    // Atualiza a variável global com o que acabou de chegar
+                    latestOrderList = stateView.data ?: emptyList()
 
-                    val orderList = stateView.data ?: emptyList()
 
-                    // Se a lista estiver vazia, limpamos nosso controle para evitar bugs futuros
-                    if (orderList.isEmpty()) {
-                        processingOrderIds.clear()
-                    }
+                    if (latestOrderList.isNotEmpty() && hasBluetoothPermission()) {
 
-                    if (orderList.isNotEmpty() && hasBluetoothPermission()) {
-                        processAndPrintOrders(orderList)
-                    } else if (orderList.isNotEmpty() && !hasBluetoothPermission()) {
+                        // Cancela o timer anterior (reset)
+                        printJob?.cancel()
+
+                        // Inicia um novo timer de 5 segundos
+                        printJob = lifecycleScope.launch {
+                            // Aguarda 5 segundos para acumular pedidos picados
+                            kotlinx.coroutines.delay(5000)
+
+                            if (isActive) {
+                                // O TRUQUE: Usa 'latestOrderList' (o acumulado) e não a lista antiga
+                                processAndPrintOrders(latestOrderList)
+                            }
+                        }
+
+                    } else if (latestOrderList.isNotEmpty() && !hasBluetoothPermission()) {
+                        // Apenas avisa se não tiver permissão
                         Toast.makeText(requireContext(), getString(R.string.txt_message_orders_line_staff), Toast.LENGTH_LONG).show()
                     }
                 }
 
                 is StateView.Error -> {
                     showBottomSheet(message = stateView.message ?: getString(R.string.error_generic))
-
                 }
             }
-
         }
     }
 

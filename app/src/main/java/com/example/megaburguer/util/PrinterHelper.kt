@@ -47,6 +47,7 @@ class PrinterHelper() {
             // ---------------------------------------------------------
             val sbEst = StringBuilder()
             sbEst.append("[C]<font size='wide'><b>MEGA BURGUER</b></font>\n")
+            sbEst.append("[C]<font size='wide'><b>CNPJ: 50.292.053/0001-00</b></font>\n")
             sbEst.append("[C]<b>VIA DO ESTABELECIMENTO</b>\n")
             sbEst.append("[C]<font size='big'>MESA $tableNumber</font>\n")
             sbEst.append(baseReceipt)
@@ -70,6 +71,7 @@ class PrinterHelper() {
             // ---------------------------------------------------------
             val sbCli = StringBuilder()
             sbCli.append("[C]<font size='wide'><b>MEGA BURGUER</b></font>\n")
+            sbEst.append("[C]<font size='wide'><b>CNPJ: 50.292.053/0001-00</b></font>\n")
             sbCli.append("[C]<b>VIA DO CLIENTE</b>\n")
             sbCli.append("[C]MESA $tableNumber\n")
             sbCli.append(baseReceipt)
