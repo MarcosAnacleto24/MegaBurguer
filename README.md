@@ -65,10 +65,10 @@ Utilizando a biblioteca **[ESCPOS-ThermalPrinter-Android](https://github.com/Dan
 
 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
 
-<img src="prints/splash.png" alt="Tela Splash" width="180"/>
-<img src="prints/login.png" alt="Tela Login" width="180"/>
-<img src="prints/home-admin.png" alt="Home Admin" width="180"/>
-<img src="prints/gestao-usuarios.png" alt="Gestão Usuários" width="180"/>
+<img src="prints/prints-splash.png" alt="Tela Splash" width="180"/>
+<img src="prints/prints-login.png" alt="Tela Login" width="180"/>
+<img src="prints/prints-home-admin.png" alt="Home Admin" width="180"/>
+<img src="prints/prints-gestao-usuarios.png" alt="Gestão Usuários" width="180"/>
 
 </div>
 
@@ -76,9 +76,9 @@ Utilizando a biblioteca **[ESCPOS-ThermalPrinter-Android](https://github.com/Dan
 
 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
 
-<img src="prints/cardapio.png" alt="Cardápio" width="180"/>
-<img src="prints/cozinha.png" alt="Tela da Cozinha" width="180"/>
-<img src="prints/cupom-impresso.jpg" alt="Exemplo de Cupom Impresso" width="180"/>
+<img src="prints/prints-cardapio.png" alt="Cardápio" width="180"/>
+<img src="prints/prints-cozinha.png" alt="Tela da Cozinha" width="180"/>
+<img src="prints/prints-cupom-impresso.jpg" alt="Exemplo de Cupom Impresso" width="180"/>
 
 </div>
 
