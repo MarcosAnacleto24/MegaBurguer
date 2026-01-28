@@ -11,7 +11,7 @@ O objetivo do app é conectar o salão (garçons) diretamente à cozinha atravé
 - **Gestão de Usuários:** Cadastro completo de funcionários com níveis de acesso (Garçom, Cozinha/Caixa, Admin).
 - **Segurança:** Funcionalidade de exclusão de usuários e **reset de senha** (envio de link de recuperação via e-mail).
 - **Gestão de Mesas:** Criação e exclusão dinâmica de mesas no salão.
-- **Cardápio Digital:** Adição, edição e remoção de produtos em tempo real (com upload de imagens).
+- **Cardápio Digital:** Adição, edição e remoção de produtos em tempo real.
 
 ### 👤 Perfil Garçom (Atendente)
 - **Lançamento de Pedidos:** Seleção de mesa, adição de itens ao carrinho e inserção de observações personalizadas antes do envio à cozinha.
