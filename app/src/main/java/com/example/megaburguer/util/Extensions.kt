@@ -10,6 +10,8 @@ import com.example.megaburguer.databinding.LayoutBottomSheetBinding
 import com.example.megaburguer.databinding.LayoutBottomSheetObservationBinding
 import com.example.megaburguer.databinding.LayoutBottomSheetViewObservationBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import java.text.NumberFormat
+import java.util.Locale
 
 fun Fragment.showBottomSheet(
     titleDialog: Int? = null,
@@ -39,7 +41,7 @@ fun Fragment.showBottomSheet(
 
 fun Fragment.showObservationDialog(
     nameItem: String,
-    priceItem: Float,
+    priceItem: Long,
     onSaveClick: (String) -> Unit,
     themeResId: Int = android.R.style.Theme_Material_Light_Dialog // ou outro tema se quiser
 ) {
@@ -47,10 +49,7 @@ fun Fragment.showObservationDialog(
     val binding = LayoutBottomSheetObservationBinding.inflate(layoutInflater, null, false)
 
     binding.nameItem.text = nameItem
-    binding.txtPrice.text = getString(
-        R.string.txt_price_bottom_sheet_observation,
-        GetMask.getFormatedValue(priceItem)
-    )
+    binding.txtPrice.text = priceItem.toCurrency()
 
     binding.btnSave.setOnClickListener {
         onSaveClick(binding.editObservation.text.toString())
@@ -76,7 +75,7 @@ fun Fragment.showObservationDialog(
 
 fun Fragment.showViewObservationDialog(
     nameItem: String,
-    priceItem: Float,
+    priceItem: Long,
     observationItem: String,
     themeResId: Int = android.R.style.Theme_Material_Light_Dialog // ou outro tema se quiser
 ) {
@@ -84,10 +83,7 @@ fun Fragment.showViewObservationDialog(
     val binding = LayoutBottomSheetViewObservationBinding.inflate(layoutInflater, null, false)
 
     binding.nameItem.text = nameItem
-    binding.txtPrice.text = getString(
-        R.string.txt_price_bottom_sheet_observation,
-        GetMask.getFormatedValue(priceItem)
-    )
+    binding.txtPrice.text = priceItem.toCurrency()
     binding.editObservation.setText(observationItem)
 
 
@@ -106,7 +102,6 @@ fun Fragment.showViewObservationDialog(
 
     dialog.show()
 }
-
 
 
 fun Fragment.showBottomSheetModal(
@@ -137,3 +132,22 @@ fun Fragment.showBottomSheetModal(
     bottomSheetDialog.setContentView(bottomSheetBinding.root)
     bottomSheetDialog.show()
 }
+
+
+fun Fragment.hideKeyboard() {
+    val view = activity?.currentFocus
+    if (view != null) {
+        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+}
+
+fun Long.toCurrency(): String {
+    val nf = NumberFormat.getCurrencyInstance(
+        Locale.Builder().setLanguage("pt").setRegion("BR").build()
+    )
+    // Dividimos por 100.0 apenas na hora de formatar para a String de exibição
+    return nf.format(this / 100.0)
+}
+
+fun Int.toCurrency(): String = this.toLong().toCurrency()

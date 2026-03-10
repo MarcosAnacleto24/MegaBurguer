@@ -11,7 +11,7 @@ data class OrderItem(
     val nameTable: String = "",
     val nameWaiter: String = "",
     val nameItem: String = "",
-    val price: Float = 0f,
+    val price: Long = 0L,
     var quantity: Int = 0,
     var observation: String = "",
     var printed: Boolean = false

@@ -15,4 +15,6 @@
 local.properties
 firebase-credentials.json
 .env
+# Firebase configuration file
+google-services.json
 

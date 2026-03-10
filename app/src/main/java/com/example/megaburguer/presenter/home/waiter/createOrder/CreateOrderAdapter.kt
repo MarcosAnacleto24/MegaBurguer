@@ -8,9 +8,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.megaburguer.R
 import com.example.megaburguer.data.model.Menu
-import com.example.megaburguer.data.model.Table
 import com.example.megaburguer.databinding.ItemCreateOrdersBinding
-import com.example.megaburguer.util.GetMask
+import com.example.megaburguer.util.toCurrency
 
 class CreateOrderAdapter(
     private val onAddItemClick: (menu: Menu, position: Int) -> Unit,
@@ -53,9 +52,7 @@ class CreateOrderAdapter(
         fun bind(menu: Menu) {
 
             binding.nameItem.text = menu.nameItem
-            binding.txtNumber.text = binding.root.context.
-            getString(R.string.txt_price_snack_manage_menu,
-                GetMask.getFormatedValue(menu.price))
+            binding.txtNumber.text = menu.price.toCurrency()
 
             val qtd = quantityMap[menu.id] ?: 0
             if (qtd > 0) {

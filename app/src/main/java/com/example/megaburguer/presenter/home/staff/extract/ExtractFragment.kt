@@ -4,13 +4,13 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -18,10 +18,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.megaburguer.R
 import com.example.megaburguer.data.model.OrderItem
 import com.example.megaburguer.databinding.FragmentExtractBinding
-import com.example.megaburguer.util.GetMask
 import com.example.megaburguer.util.PrinterHelper
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
+import com.example.megaburguer.util.toCurrency
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -147,11 +147,10 @@ class ExtractFragment : Fragment() {
     private fun configInformation() {
         val ptBr = Locale.forLanguageTag("pt-BR")
         date = SimpleDateFormat("dd/MM/yyyy - HH:mm", ptBr).format(Date())
-        val totalPrice = extractList.sumOf { it.price.toLong() * it.quantity }
+        val totalPrice = extractList.sumOf { it.price * it.quantity }
 
         binding.txtDate.text = date
-        binding.txtPriceTotal.text = getString(R.string.txt_value_sub_total_extract_line,
-            GetMask.getFormatedValue(totalPrice.toFloat()))
+        binding.txtPriceTotal.text = totalPrice.toCurrency()
     }
 
     private fun hasBluetoothPermission(): Boolean {

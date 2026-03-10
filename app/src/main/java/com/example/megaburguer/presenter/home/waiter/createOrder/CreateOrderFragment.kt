@@ -87,7 +87,7 @@ class CreateOrderFragment : Fragment() {
                         nameTable = args.table.number,
                         nameWaiter = args.nameUser,
                         nameItem = menu?.nameItem ?: "",
-                        price = menu?.price ?: 0f,
+                        price = menu?.price ?: 0L,
                         quantity = qtd,
                         observation = observationSaveMap[idItem] ?: ""
                     )
@@ -128,7 +128,7 @@ class CreateOrderFragment : Fragment() {
                         priceItem = menu.price,
                         onSaveClick = { observation ->
                             if (observation.isNotEmpty()) {
-                                observationSaveMap[menu.id,] = observation
+                                observationSaveMap[menu.id] = observation
                             } else {
                                 observationSaveMap.remove(menu.id)
                             }

@@ -7,21 +7,22 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.megaburguer.R
 import com.example.megaburguer.data.model.Menu
 import com.example.megaburguer.databinding.FragmentManageMenuBinding
-import com.example.megaburguer.util.BaseFragment
 import com.example.megaburguer.util.MoneyTextWatcher
 import com.example.megaburguer.util.StateView
+import com.example.megaburguer.util.hideKeyboard
 import com.example.megaburguer.util.showBottomSheet
 import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ManageMenuFragment : BaseFragment() {
+class ManageMenuFragment : Fragment() {
     private var _binding: FragmentManageMenuBinding? = null
     private val binding get() = _binding!!
 
@@ -137,7 +138,7 @@ class ManageMenuFragment : BaseFragment() {
 
         when {
             nameItem.isEmpty() -> showBottomSheet(message = getString(R.string.txt_name_item_empty))
-            price <= 0f -> showBottomSheet(message = getString(R.string.txt_price_empty))
+            price <= 0L -> showBottomSheet(message = getString(R.string.txt_price_empty))
             category.isEmpty()  -> showBottomSheet(message = getString(R.string.txt_category_empty) )
 
             else -> {

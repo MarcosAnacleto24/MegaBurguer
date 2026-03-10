@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.megaburguer.R
 import com.example.megaburguer.data.model.OrderItem
 import com.example.megaburguer.databinding.ItemViewOrdersBinding
-import com.example.megaburguer.util.GetMask
+import com.example.megaburguer.util.toCurrency
 
 class TableDetailsAdapter(
     private val onRemoveItemClick: (orderItem: OrderItem, position: Int) -> Unit,
@@ -59,23 +59,28 @@ class TableDetailsAdapter(
 
             binding.txtValueEach.text = binding.root.context.
             getString(R.string.txt_value_each_view_order,
-                GetMask.getFormatedValue(orderItem.price))
+                orderItem.price.toCurrency())
 
 
 
             if (quantityMap[orderItem.id] == null) {
                 binding.txtQuantityItem.text = orderItem.quantity.toString()
 
+                val subTotalCents = orderItem.price * orderItem.quantity
+
                 binding.txtValueSubTotal.text = binding.root.context.
                 getString(R.string.txt_value_sub_total_view_order,
-                    GetMask.getFormatedValue(orderItem.price * orderItem.quantity))
+                    subTotalCents.toCurrency())
 
             } else {
                 binding.txtQuantityItem.text = quantityMap[orderItem.id].toString()
 
+                val subTotalCents = orderItem.price * quantityMap[orderItem.id]!!
+
+
                 binding.txtValueSubTotal.text = binding.root.context.
                         getString(R.string.txt_value_sub_total_view_order,
-                    GetMask.getFormatedValue(orderItem.price * quantityMap[orderItem.id]!!))
+                    subTotalCents.toCurrency())
 
             }
 

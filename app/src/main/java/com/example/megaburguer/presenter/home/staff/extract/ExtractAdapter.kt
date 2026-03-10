@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.megaburguer.R
 import com.example.megaburguer.data.model.OrderItem
 import com.example.megaburguer.databinding.ItemExtractLineBinding
-import com.example.megaburguer.util.GetMask
+import com.example.megaburguer.util.toCurrency
 
-class ExtractAdapter() : ListAdapter<OrderItem,
+class ExtractAdapter : ListAdapter<OrderItem,
         ExtractAdapter.MyViewHolder>(DIFF_CALLBACK) {
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<OrderItem>() {
@@ -42,7 +42,7 @@ class ExtractAdapter() : ListAdapter<OrderItem,
     }
 
     // A classe interna que representa o "molde" de cada item
-    inner class MyViewHolder(val binding: ItemExtractLineBinding) :
+    class MyViewHolder(val binding: ItemExtractLineBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(orderItem: OrderItem) {
@@ -52,13 +52,12 @@ class ExtractAdapter() : ListAdapter<OrderItem,
 
             binding.txtUnitPrice.text = binding.root.context.getString(
                 R.string.txt_value_each_extract_line,
-                GetMask.getFormatedValue(orderItem.price)
+                orderItem.price.toCurrency()
             )
 
-            binding.txtLineTotal.text = binding.root.context.getString(
-                R.string.txt_value_sub_total_extract_line,
-                GetMask.getFormatedValue(orderItem.price * orderItem.quantity)
-            )
+            val totalLineCents = orderItem.price * orderItem.quantity
+
+            binding.txtLineTotal.text = totalLineCents.toCurrency()
 
 
         }

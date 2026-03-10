@@ -57,20 +57,12 @@ class MoneyTextWatcher(
         // A forma moderna, correta e reutilizável de criar o Locale
         private val PT_BR = Locale.forLanguageTag("pt-BR")
 
-        fun getValueUnMasked(editText: EditText): Float {
-            val moneyFormatter = NumberFormat.getCurrencyInstance(PT_BR)
-            val value = if (editText.text.toString().isEmpty()) {
-                0f
-            } else {
-                try {
-                    moneyFormatter.parse(editText.text.toString())?.toFloat()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    0f
-                }
-            }
-            return value ?: 0f
+        // getValueUnMasked para retornar centavos
+        fun getValueUnMasked(editText: EditText): Long {
+            val cleanString = editText.text.toString().replace(Regex("[R$\\s.,]"), "")
+            return cleanString.toLongOrNull() ?: 0L
         }
+
     }
 }
 

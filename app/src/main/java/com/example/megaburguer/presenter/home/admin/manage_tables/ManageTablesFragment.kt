@@ -6,19 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.megaburguer.R
 import com.example.megaburguer.data.model.Table
 import com.example.megaburguer.databinding.FragmentManageTablesBinding
-import com.example.megaburguer.util.BaseFragment
 import com.example.megaburguer.util.StateView
+import com.example.megaburguer.util.hideKeyboard
 import com.example.megaburguer.util.showBottomSheet
 import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ManageTablesFragment : BaseFragment() {
+class ManageTablesFragment : Fragment() {
 
     private var _binding: FragmentManageTablesBinding? = null
     private val binding get() = _binding!!

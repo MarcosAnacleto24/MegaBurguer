@@ -239,8 +239,8 @@
     <string name="txt_btn_obs">OBS</string>
 
     <!--    Item View Order-->
-    <string name="txt_value_each_view_order">R$: %s cada</string>
-    <string name="txt_value_sub_total_view_order">Subtotal: R$: %s</string>
+    <string name="txt_value_each_view_order">%s cada</string>
+    <string name="txt_value_sub_total_view_order">Subtotal: %s</string>
     <string name="btn_less_view_order">-</string>
     <string name="btn_more_view_order">+</string>
     <string name="btn_remove_item_view_order">Remover</string>
@@ -248,7 +248,7 @@
 
     <!--    Item Extract Line-->
     <string name="txt_quantity_item_extract_line">%sx %s</string>
-    <string name="txt_value_each_extract_line">R$: %s cada</string>
+    <string name="txt_value_each_extract_line">%s cada</string>
     <string name="txt_value_sub_total_extract_line">R$: %s</string>
 
 

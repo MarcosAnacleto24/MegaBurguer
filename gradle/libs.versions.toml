@@ -1,5 +1,5 @@
 [versions]
-agp = "9.0.0"
+agp = "9.0.1"
 coreSplashscreen = "1.2.0"
 escposThermalprinterAndroid = "3.3.0"
 firebaseBom = "34.7.0"

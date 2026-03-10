@@ -17,12 +17,11 @@ import com.example.megaburguer.data.model.OrderItem
 import com.example.megaburguer.databinding.FragmentViewOrderBinding
 import com.example.megaburguer.presenter.home.SharedOrderViewModel
 import com.example.megaburguer.util.FirebaseHelper
-import com.example.megaburguer.util.GetMask
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
 import com.example.megaburguer.util.showViewObservationDialog
+import com.example.megaburguer.util.toCurrency
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.getValue
 
 @AndroidEntryPoint
 class ViewOrderFragment : Fragment() {
@@ -79,14 +78,13 @@ class ViewOrderFragment : Fragment() {
         viewOrderAdapter.submitList(currentOrderItems.toList())
 
         val totalItems = currentOrderItems.sumOf { it.quantity }
-        val totalPrice = currentOrderItems.sumOf { it.price.toLong() * it.quantity }
+        val totalPrice = currentOrderItems.sumOf { it.price * it.quantity }
 
         binding.txtSubtitle.text = getString(R.string.txt_title_table, args.table.number)
 
         binding.txtTotalItemsNumber.text = totalItems.toString()
 
-        binding.txtTotalValueReal.text = getString(R.string.txt_price_snack_manage_menu,
-            GetMask.getFormatedValue(totalPrice.toFloat()))
+        binding.txtTotalValueReal.text = totalPrice.toCurrency()
 
 
         getUser()
@@ -219,13 +217,10 @@ class ViewOrderFragment : Fragment() {
         }
 
         val totalItems = itemsUpdate.sumOf { it.quantity }
-        val totalPrice = itemsUpdate.sumOf { it.price.toLong() * it.quantity }
+        val totalPrice = itemsUpdate.sumOf { it.price * it.quantity }
 
         binding.txtTotalItemsNumber.text = totalItems.toString()
-        binding.txtTotalValueReal.text = getString(
-            R.string.txt_price_snack_manage_menu,
-            GetMask.getFormatedValue(totalPrice.toFloat())
-        )
+        binding.txtTotalValueReal.text = totalPrice.toCurrency()
     }
 
     override fun onDestroyView() {

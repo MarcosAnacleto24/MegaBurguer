@@ -7,12 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.megaburguer.R
-import com.example.megaburguer.data.model.Menu
 import com.example.megaburguer.data.model.OrderItem
-import com.example.megaburguer.data.model.Table
-import com.example.megaburguer.databinding.ItemCreateOrdersBinding
 import com.example.megaburguer.databinding.ItemViewOrdersBinding
-import com.example.megaburguer.util.GetMask
+import com.example.megaburguer.util.toCurrency
 
 class ViewOrderAdapter(
     private val onRemoveItemClick: (orderItem: OrderItem, position: Int) -> Unit,
@@ -57,36 +54,28 @@ class ViewOrderAdapter(
 
         fun bind(orderItem: OrderItem) {
 
-            if (orderItem.observation.isNotEmpty()) {
-                binding.btnViewObs.isVisible = true
-
-            } else {
-                binding.btnViewObs.isVisible = false
-            }
+            binding.btnViewObs.isVisible = orderItem.observation.isNotEmpty()
 
             binding.nameItem.text = orderItem.nameItem
 
             binding.txtValueEach.text = binding.root.context.
             getString(R.string.txt_value_each_view_order,
-                GetMask.getFormatedValue(orderItem.price))
+                orderItem.price.toCurrency())
 
 
 
-            if (quantityMap[orderItem.id] == null) {
-                binding.txtQuantityItem.text = orderItem.quantity.toString()
+            // Descobrimos a quantidade atual (ou do Map ou do próprio item)
+            val currentQuantity = quantityMap[orderItem.id] ?: orderItem.quantity
+            binding.txtQuantityItem.text = currentQuantity.toString()
 
-                binding.txtValueSubTotal.text = binding.root.context.
-                getString(R.string.txt_value_sub_total_view_order,
-                    GetMask.getFormatedValue(orderItem.price * orderItem.quantity))
+            // Fazemos o cálculo do Subtotal (Preço em centavos * Quantidade)
+            val subTotalCents = orderItem.price * currentQuantity
 
-            } else {
-                binding.txtQuantityItem.text = quantityMap[orderItem.id].toString()
-
-                binding.txtValueSubTotal.text = binding.root.context.
-                        getString(R.string.txt_value_sub_total_view_order,
-                    GetMask.getFormatedValue(orderItem.price * quantityMap[orderItem.id]!!))
-
-            }
+            // Exibimos usando a nova extensão .toCurrency() que criamos
+            binding.txtValueSubTotal.text = binding.root.context.getString(
+                R.string.txt_value_sub_total_view_order,
+                subTotalCents.toCurrency()
+            )
 
 
             binding.btnRemove.setOnClickListener {

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -13,16 +14,15 @@ import androidx.navigation.fragment.navArgs
 import com.example.megaburguer.R
 import com.example.megaburguer.data.model.Menu
 import com.example.megaburguer.databinding.FragmentUpdateManageMenuBinding
-import com.example.megaburguer.util.BaseFragment
 import com.example.megaburguer.util.MoneyTextWatcher
 import com.example.megaburguer.util.StateView
+import com.example.megaburguer.util.hideKeyboard
 import com.example.megaburguer.util.showBottomSheet
+import com.example.megaburguer.util.toCurrency
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.NumberFormat
-import java.util.Locale
 
 @AndroidEntryPoint
-class UpdateManageMenuFragment : BaseFragment() {
+class UpdateManageMenuFragment : Fragment() {
 
     private var _binding: FragmentUpdateManageMenuBinding? = null
     private val binding get() = _binding!!
@@ -54,9 +54,7 @@ class UpdateManageMenuFragment : BaseFragment() {
     private fun configSafeArgs() {
         binding.editChoiceTable.setText(args.menu.nameItem)
 
-        // Formata o preço inicial usando a mesma lógica do MoneyTextWatcher para garantir consistência
-        val formattedPrice = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("pt-BR")).format(args.menu.price)
-        binding.editPrice.setText(formattedPrice)
+        binding.editPrice.setText(args.menu.price.toCurrency())
 
         binding.editCategory.setText(args.menu.category)
     }
@@ -94,7 +92,7 @@ class UpdateManageMenuFragment : BaseFragment() {
 
         when {
             nameItem.isEmpty() -> showBottomSheet(message = getString(R.string.txt_update_name_item_empty))
-            price <= 0f -> showBottomSheet(message = getString(R.string.txt_update_price_empty))
+            price <= 0L -> showBottomSheet(message = getString(R.string.txt_update_price_empty))
             category.isEmpty()  -> showBottomSheet(message = getString(R.string.txt_update_category_empty) )
 
             else -> {

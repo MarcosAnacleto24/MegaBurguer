@@ -22,10 +22,10 @@ import com.example.megaburguer.data.enum.TableStatus
 import com.example.megaburguer.data.model.OrderItem
 import com.example.megaburguer.databinding.FragmentTableDetailsBinding
 import com.example.megaburguer.presenter.home.SharedOrderViewModel
-import com.example.megaburguer.util.GetMask
 import com.example.megaburguer.util.PrinterHelper
 import com.example.megaburguer.util.StateView
 import com.example.megaburguer.util.showBottomSheet
+import com.example.megaburguer.util.toCurrency
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -154,7 +154,7 @@ class TableDetailsFragment : Fragment() {
         val waitersList = currentOrderItems.map { it.nameWaiter }.distinct()
         val waitersString = waitersList.joinToString(separator = ", ")
         val totalItems = currentOrderItems.sumOf { it.quantity }
-        val totalPrice = currentOrderItems.sumOf { it.price.toLong() * it.quantity }
+        val totalPrice = currentOrderItems.sumOf { it.price * it.quantity }
 
         binding.txtNameWaiter.text = waitersString
 
@@ -162,8 +162,7 @@ class TableDetailsFragment : Fragment() {
 
         binding.txtTotalItemsNumber.text = totalItems.toString()
 
-        binding.txtTotalValueReal.text = getString(R.string.txt_price_snack_manage_menu,
-            GetMask.getFormatedValue(totalPrice.toFloat()))
+        binding.txtTotalValueReal.text = totalPrice.toCurrency()
 
     }
 
@@ -216,13 +215,10 @@ class TableDetailsFragment : Fragment() {
         }
 
         val totalItems = itemsUpdate.sumOf { it.quantity }
-        val totalPrice = itemsUpdate.sumOf { it.price.toLong() * it.quantity }
+        val totalPrice = itemsUpdate.sumOf { it.price * it.quantity }
 
         binding.txtTotalItemsNumber.text = totalItems.toString()
-        binding.txtTotalValueReal.text = getString(
-            R.string.txt_price_snack_manage_menu,
-            GetMask.getFormatedValue(totalPrice.toFloat())
-        )
+        binding.txtTotalValueReal.text = totalPrice.toCurrency()
     }
 
     private fun hasBluetoothPermission(): Boolean {
