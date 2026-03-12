@@ -125,6 +125,17 @@ O projeto consolidou conhecimentos avançados de **Android Nativo**, focando nã
 
 ---
 
+## 🛠 Refatoração e Padrões Profissionais
+
+Recentemente, o projeto passou por uma refatoração profunda para alinhar o código com padrões de mercado (Nível Pleno/Sênior):
+
+* **Precisão Monetária:** Migração de `Float` para `Long` (armazenando centavos). Essa abordagem elimina erros de precisão decimal inerentes ao ponto flutuante binário, garantindo integridade em cálculos financeiros.
+* **Gestão de Coroutines:** Ajuste no tratamento de exceções do Firebase para respeitar o `CancellationException`. Isso garante que processos assíncronos sejam cancelados corretamente quando o ciclo de vida do componente (ViewModel/Fragment) termina.
+* **Inversão de Dependência:** O `FirebaseHelper` foi refatorado para utilizar interfaces, permitindo a criação de Mocks e facilitando testes unitários futuros.
+* **Código Idiomático:** Substituição de classes utilitárias estáticas por **Kotlin Extension Functions**, tornando o código mais limpo e modular.
+
+---
+
 ## Desenvolvido por:
 
 **Marcos Anacleto**
