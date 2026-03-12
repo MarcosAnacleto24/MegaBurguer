@@ -13,8 +13,10 @@
 .externalNativeBuild
 .cxx
 local.properties
+.idea/
 firebase-credentials.json
 .env
 # Firebase configuration file
 google-services.json
+
 
